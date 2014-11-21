@@ -1,0 +1,425 @@
+body p,a{
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size: 13px;
+    line-height: 150%;
+}
+
+.api-btn{
+    background-color: #96B0FA;
+    color: #FFF;
+}
+
+.api-btn:hover{
+    background-color: #FFF;
+    color: #96B0FA;
+    border: 1px solid #96B0FA;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+.api-header{
+    height: 150px;
+    margin-bottom: 20px;
+    background: #1C4298; /* Old browsers */
+    
+}
+.api-header img{
+    width: 150px;
+    margin-top: -25px;
+}
+
+.api-navbar{top: 50px;height: 70px;}
+.api-navbar .navbar-brand{height:70px; padding: 15px 45px 15px 0;}
+.navbar-default .navbar-nav > li > a{
+    font-weight: bold; 
+    color:#1C4298;
+    margin-right: 20px;
+}
+.navbar-nav > li > a, .navbar-nav > li.active > a, .navbar-nav > li > a:hover {
+    padding: 15px 20px 15px !important;
+    margin-top: 10px !important;
+}
+.navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:active{
+    background-color: #A0CAEC !important;
+    border-radius: 5px;
+    color: #FFF !important;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.api-content{
+    max-width: 930px;
+    margin-bottom: 20px;
+    min-height: 420px;
+}
+.api-content h3{
+    border-bottom: 1px solid #A0CAEC;
+    color:#333;
+    line-height: 35px;
+}
+
+.time-ago{
+    line-height: 20px;
+    margin-top: -41px;
+    padding: 0 10px;
+    position: absolute;
+    z-index: 10;
+    background: none repeat scroll 0 0 #4663B8;
+}
+.time-ago a{color: #FFFFFF;}
+
+.api-calendar{margin-bottom:20px;}
+
+.api-news, .api-kliping, .api-buah_pikir, .api-perundangan{
+    margin-bottom: 10px;
+}
+.api-news .title h4, .api-kliping .title h4, .api-buah_pikir .title h4, .api-perundangan .title h4{
+    width: 85%;
+    color:#333;
+    font-weight: bold;
+}
+
+.api-news .dateposted p, .api-kliping .dateposted p, .api-buah_pikir .dateposted p, .api-perundangan .dateposted p{font-size: 11px;}
+.api-news .more, .api-kliping .more, .api-buah_pikir .more, .api-perundangan .more{margin:0 10px 5px 0;}
+.api-news .content img, .api-kliping .content img, .api-buah_pikir .content img, .api-perundangan .content img{margin-bottom: 10px;}
+.api-news h3, .api-kliping h3, .api-buah_pikir h3, .api-perundangan h3{color: #333;border: none;font-weight: bold;}
+
+.api-kliping-side{
+    background-color: #D0DCFF;
+    margin-left: 6px;
+    width: 95.2%;
+    border-top: 7px solid #4663B8;
+}
+.api-kliping-side p.date{
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.api-kliping-side a{display: block;}
+.api-kliping-side .kegiatan{
+    border-top: 1px solid #FFFFFF;
+    padding: 10px;
+}
+.api-kliping-side .kegiatan:hover{
+    background-color: #8AA7FD;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+.api-kliping-side .kegiatan:hover a{color: #FFF;}
+
+.api-kliping-side .kegiatan a{text-decoration: none;}
+
+.api-anggota .more{
+    display: block;
+    text-decoration: none;
+    background-color: #A0CAEC;
+    border-bottom-right-radius: 5px;
+    padding: 10px 10px 0 10px;
+    font-size: 13px;
+    color: #FFF;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.api-anggota .more:hover{
+    background-color: #2B4CAC;
+}
+
+.api-anggota{
+    border: 1px solid #A0CAEC;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-right:10px;
+    width: 32%;    
+}
+.api-anggota .title{
+    padding:10px 10px 0 0;
+    color:#2B4CAC;
+    font-weight: bold;
+}
+.api-anggota .image{padding:10px 10px 0 10px}
+.api-anggota .content{color:#646464;font-weight: normal;font-size:12px;}
+.api-anggota .more{
+    font-size: 12px; 
+    margin-right: -15px;
+    padding-bottom:10px;}
+
+.api-anggota_detail img{margin-bottom: 10px;}
+.api-anggota_detail h4{
+    background-color: #B2C5FF;
+    color: #FFF;
+    padding: 10px;
+    margin-top: 0;
+}    
+.api-anggota_detail p.information{
+    font-weight: bold;
+}
+
+.education{margin-left: 10px;}
+.alphabet a{margin-right: 5px; font-size: 14px;}
+
+.api-album{
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.api-album img{
+    width: 100%;
+}
+
+.api-gallery{
+    margin: 0 3px 10px 3px;
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.kepakaran h4.title{
+    background-color: #D0DCFF;
+    border-top: 7px solid #4663B8;
+    border-bottom: 1px solid #FFF;
+    padding: 10px;
+    margin-bottom:0;
+}
+
+.kepakaran h3{margin-top:0; text-align: left;}
+
+#menu_kepakaran .list-group-item{
+    padding-left: 10px;
+    margin-bottom: 0px;
+    border-radius: 0;
+    border: none;
+}
+
+#menu_kepakaran a.list-group-item{
+    border-bottom: 1px solid #FFF;
+    background-color: #D0DCFF;
+}
+
+#menu_kepakaran .panel{
+    border: none;
+    webkit-box-shadow: none; 
+    box-shadow: none;
+}
+
+#menu_kepakaran .subitem{
+    display: block;
+    background-color: #EDF2FF;
+    padding: 10px 15px;
+    border-bottom: 1px solid #FFF;
+    border-top: 1px solid #DAE4FF;
+}
+
+#menu_kepakaran .subitem i{
+    font-size: 8px;
+    top: -2px;
+}
+
+#menu_kepakaran .sub{
+    padding: 10px 30px;
+}
+
+#menu_kepakaran .subitem:last-child{
+    border-bottom: 1px solid #FFF;
+}
+
+.api-search{
+    border: 7px solid #EDF2FF;
+    margin: 10px 0;
+    padding: 10px;
+    padding-bottom: 35px;
+}
+
+.api-search .form-inline{
+    margin-top: 35px;
+}
+
+.api-result{
+    padding: 10px;
+    border: 1px solid #EDF2FF;
+    margin-bottom: 15px;
+}
+.api-result .title{font-weight: bold;}
+.api-result .info p{margin:0;}
+.api-result .subject{
+    position: absolute;
+    padding: 5px;
+    background-color: #1C4298;
+    color: #FFF;
+    font-size: 11px;
+    margin-left: 76%;
+    margin-top: -15px;
+}
+
+.api-result_detail h4, .api-result_detail h5{
+    font-weight: bold;
+    border-bottom: 1px solid #A0CAEC;
+    color:#333;
+    padding-bottom: 5px;
+}
+
+#api-loginContainer, #api-registerContainer{
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+#api-loginContainer .row > div, #api-registerContainer .row > div {margin-bottom: 1em;}
+#api-loginContainer .row > div:last-child, #api-registerContainer .row > div:last-child {margin-bottom: 0;}
+
+#api-login, #api-register{
+    position: relative;
+    padding: 15px 25px 30px 25px;
+    margin-bottom: 1em;
+    background-color: #FFF;
+    border: 5px solid #A0CAEC;
+    border-radius: 5px;
+}
+#api-login #login-form .form-control, #api-register #register-form .form-control{height: 40px;}
+#api-login #login-btn, #api-register #register-btn {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+#api-login h3, #api-register h3{border: none;}
+
+@media (min-width: 768px) {
+  #api-loginContainer {
+    width: 450px;
+  }
+  #api-loginContainer .row > div {
+    margin-bottom: 0;
+  }
+  #api-login #login-form, #api-register #register-form {
+    padding: 0 25px;
+    text-align: left;
+  }
+}
+
+#api-footerTop{
+    width: 100%;
+    background-color: #d8dfdd;
+    padding: 10px;
+    font-size: 10px;
+}
+#api-footerDown{
+    width: 100%;
+    background-color: #1C4298;
+    padding: 5px;
+    font-size: 10px;
+}
+#api-footerDown a{
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+}
+.api-footerContainer{max-width: 930px;}
+.api-footerLink{border-left: 1px solid #FFF;}
+.api-footerLink:last-child{border-right: 1px solid #FFF;}
+
+.api-separator{border:1px dotted #F6831F; margin-bottom:0;}
+
+/** CAROUSEL HOME CSS **/
+#carousel-home{margin-top: -20px;}
+/** END CAROUSEL HOME CSS **/
+
+/** CUSTOM CLNDR CSS **/
+#mini-clndr .clndr .controls {background-color: #4472F7;}
+#mini-clndr .clndr .days-container .days .headers, #mini-clndr .clndr .days-container .events .event-header {background-color: #B2C5FF;}
+#mini-clndr .clndr {border-bottom: 7px solid #4663B8;}
+
+/** Custom Bootstrap CSS **/
+
+/** Custom Full Calendar CSS **/
+.fc-event {
+    border-radius: 0;
+    border: none;
+    background-color: #4472F7;
+}
+
+.fc-unthemed .fc-today {background: #F0F4FF;}
+
+.fc-basicDay-view a, .fc-basicDay-view a:hover {
+    background-color: transparent;
+    color: #111;
+    font-size: 13px;
+    line-height: 35px;
+    border-bottom: 1px solid #ccc;
+    padding: 0 14px !important;
+}
+/* END FULL CALENDAR CSS */
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {width: 100%;}
+
+@media (min-width: 768px){
+    .navbar-nav > li > a {
+        padding: 25px 20px 5px;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+@media (max-width: 1199px){
+    .api-navbar .navbar-brand{padding-right: 0px;}
+}
+@media (max-width: 995px){
+    .api-result .subject{
+        margin-left: 77.6%;
+    }
+}
+@media (max-width: 768px){
+    .api-result .subject{
+        margin-left: 75%;
+    }
+}
+@media (max-width: 635px){
+    .api-result .subject{
+        margin-left: 70%;
+    }
+}
+@media (max-width: 330px){
+    .api-result .subject{
+        margin-left: 46%;
+    }
+}

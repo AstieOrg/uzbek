@@ -1,0 +1,84 @@
+
+<div id="sidebar-wrapper" class="collapse sidebar-collapse">
+	
+	<div id="search">
+		<form>
+			<input class="form-control input-sm" type="text" name="search" placeholder="Search..." />
+
+			<button type="submit" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
+		</form>		
+	</div> <!-- #search -->
+
+	<nav id="sidebar">		
+		
+		<ul id="main-nav" class="open-active">			
+			
+			
+			<li class="button {if $page.page=='home' || $page.page=='article' || $page.page=='agenda'}active{/if}">
+				<a href="{$basedomain}home">
+					<i class="fa fa-file-text"></i>
+					Menu Configuration
+					<!--span class="caret"></span-->
+				</a>				
+			</li>
+            
+			<li class="button {if $page.page=='content' || $page.page=='addcontent'}active{/if}">
+				<a href="{$basedomain}content">
+					<i class="fa fa-file-text"></i>
+					Content Category
+					<!--<span class="caret"></span>-->
+				</a>	
+				{*}
+				<ul class="sub-nav">
+					<li>
+						<!--controller content, function : content-->
+						<a href="{$basedomain}content/article">
+							<i class="fa fa-file-text"></i> 
+							Article
+						</a>
+					</li>
+					<li>
+						<a href="{$basedomain}content/gallery">
+							<i class="fa fa-file-text"></i> 
+							Gallery
+						</a>
+					</li>
+				</ul>
+				{/*}
+			</li>
+			
+            
+            		 
+			{*}
+			<li class="dropdown">
+				<a href="javascript:;">
+					<i class="fa fa-picture-o"></i>
+					Upload Frame & Cover 
+					<span class="caret"></span>
+				</a>				
+				<ul class="sub-nav">
+					<li>
+						<a href="{$basedomain}article/upload">
+							<i class="fa fa-facebook"></i> 
+							Facebook
+						</a>
+					</li>
+					<li>
+						<a href="{$basedomain}article/uploadtwt">
+							<i class="fa fa-twitter"></i> 
+							Twitter
+						</a>
+					<li>
+						<a href="{$basedomain}home/frame">
+							<i class="fa fa-list-alt"></i> 
+							Frame List
+						</a>
+					</li>
+				</ul>
+			</li>	
+			{/*}
+		</ul>
+				
+	</nav> <!-- #sidebar -->
+
+</div> <!-- /#sidebar-wrapper -->

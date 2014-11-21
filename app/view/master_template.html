@@ -1,0 +1,27 @@
+{include file="template/meta.html"}
+<body>
+	<!-- RUNNING GLOBAL VAR -->
+	<script>
+		var basedomain = "{$basedomain}";
+	</script>
+	
+    <!-- HEADER DEFAULT -->
+    {include file="template/header.html"}
+    
+    {if $page.page=='home' }
+        <!-- HEADER DEFAULT -->
+        {include file="template/banner.html"}
+    {/if}
+    
+    
+    
+    {if $page.page == 'home' OR $page.function == 'afiliasi' OR $page.function == 'kliping_kegiatan' OR $page.function == 'berita' OR $page.function == 'berita_detail' OR $page.function == 'buah_pikir' OR $page.function == 'perundangan'}
+    
+        <!-- SIDEBAR -->
+        {include file="template/sidebar.html"}
+    {/if}
+    <!-- CONTENT -->
+	{$content}
+	
+	<!-- FOOTER -->
+    {include file="template/footer.html"}
