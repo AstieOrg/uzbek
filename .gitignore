@@ -1,0 +1,17 @@
+config/config.php
+config/access.php
+tmp/*
+public_assets/*
+libs/*
+logs/*
+cache/*
+admin/config
+admin/config/config.php
+admin/cache/*
+admin/CACHE/*
+admin/logs/*
+dashboard/config/config.php
+admin/engine
+backup_app/*
+dashboard/*
+
