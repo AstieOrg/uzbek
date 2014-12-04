@@ -51,7 +51,7 @@ class content extends Controller {
 		return $this->loadView('content/content');
 	}
 	
-	public function test(){
+	public function menu(){
 	
 	$id = $_GET['id'];
 	//pr($menuId);exit;
@@ -82,6 +82,23 @@ class content extends Controller {
 		$this->view->assign('menuid',$id);
 
 		return $this->loadView('content/content');
+	}
+    
+    public function contentdel($action='delete'){
+
+		global $CONFIG;
+        //pr($_POST);exit;
+		$menuid = $_POST['menuId'];
+        $ids = $_POST['ids'];
+        if($_POST['action']) $action = $_POST['action'];
+        
+        if($ids){
+            $data = $this->models->content_del($ids, $action);
+            $message = 'Data has been deleted';
+        }
+		
+		echo "<script>alert('".$message."');window.location.href='".$CONFIG['admin']['base_url']."content/menu/?id=".$menuid."'</script>";
+		
 	}
 	
 	public function frame(){

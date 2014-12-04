@@ -57,6 +57,8 @@ class addcontent extends Controller {
 	
 	public function contentinp(){
 		global $CONFIG;
+        
+        //print_r($_POST);exit;
 		
 		if(isset($_POST['stats'])){
 			if($_POST['stats']=='on') $_POST['stats']=1;

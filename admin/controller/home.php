@@ -25,7 +25,7 @@ class home extends Controller {
 	
 	public function index(){
 		$this->view->assign('active','active');
-		$data = $this->models->get_menu(0);
+		$data = $this->models->get_menu();
 // 		pr($data);exit;
 
 		if ($data){
@@ -53,11 +53,11 @@ class home extends Controller {
 					$data[$key]['id_parent'] = '-';
 				} 
 				
-				if($val['stats'] == '1') {
-					$data[$key]['stats'] = 'Publish';
+				if($val['n_stats'] == '1') {
+					$data[$key]['n_stats'] = 'Publish';
 					$data[$key]['status_color'] = 'green';
 				} else {
-					$data[$key]['stats'] = 'Unpublish';
+					$data[$key]['n_stats'] = 'Unpublish';
 					$data[$key]['status_color'] = 'red'; 
 				}
 			}

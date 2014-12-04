@@ -10,7 +10,6 @@ class mmenu extends Database {
 		$datetime = array();
         
 		if(!empty($data['dateCreate'])) $data['dateCreate'] = date("Y-m-d H:i:s",strtotime($data['dateCreate']));
-        //if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
         //data action di input di controller? Hard code. 
 	//klo gak ada id -> insert, klo id ada -> update yang else. 
@@ -21,40 +20,38 @@ class mmenu extends Database {
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
-						{$this->prefix}_menu_list (nm_bhs, nm_eng, nm_rus, menu_type, pos, menu_stat, id_parent, date_created,
-						stats)
+						{$this->prefix}_menu_list (nm_bhs, nm_eng, nm_rus, menu_type, pos, menu_stat, id_parent, date_created, n_stats)
 					VALUES
 						('".$data['mnameBahasa']."','".$data['mnameEng']."','".$data['mnameRus']."','".$data['menuType']."'
-                        ,'".$data['menuPos']."','".$data['menuStat']."','".$data['menuParent']."','".$data['dateCreate']."','".$data['stats']."')";
-                        //pr($query);exit;
+                        ,'".$data['menuPos']."','".$data['menuStat']."','".$data['menuParent']."','".$data['dateCreate']."'
+                        ,'".$data['stats']."')";
 
 		} // kondisi untuk update.
 		else {
-		if($data['menuType']=='1' && $data['menuType']=='2') $date = $data['dateCreate'];
+
 			$query = "UPDATE {$this->prefix}_menu_list
 						SET 
-							title = '{$data['title']}',
-							brief = '{$data['brief']}',
-							content = '{$data['content']}',
-							image = '{$data['image']}',
-							file = '{$data['image_url']}',
-                            articletype = '{$data['articletype']}',
-							posted_date = '".$date."',
-                            expired_date = '{$data['expired_date']}',
-							authorid = '{$data['authorid']}',
-							n_status = {$data['n_status']}
+							nm_bhs = '{$data['mnameBahasa']}',
+							nm_eng = '{$data['mnameEng']}',
+							nm_rus = '{$data['mnameRus']}',
+							menu_type = '{$data['menuType']}',
+							pos = '{$data['menuPos']}',
+                            menu_stat = '{$data['menuStat']}',
+							id_parent = '{$data['menuParent']}',
+                            date_created = '{$data['dateCreate']}',
+							n_stats = '{$data['stats']}'
 						WHERE
 							id = '{$data['id']}'";
 		}
- //pr($query);exit;
+        
 		$result = $this->query($query);
 		
 		return $result;
 	}
 	//n_stat : status menu itu udah di delete atau belum, klo 1 udah di delete -> masuk ke trash
-	function get_menu($n_stats=null)
+	function get_menu()
 	{
- 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE n_stats = '{$n_stats}' ORDER BY date_created DESC";
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE n_stats != 2 ORDER BY date_created DESC";
  		
  		$result = $this->fetch($query,1);
  
@@ -113,11 +110,16 @@ class mmenu extends Database {
 		return $result;
 	}
 	
-	function menu_del($id)
+	function menu_del($id, $action)
 	{
 		foreach ($id as $key => $value) {
 			
-			$query = "UPDATE {$this->prefix}_menu_list SET stats = '2' WHERE id = '{$value}'";
+			
+            if($action == 'delete'){
+                $query = "DELETE FROM {$this->prefix}_menu_list WHERE id = '{$value}'";
+            }else{
+                $query = "UPDATE {$this->prefix}_menu_list SET n_status = '2' WHERE id = '{$value}'";
+            }
 		
 			$result = $this->query($query);
 		

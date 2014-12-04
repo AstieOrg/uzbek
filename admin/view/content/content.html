@@ -46,9 +46,7 @@
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
                     
-                   
-                    
-					<a class="btn btn-link btn-sm" href="{$basedomain}content/trash"><i class="fa fa-trash-o"></i> Trash</a>
+					<!--<a class="btn btn-link btn-sm" href="{$basedomain}content/trash"><i class="fa fa-trash-o"></i> Trash</a>-->
 					</div>
 					
 					<table 
@@ -82,6 +80,8 @@
 								<tr>
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
+                                        <input type="hidden" name="menuId" value="{$menuid}" />
+                                        <input type="hidden" name="action" value="delete" />
 									</td>
 									<td><a href="{$basedomain}content/addcontent/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
 									<td>{$var.authorid}</td>

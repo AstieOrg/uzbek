@@ -8,6 +8,8 @@ class mcontent extends Database {
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
         
+        if($data['n_status']=='on') $data['n_status'] = 1;
+        
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         //if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
@@ -109,11 +111,16 @@ class mcontent extends Database {
 		return $result;
 	}
 	
-	function content_del($id)
+	function content_del($id, $action)
 	{
 		foreach ($id as $key => $value) {
 			
-			$query = "UPDATE {$this->prefix}_news_content SET n_status = '2' WHERE id = '{$value}'";
+			
+            if($action == 'delete'){
+                $query = "DELETE FROM {$this->prefix}_news_content WHERE id = '{$value}'";
+            }else{
+                $query = "UPDATE {$this->prefix}_news_content SET n_status = '2' WHERE id = '{$value}'";
+            }
 		
 			$result = $this->query($query);
 		

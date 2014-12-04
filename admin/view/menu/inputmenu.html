@@ -18,8 +18,8 @@ $(function () {
 </div> <!-- #content-header -->	
 
 <div id="content-container">
-	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}article/articleinp" enctype="multipart/form-data">
-
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}menu/menuinp" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{$data.id}" />
 		<div class="row">
 			<div class="col-md-9">
 				<div class="portlet">
@@ -38,29 +38,28 @@ $(function () {
 						<div class="col-sm-12">
 							<div class="form-group">
                                 <label for="text-input">Menu Name in Bahasa</label>
-                                <input type="text" name="mnameBahasa" class="form-control" value="{$data.mnameBahasa}" data-required="true"/>
+                                <input type="text" name="mnameBahasa" class="form-control" value="{$data.nm_bhs}" data-required="true"/>
 							</div>
 						</div>
 			<div class="col-sm-12">
 				<div class="form-group">
 					<label for="text-input">Menu Name in English</label>
-					<input type="text" name="mnameEng" class="form-control" value="{$data.mnameEng}" data-required="true"/>
+					<input type="text" name="mnameEng" class="form-control" value="{$data.nm_eng}" data-required="true"/>
 				</div>
 			</div>
 			<div class="col-sm-12">
 							<div class="form-group">
                                 <label for="text-input">Menu Name in Russian</label>
-                                <input type="text" name="mnameRus" class="form-control" value="{$data.mnameRus}" data-required="true"/>
+                                <input type="text" name="mnameRus" class="form-control" value="{$data.nm_rus}" data-required="true"/>
 							</div>
 						</div>
                         <div class="col-sm-5">
 				<div class="form-group">
-                                <label for="text-input">Category</label>
-                                
+                                <label for="text-input">Category</label>                                
                                 <select name="menuType" class="form-control" >
-                                    <option value="0" {if $data.menuType==0}selected{/if} >Article</option>
-                                    <option value="1" {if $data.menuType==1}selected{/if} >Gallery</option>
-                                    <option value="2" {if $data.menuType==2}selected{/if} >Form</option>
+                                    <option value="0" {if $data.menuType==0}selected{/if} >List</option>
+                                    <option value="1" {if $data.menuType==1}selected{/if} >Article</option>
+                                    <!--<option value="2" {if $data.menuType==2}selected{/if} >Gallery</option>-->
                                 </select>
                             </div>
 						</div>	
@@ -69,51 +68,44 @@ $(function () {
                                 <label for="text-input">Menu Position</label>
                                 
                                 <select name="menuPos" class="form-control" >
-                                    <option value="0" {if $data.menuPos==0}selected{/if} >Top</option>
-                                    <option value="1" {if $data.menuPos==1}selected{/if} >Side</option>
+                                    <option value="0" {if $data.menuPos==0}selected{/if} >Top menu</option>
+                                    <option value="1" {if $data.menuPos==1}selected{/if} >Side menu</option>
                                 </select>
                             </div>
 						</div>	
+						
 			<div class="col-sm-5">			
-			<div class="form-group">
-				<label type="text">Menu Status </label>
-    				<select name="menuStat" class="form-control" >
-                                    <option value="0" {if $data.menuStat==0}selected{/if} >Parent</option>
-                                    <option value="1" {if $data.menuStat==1}selected{/if} >Child</option>
-                                </select>
-    								</div>
-    						</div>		
+			    <div class="form-group">
+				    <label type="text">Menu Status </label>
+				    <select name="menuStat" class="form-control" >
+					<option value="0" {if $data.menuStat==0}selected{/if} >Parent</option>
+					<option value="1" {if $data.menuStat==1}selected{/if} >Child</option>
+				    </select>
+			    </div>
+    			</div>		
+    			{if $data.menuStat==1}
     			<div class="col-sm-5">			
-			<div class="form-group">
-				<label type="text">Select Parent Menu </label>
-    				<select name="menuParent" class="form-control" >
-				    <!-- retrieve from db, klo menu status parent parent menunya gak ada-->
-				    <option value="1" {if $data.menuParent==1}selected{/if}>Home</option>
-				    <option value="2" {if $data.menuParent==2}selected{/if}>Uzbekistan</option>
-				    <option value="3" {if $data.menuParent==3}selected{/if}>President</option>
-				    <option value="4" {if $data.menuParent==4}selected{/if}>Foreign Policy</option>
-				    <option value="5" {if $data.menuParent==5}selected{/if}>Security</option>
-				    <option value="6" {if $data.menuParent==6}selected{/if}>Business</option>
-				    <option value="7" {if $data.menuParent==7}selected{/if}>Tourism</option>
-				    <option value="8" {if $data.menuParent==8}selected{/if}>Mass Media</option>
-				    <option value="9" {if $data.menuParent==9}selected{/if}>Embassy</option>
-				    <option value="10" {if $data.menuParent==101}selected{/if}>Cooperation</option>
-				    <option value="11" {if $data.menuParent==11}selected{/if}>Consular Service</option>
-				    <option value="12" {if $data.menuParent==12}selected{/if}>Press Release</option>
-				    <option value="13" {if $data.menuParent==13}selected{/if}>Movies</option>
-				    <option value="14" {if $data.menuParent==14}selected{/if}>Photo Gallery</option>
-				    <option value="15" {if $data.menuParent==15}selected{/if}>Contact Us</option>
-                                </select>
-    								</div>
-    						</div>		
-							
+				<div class="form-group">
+				    <label type="text">Select Parent Menu </label>
+				      <select name="menuParent" class="form-control" >
+				      {foreach $menu as $eachMenu}
+			      
+				      <option value="{$eachMenu.id}" {if $data.menuParent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>      
+					
+				      {/foreach}
+				      
+				      
+				      </select>
+    				</div>
+    			</div>		
+			{/if}				
 								                                                
                                             
                         <div class="col-sm-6">
                             <div class="form-group">
     							<label for="select-input">Date created</label>
     							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
-    								<input class="form-control" type="text" name="dateCreate" value="{$data.dateCreate}" data-required="true">
+    								<input class="form-control" type="text" name="dateCreate" value="{$data.date_created}" data-required="true">
     								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
     							</div>
     							
