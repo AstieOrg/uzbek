@@ -40,9 +40,16 @@ class menu extends Controller {
                 $data['date_created'] = dateFormat($data['date_created'],'dd-mm-yyyy');
                 //$data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
                 //$data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
+                
+                $getchild = $this->models->get_child($data['id']);
+                if($getchild) $parentOption = 'disabled';
+                
+                $get_content = $this->models->get_content($data['id']);
+                if($get_content) $parentOption = 'disabled';
             }
             
 		$this->view->assign('data',$data);
+        $this->view->assign('parentOption', $parentOption);
 			
 		}
 		
