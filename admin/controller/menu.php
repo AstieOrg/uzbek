@@ -30,7 +30,7 @@ class menu extends Controller {
 	public function addmenu(){
 		
 		$this->view->assign('active','active');
-		$menuList = $this->getmenuModels->getMenuData();
+		$menuList = $this->getmenuModels->getMenuParent();
         
 		if(isset($_GET['id']))
 		{
