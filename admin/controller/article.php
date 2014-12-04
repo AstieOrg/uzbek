@@ -31,7 +31,7 @@ class article extends Controller {
 		
 		$this->view->assign('active','active');
 		$menuList = $this->getmenuModels->getMenuData();
-		
+	
 		if(isset($_GET['id']))
 		{
 			$data = $this->models->get_menu_id($_GET['id']);

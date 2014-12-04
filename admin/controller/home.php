@@ -35,7 +35,7 @@ class home extends Controller {
 
 				//$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
 				
-				if($val['pos'] == '0') {
+				if($val['position'] == '0') {
 					$data[$key]['pos'] = 'Top';
 				} else {
 					$data[$key]['pos'] = 'Side';

@@ -1,3 +1,6 @@
+# Mac crap
+.DS_Store
+
 config/config.php
 config/access.php
 tmp/*
@@ -12,6 +15,6 @@ admin/CACHE/*
 admin/logs/*
 dashboard/config/config.php
 admin/engine
+
 backup_app/*
 dashboard/*
-

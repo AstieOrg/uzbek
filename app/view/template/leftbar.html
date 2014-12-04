@@ -1,0 +1,72 @@
+<div class="col-xs-12 col-sm-3 uzbek-col uzbek-leftbar col-top">
+	
+	<div class="sidebar">
+		<ul class="dropdown-menu" style="display: block; position: static;"> 
+			{if $smarty.session.lang == '0'}
+            	{$menu = 'nm_bhs'}
+            {elseif $smarty.session.lang == '1'}
+            	{$menu = 'nm_eng'}
+            {else}
+            	{$menu = 'nm_rus'}
+            {/if}
+	            
+			{foreach $leftMenu as $getLeftMenu} 
+			{if $getLeftMenu.child == ''}
+				<li><a href="{$basedomain}home/content/?id={$getLeftMenu.id}&&type={$getLeftMenu.menu_type}" class=" ">{$getLeftMenu.$menu} </a></li>
+			{else}
+				<li class="dropdown-submenu"><a href="#">{$getLeftMenu.$menu}</a>
+					<ul class="dropdown-menu">
+						{foreach $getLeftMenu.child as $getSubMenu}
+					        <li><a href="{$basedomain}home/content/?id={$getSubMenu.id}&&type={$getSubMenu.menu_type}">{$getSubMenu.$menu}</a></li>
+					    {/foreach}
+					</ul>
+				</li>
+			{/if}
+			{/foreach}
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+
+	<a href="#" class="book">
+		<img src="{$basedomain}public_assets/img/book_president.png">
+		<br>Book by President of Uzbekistan Islam Karimov
+	</a>
+
+	<div class="topicalIssues">
+		<h3>TOPICAL ISSUES</h3>
+
+	<!-- START MENU -->
+		<div class="menu">
+			<a href="#" class="row">
+				<div class="col-md-5" style="padding-left:0;">
+					<img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+				</div>
+				<div class="col-md-7" style="padding-left:0;">
+					Election 2014
+				</div>
+			</a>
+		</div>
+
+		<div class="menu">
+			<a href="#" class="row">
+				<div class="col-md-5" style="padding-left:0;">
+					<img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+				</div>
+				<div class="col-md-7" style="padding-left:0;">
+					Election 2014
+				</div>
+			</a>
+		</div>
+
+		<div class="menu">
+			<a href="#" class="row">
+				<div class="col-md-5" style="padding-left:0;">
+					<img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+				</div>
+				<div class="col-md-7" style="padding-left:0;">
+					Election 2014
+				</div>
+			</a>
+		</div>		
+	</div>
+</div>

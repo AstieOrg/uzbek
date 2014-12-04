@@ -16,10 +16,10 @@ class mcontent extends Database {
 			//yang atas nama variabel @ db.
 			$query = "INSERT INTO  
 			  
-						{$this->prefix}_news_content (title,lang_id,parentid,brief,content,image,file,categoryid,articletype,
+						{$this->prefix}_news_content (title,lang_id,menuId,parentid,brief,content,image,file,categoryid,articletype,
 												created_date,posted_date,expired_date,authorid,n_status)
 					VALUES
-						('".$data['title']."','".$data['langID']."','".$data['parentMenu']."','".$data['brief']."','".$data['content']."','".$data['image']."'
+						('".$data['contentTitle']."','".$data['langID']."','".$data['menuId']."','".$data['parentMenu']."','".$data['brief']."','".$data['content']."','".$data['image']."'
                         ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
                         ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."')";
                         //yang bawah itu nama db @ website
@@ -48,19 +48,19 @@ class mcontent extends Database {
 		return $result;
 	}
 	
-	function get_content($categoryid=null,$type=1)
+	function get_content($menuId=null)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND categoryid = '{$categoryid}' OR n_status = '0' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND menuId = '{$menuId}' OR n_status = '0' AND menuId = '{$menuId}' ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
-		foreach ($result as $key => $value) {
-			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-
-			$username = $this->fetch($query,0);
-
-			$result[$key]['username'] = $username['username'];
-		}
+// 		foreach ($result as $key => $value) {
+// 			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+// 
+// 			$username = $this->fetch($query,0);
+// 
+// 			$result[$key]['username'] = $username['username'];
+// 		}
 		
 		return $result;
 	}
@@ -147,9 +147,9 @@ class mcontent extends Database {
 		
 	}
 	
-	function get_content_id($data)
+	function get_content_id($menuId)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE id= {$data} LIMIT 1";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE id= {$menuId} LIMIT 1";
 		
 		$result = $this->fetch($query,0);
 

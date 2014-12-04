@@ -1,0 +1,55 @@
+{if $basedomain == ''}
+  {$basedomain = 'http://localhost/uzbek/'}
+{/if}
+<!-- FILE HEADER -->
+    {include file="template/header.html"}
+<!-- END FILE HEADER -->
+
+<div class="container uzbek-container">
+      <div class="row uzbek-row">
+<!-- FILE LEFTBAR -->
+    {include file="template/leftbar.html"}
+<!-- END FILE LEFTBAR -->
+
+
+<div class="col-xs-12 col-sm-6 uzbek-col col-top uzbek-midbar">
+    <div class="uzbek-indexNews">
+        {if $smarty.session.lang == '0'}
+          {$menu = 'nm_bhs'}
+        {elseif $smarty.session.lang == '1'}
+          {$menu = 'nm_eng'}
+        {else}
+          {$menu = 'nm_rus'}
+        {/if}
+        {foreach $title as $getTitle}
+        <h3>{$getTitle.$menu}</h3>
+        {/foreach}
+        <!-- START NEWS -->
+        
+        <div class="row">
+            {foreach $content as $getContent}
+            <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
+                <h4>{$getContent.title}</h4>
+                <p class="content text-justify">{$getContent.content|html_entity_decode}</p>
+                <!--<a href="#" class="more pull-right">Read more..</a>
+                <div class="clearfix"></div>-->
+            </div>
+            {/foreach}
+        </div>    
+    </div>
+
+</div>
+
+<!-- FILE RIGHTBAR -->
+    {include file="template/rightbar.html"}
+<!-- END FILE RIGHTBAR -->
+</div>
+    </div>
+
+<!-- FILE JAVASCRIPT -->
+    {include file="template/javascript.html"}
+<!-- END FILE JAVASCRIPT -->
+
+<!-- FILE FOOTER -->
+    {include file="template/footer.html"}
+<!-- END FILE FOOTER -->

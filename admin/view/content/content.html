@@ -39,29 +39,10 @@
 					<form action="{$basedomain}content/contentdel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure to delete this content?');">
 					 <!-- Klo dinamis content ini digenerate dari database-->
 					
-		    <p class="pull-left" style="margin-right: 14px;line-height: 27px;">Sort data in : </p>
-                    <select id="artikel" class="btn btn-default btn-sm">
-                        <option value="">All</option>
-                        <option value="1">Home</option>
-                        <option value="2">Uzbekistan</option>
-                        <option value="3">President</option>
-                        <option value="4">Foreign Policy</option>
-                        <option value="5">Security</option>
-                        <option value="6">Business</option>
-                        <option value="7">Tourism</option>
-			<option value="8">Mass Media</option>
-			<option value="9">Embassy</option>
-			<option value="10">Cooperation</option>
-			<option value="11">Consular Service</option>
-			<option value="12">Press Release</option>
-			<option value="13">Movies</option>
-			<option value="14">Photo Gallery</option>
-			<option value="15">Contact Us</option>
-                    </select>
-					<!--"{$basedomain}menuconf/addmenu"--> 
+		   			<!--"{$basedomain}menuconf/addmenu"--> 
 					<div class="col-sm-12" style="margin-left: -15px;">
 					<!--{$basedomain}addcontent/:file.php-nya addcontent:function yang dipanggil -->
-					<a class="btn btn-default btn-sm" href="{$basedomain}addcontent/addcontent"><i class="fa fa-plus"></i> Add new content</a>
+					<a class="btn btn-default btn-sm" href="{$basedomain}addcontent/contentadd/?menuid={$menuid}"><i class="fa fa-plus"></i> Add new content</a>
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
                     

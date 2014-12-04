@@ -55,29 +55,8 @@ $(function () {
                                 </select>
                                 </div>
                                 </div>
-                                <div class="col-sm-5">			
-			<div class="form-group">
-				<label type="text">Parent Menu </label>
-    				<select name="parentMenu" class="form-control" >
-				    <!-- retrieve from db, klo menu status parent parent menunya gak ada-->
-				    <option value="1" {if $data.parentMenu==1}selected{/if}>Home</option>
-				    <option value="2" {if $data.parentMenu==2}selected{/if}>Uzbekistan</option>
-				    <option value="3" {if $data.parentMenu==3}selected{/if}>President</option>
-				    <option value="4" {if $data.parentMenu==4}selected{/if}>Foreign Policy</option>
-				    <option value="5" {if $data.parentMenu==5}selected{/if}>Security</option>
-				    <option value="6" {if $data.parentMenu==6}selected{/if}>Business</option>
-				    <option value="7" {if $data.parentMenu==7}selected{/if}>Tourism</option>
-				    <option value="8" {if $data.parentMenu==8}selected{/if}>Mass Media</option>
-				    <option value="9" {if $data.parentMenu==9}selected{/if}>Embassy</option>
-				    <option value="10" {if $data.parentMenu==101}selected{/if}>Cooperation</option>
-				    <option value="11" {if $data.parentMenu==11}selected{/if}>Consular Service</option>
-				    <option value="12" {if $data.parentMenu==12}selected{/if}>Press Release</option>
-				    <option value="13" {if $data.parentMenu==13}selected{/if}>Movies</option>
-				    <option value="14" {if $data.parentMenu==14}selected{/if}>Photo Gallery</option>
-				    <option value="15" {if $data.parentMenu==15}selected{/if}>Contact Us</option>
-                                </select>
-    				</div>
-    				</div>	
+                                
+                     			
 				<div class="col-sm-9">
 					<div class="form-group">
 					<label for="text-input">Brief</label>
@@ -98,6 +77,7 @@ $(function () {
 									<input type="hidden" name="authorid" value="{$admin.id}" />
 									<input type="hidden" name="image" value="{$data.image}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />
+									<input type="hidden" name="menuId" value="{$menuid}" />
 									<!-- hidden -->
 							
 						</div>

@@ -9,7 +9,7 @@ class addcontent extends Controller {
 	{
 		parent::__construct();
 		$this->loadmodule();
-		$this->view = $this->setSmarty()
+		$this->view = $this->setSmarty();
 		$sessionAdmin = new Session;
 		$this->admin = $sessionAdmin->get_session();
 		// $this->validatePage();
@@ -21,19 +21,21 @@ class addcontent extends Controller {
 		// gak usah. kan menunya udah ada di sidebar
 		//$this->getmodels = $this->loadModel('getMenuHelper');
 	
-	
+	}
 	public function index(){
-       
-		
+	
 
 	}
 	
-	public function addcontent(){
-			
+	public function contentadd(){
+	$menuId = $_GET['menuid'];
+	//pr($menuId); exit;		
 		$this->view->assign('active','active');
+	
 
 		if(isset($_GET['id']))
 		{
+		//ini utk edit
 			$data = $this->models->get_content_id($_GET['id']);
             
             if($data){
@@ -44,8 +46,10 @@ class addcontent extends Controller {
             
 			$this->view->assign('data',$data);
 		} 
-	      
+		
+	
 	      	$this->view->assign('admin',$this->admin['admin']);
+	      	$this->view->assign('menuid',$menuId);
 		/* folder: content file:addcontent.html */
 		return $this->loadView('content/addcontent');
 	}

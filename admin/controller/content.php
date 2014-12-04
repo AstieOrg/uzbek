@@ -24,9 +24,8 @@ class content extends Controller {
 	}
 	
 	public function index(){
-	  $menuId = $_GET['id'];
 		$this->view->assign('active','active');
-		$data = $this->models->get_content(1);
+		$data = $this->models->get_content($menuId);
 
 		if ($data){
 			foreach ($data as $key => $val){
@@ -47,10 +46,43 @@ class content extends Controller {
 		
 		// pr($data);exit;
 		$this->view->assign('data',$data);
+		$this->view->assign('menuId',$menuId);
 
 		return $this->loadView('content/content');
 	}
 	
+	public function test(){
+	
+	$id = $_GET['id'];
+	//pr($menuId);exit;
+		$this->view->assign('active','active');
+// 		$menuList = $this->getmenuModels->getMenuData();
+		$data = $this->models->get_content($id);
+
+		if ($data){
+			foreach ($data as $key => $val){
+
+				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
+
+				//$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
+
+				if($val['n_status'] == '1') {
+					$data[$key]['n_status'] = 'Publish';
+					$data[$key]['status_color'] = 'green';
+				} else {
+					$data[$key]['n_status'] = 'Unpublish';
+					$data[$key]['status_color'] = 'red'; 
+				}
+			}
+		}
+		
+		// pr($data);exit;
+// 		$this->view->assign('menu',$menuList);
+		$this->view->assign('data',$data);
+		$this->view->assign('menuid',$id);
+
+		return $this->loadView('content/content');
+	}
 	
 	public function frame(){
 

@@ -7,11 +7,6 @@
 
 $ROUTES = array(
 		'home',
-		'organisasi',
-        'news',
-        'direktori',
-        'gallery',
-        'login',
-        'user'
+		'content'
         );
 ?>

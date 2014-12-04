@@ -22,12 +22,12 @@
 					<!--span class="caret"></span-->
 				</a>				
 			</li>
-            
-			<li class="button {if $page.page=='content' || $page.page=='addcontent'}active{/if}">
+			
+			<li class="dropdown {if $page.page=='content' || $page.page=='addcontent'}active{/if}">
 				<a href="{$basedomain}content">
 					<i class="fa fa-file-text"></i>
-					Content Category
-					<!--<span class="caret"></span>-->
+					Content Management
+					<span class="caret"></span>
 				</a>	
 				
 				{*}
@@ -47,19 +47,49 @@
 					</li>
 				</ul>
 				{/*}
-			</li>
+			
+			
 			
 			{foreach $menu as $eachMenu}
+			<ul class="sub-nav">
+ 			<li class="button {if $page.page=='{$eachMenu.nm_eng}'}active{/if}"> 
 			
-			<li class="button {if $page.page==''}active{/if}">
-				<a href="{$basedomain}content/?id={$eachMenu.id}">
+				  <a href="{$basedomain}content/test/?id={$eachMenu.id}">
 					<i class="fa fa-file-text"></i>
 					{$eachMenu.nm_eng}
+					<!--span class="caret"></span-->
+				</a>		
+			
+ 			</li> 
+			</ul>
+			{/foreach}
+			</li>
+			
+			<li class="button {if $page.page=='gallery'}active{/if}">
+				<a href="{$basedomain}gallery">
+					<i class="fa fa-file-text"></i>
+					Gallery
+					<!--span class="caret"></span-->
+					
+				</a>				
+			</li>
+			
+			<li class="button {if $page.page=='topical'}active{/if}">
+				<a href="{$basedomain}topical">
+					<i class="fa fa-file-text"></i>
+					Topical Issues
 					<!--span class="caret"></span-->
 				</a>				
 			</li>
 			
-			{/foreach}
+			<li class="button {if $page.page=='contact' }active{/if}">
+				<a href="{$basedomain}contact">
+					<i class="fa fa-file-text"></i>
+					Contact Us
+					<!--span class="caret"></span-->
+				</a>				
+			</li>
+			
 			
             
             		 
