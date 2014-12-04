@@ -1,7 +1,7 @@
 <?php
 // defined ('MICRODATA') or exit ( 'Forbidden Access' );
 
-class kepakaran extends Controller {
+class menu extends Controller {
 	
 	var $models = FALSE;
 	
@@ -17,109 +17,66 @@ class kepakaran extends Controller {
 	public function loadmodule()
 	{
 		
-		$this->models = $this->loadModel('mkepakaran');
+		$this->models = $this->loadModel('mmenu');
+		$this->getmenuModels = $this->loadModel('getMenuHelper');
 	}
 	
 	public function index(){
-
-      $this->view->assign('active','active');
-		$data = $this->models->get_category();
-		// pr("saya");
-		// exit;
-		if ($data){
-			foreach ($data as $key => $val){
-
-				$data[$key]['created_date'] = dateFormat($val['create_date'],'article');
-
-				// $data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
-
-				if($val['n_status'] == '1') {
-					$data[$key]['n_status'] = 'Publish';
-					$data[$key]['status_color'] = 'green';
-				} else {
-					$data[$key]['n_status'] = 'Unpublish';
-					$data[$key]['status_color'] = 'red'; 
-				}
-			}
-		}
-		
-		// pr($data);exit;
-		$this->view->assign('data',$data);
-
-		return $this->loadView('kepakaran/category'); 
+       
 		
 
 	}
-	public function kepakaranCat(){
-
-      $this->view->assign('active','active');
-		$data = $this->models->get_category();
-		// pr("saya");
-		// exit;
-		if ($data){
-			foreach ($data as $key => $val){
-
-				$data[$key]['created_date'] = dateFormat($val['create_date'],'article');
-
-				// $data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
-
-				if($val['n_status'] == '1') {
-					$data[$key]['n_status'] = 'Publish';
-					$data[$key]['status_color'] = 'green';
-				} else {
-					$data[$key]['n_status'] = 'Unpublish';
-					$data[$key]['status_color'] = 'red'; 
-				}
-			}
-		}
-		
-		// pr($data);exit;
-		$this->view->assign('data',$data);
-
-		return $this->loadView('kepakaran/category'); 
-		
-
-	}
-	public function addcategory(){
+	
+	public function addmenu(){
 		
 		$this->view->assign('active','active');
-
+		$menuList = $this->getmenuModels->getMenuData();
+        
 		if(isset($_GET['id']))
 		{
-			$data = $this->models->get_category_id($_GET['id']);
-
-			$this->view->assign('data',$data);
-		} 
+			$data = $this->models->get_menu_id($_GET['id']);
+			//print_r($data);exit;
+            if($data){
+                $data['date_created'] = dateFormat($data['date_created'],'dd-mm-yyyy');
+                //$data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
+                //$data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
+            }
+            
+		$this->view->assign('data',$data);
+			
+		}
+		
+		
+		$this->view->assign('menu',$menuList);
 
 		$this->view->assign('admin',$this->admin['admin']);
-		return $this->loadView('kepakaran/inputcategory');
+		return $this->loadView('menu/inputmenu');
 	}
     
-	public function categoryinp(){
+	public function menuinp(){
 		global $CONFIG;
-		// pr($_FILES);exit;
-		if(isset($_POST['n_status'])){
-			if($_POST['n_status']=='on') $_POST['n_status']=1;
+		
+		if(isset($_POST['stats'])){
+			if($_POST['stats']=='on') $_POST['stats']=1;
 		} else {
-			$_POST['n_status']=0;
+			$_POST['stats']=0;
 		}
-		if(isset($_POST['articletype'])){
-			if($_POST['articletype']=='on') {
+        
+		if(isset($_POST['menuType'])){
+			if($_POST['menuType']=='on') {
 				if($_POST['articleid_old']!=0){
-					$_POST['articletype'] = $_POST['articleid_old'];
+					$_POST['menuType'] = $_POST['articleid_old'];
 				} else {
-					$_POST['articletype']=1; 
+					$_POST['menuType']=1; 
 				}
 			}
 		} else {
-			$_POST['articletype']=0;
+			$_POST['menuType']=0;
 		}
  		
 		if(isset($_POST)){
                 // validasi value yang masuk
                $x = form_validation($_POST);
-               // pr($x);
-
 			   try
 			   {
 			   		if(isset($x) && count($x) != 0)
@@ -129,44 +86,69 @@ class kepakaran extends Controller {
 						if($x['id'] != ''){
 							$x['action'] = 'update';
 						}
-						
+                        
+                        //pr($x);exit;
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
+                                $delete = deleteFile($x['image'],'news');
 								if($x['action'] == 'update') deleteFile($x['image']);
-								$image = uploadFile('file_image',null,'image');
+								$image = uploadFile('file_image','news','image');
+								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
 						}
-						
-						$data = $this->models->category_inp($x);
+						$data = $this->models->menu_inp($x);
+						//$menuList = $this->getmenuModels->menu_inp($x);
 			   		}
 				   	
 			   }catch (Exception $e){}
-			   
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."kepakaran/kepakaranCat'</script>";
+            
+            $redirect = $CONFIG['admin']['base_url'].'home';
+            if(isset($x['categoryid'])){
+                if($x['categoryid'] == '1'){
+                    $redirect = $CONFIG['admin']['base_url'].'home';
+                }elseif($x['categoryid']=='2'){
+                    $redirect = $CONFIG['admin']['base_url'].'agenda';
+                }elseif($x['categoryid']=='3'){
+                    if($x['articletype']=='1'){
+                        $redirect = $CONFIG['admin']['base_url'].'about/profile';
+                    }elseif($x['articletype']=='2'){
+                        $redirect = $CONFIG['admin']['base_url'].'about/struktur';
+                    }
+                }
+            }
+            
+            echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
             }
 	}
 	
-	public function categorydel(){
+	public function menudel($action='delete'){
 
 		global $CONFIG;
-		// pr($_POST);exit;
-		$data = $this->models->category_del($_POST['ids']);
+        //pr($_POST);exit;
+		$menuid = $_POST['menuId'];
+        $ids = $_POST['ids'];
+        if($_POST['action']) $action = $_POST['action'];
+        
+        if($ids){
+            $data = $this->models->menu_del($ids, $action);
+            $message = 'Data has been deleted';
+        }
 		
-		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."kepakaran/kepakaranCat'</script>";
+		echo "<script>alert('".$message."');window.location.href='".$CONFIG['admin']['base_url']."home/'</script>";
 		
 	}
 	
 	public function trash(){
        
-		$data = $this->models->get_category_trash();
+		$data = $this->models->get_article_trash(1);
 		if ($data){
 			foreach ($data as $key => $val){
-				$data[$key]['created_date'] = dateFormat($val['create_date'],'article');
+				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
 
-				// $data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
+				$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
 
 				if($val['n_status'] == '2') {
 					$data[$key]['n_status'] = 'Deleted';
@@ -178,18 +160,27 @@ class kepakaran extends Controller {
 		$this->view->assign('active','active');
 		$this->view->assign('data',$data);
 
-		return $this->loadView('kepakaran/viewtrash');
+		return $this->loadView('article/viewtrash');
 
 	}
 	
 	
-	public function categoryrest(){
+	public function articlerest(){
 
 		global $CONFIG;
-		// pr($_POST);exit;
-		$data = $this->models->category_restore($_POST['ids']);
 		
-		echo "<script>alert('Your data has been restore');window.location.href='".$CONFIG['admin']['base_url']."kepakaran/kepakaranCat'</script>";
+		$data = $this->models->article_restore($_POST['ids']);
+        
+        $redirect = $CONFIG['admin']['base_url'].'home';
+        if(isset($_POST['categoryid'])){
+            if($_POST['categoryid'] == '1'){
+                $redirect = $CONFIG['admin']['base_url'].'article';
+            }elseif($_POST['categoryid']=='2'){
+                $redirect = $CONFIG['admin']['base_url'].'agenda';
+            }
+        }
+		
+		echo "<script>alert('Data berhasil dikembalikan');window.location.href='".$redirect."/trash'</script>";
 		
 	}
 	
@@ -207,13 +198,13 @@ class kepakaran extends Controller {
 
 	public function upload(){
 
-		return $this->loadView('uploadFrame');
+		return $this->loadView('article/uploadFrame');
 
 	}
 
 	public function uploadtwt(){
 
-		return $this->loadView('uploadFrameTwt');
+		return $this->loadView('article/uploadFrameTwt');
 
 	}
 
@@ -261,19 +252,7 @@ class kepakaran extends Controller {
 
 		}
 	}
-	
-	function test()
-	{
-	  
-	  echo 'masuk';
-	  
-	  
-	  $data = $this->models->getDataLang(false);
-	  pr($data);
-	  exit;
-	  
-	  return $this->loadView('uploadFrameTwt');
-	}
+
 }
 
 ?>
