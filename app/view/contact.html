@@ -1,0 +1,132 @@
+<!-- FILE HEADER -->
+    {include file="template/header.html"}
+<!-- END FILE HEADER -->
+
+<div class="container uzbek-container">
+      <div class="row uzbek-row">
+<!-- FILE LEFTBAR -->
+    {include file="template/leftbar.html"}
+<!-- END FILE LEFTBAR -->
+
+
+<div class="col-xs-12 col-sm-6 uzbek-col col-top uzbek-midbar">
+    <div class="uzbek-indexNews">
+        {if $smarty.session.lang == '0'}
+          {$contact = 'Kontak Kami'}
+          {$office = 'Kantor Kami'}
+          {$address = 'Alamat'}
+          {$phone = 'No.Telepon'}
+          {$email = 'Alamat Email'}
+          {$fullname = 'Nama Lengkap'}
+          {$msg = 'Pesan'}
+          {$subject = 'Judul'}
+          {$message = 'Kirim Pesan'}
+          {$send = 'Kirim'}
+        {elseif $smarty.session.lang == '1'}
+          {$contact = 'Contact Us'}
+          {$office = 'Our Office'}
+          {$address = 'Address'}
+          {$phone = 'Phone Number'}
+          {$email = 'Email Address'}
+          {$fullname = 'Full Name'}
+          {$msg = 'Message'}
+          {$subject = 'Subject'}
+          {$message = 'Send Message'}
+          {$send = 'Send'}
+        {else}
+          {$contact = 'Contact Us'}
+          {$office = 'Our Office'}
+          {$address = 'Address'}
+          {$phone = 'Phone Number'}
+          {$email = 'Email Address'}
+          {$fullname = 'Full Name'}
+          {$msg = 'Message'}
+          {$subject = 'Subject'}
+          {$message = 'Send Message'}
+          {$send = 'Send'}
+        {/if}
+        <h3>{$contact}</h3>
+        <!-- START NEWS -->
+        
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
+                <h4>{$office}</h4>
+
+                <table width="100%" border="0" cellspacing="0" cellpadding="4" class="home_content">
+                    <tbody>
+                        <tr valign="top">
+                            <td align="left">{$address}</td>
+                            <td align="center">:</td>
+                            <td align="left">Jl. Daksa III. 14, Kebayoran Baru, Jakarta Selatan</td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="left">{$phone}</td>
+                            <td align="center">:</td>
+                            <td align="left">(62-21) 7200950/7200972</td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="left">{$email}</td>
+                            <td align="center">:</td>
+                            <td align="left">inbox@uzbemb.or.id</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <br>
+                <h4>{$message}</h4><br>
+                <form class="form-horizontal" role="form" method="POST" action="contact/send_message">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-4 control-label">{$fullname}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="name" class="form-control" id="inputName" placeholder="{$fullname}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-4 control-label">{$email}</label>
+                    <div class="col-sm-8">
+                      <input type="email" name="mail" class="form-control" id="inputEmail" placeholder="{$email}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputAddress" class="col-sm-4 control-label">{$address}</label>
+                    <div class="col-sm-8">
+                      <textarea name="address" class="form-control" id="inputAddress" placeholder="{$address}"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSubject" class="col-sm-4 control-label">{$subject}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="subject" class="form-control" id="inputSubject" placeholder="{$subject}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputMsg" class="col-sm-4 control-label">{$msg}</label>
+                    <div class="col-sm-8">
+                      <textarea name="message" class="form-control" id="inputMsg" placeholder="{$msg}"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                      <button type="submit" class="btn btn-default">{$send}</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+
+</div>
+
+<!-- FILE RIGHTBAR -->
+    {include file="template/rightbar.html"}
+<!-- END FILE RIGHTBAR -->
+</div>
+    </div>
+
+<!-- FILE JAVASCRIPT -->
+    {include file="template/javascript.html"}
+<!-- END FILE JAVASCRIPT -->
+
+<!-- FILE FOOTER -->
+    {include file="template/footer.html"}
+<!-- END FILE FOOTER -->
