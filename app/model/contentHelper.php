@@ -11,8 +11,8 @@ class contentHelper extends Database {
 		$this->date = date('Y-m-d H:i:s');
 	}
 
-    function getMenu($position, $status){
-        $sql = "SELECT * FROM api_menu_list WHERE pos = $position AND menu_stat = $status AND stats=1;";
+    function getMenu($position, $is_child){
+        $sql = "SELECT * FROM api_menu_list WHERE pos = $position AND is_child = $is_child AND n_stats=1;";
         $res = $this->fetch($sql,1);
 
         if ($res) return $res;
@@ -33,7 +33,7 @@ class contentHelper extends Database {
 		$langID = "0";
 		if ($lang) $langID = "{$lang} ";
 
-		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE lang_id = {$langID} AND menuId = {$menu} AND n_status=1 $filter LIMIT {$start},{$limit}";
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE lang_id = {$langID} AND menuId = {$menu} $filter LIMIT {$start},{$limit}";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

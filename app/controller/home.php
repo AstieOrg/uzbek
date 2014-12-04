@@ -22,29 +22,37 @@ class home extends Controller {
 	function index(){
 		//GET TOP MENU
 		$getTopMenu = $this->contentHelper->getMenu('0','0');
-		foreach ($getTopMenu as $getTopMenuSub) {
-			$getTopMenuSub['child'] = '';
-			$getSub = $this->contentHelper->getMenu('0','1');
-			foreach ($getSub as $sub) {
-				if($getTopMenuSub['id'] == $sub['id_parent']){
-					$getTopMenuSub['child'] = array($sub);
+		if (is_array($getTopMenu)){
+			foreach ($getTopMenu as $getTopMenuSub) {
+				$getTopMenuSub['child'] = '';
+				$getSub = $this->contentHelper->getMenu('0','1');
+				if (is_array($getSub)){
+					foreach ($getSub as $sub) {
+						if($getTopMenuSub['id'] == $sub['id_parent']){
+							$getTopMenuSub['child'] = array($sub);
+						}
+					}
 				}
+				$topMenu[]=$getTopMenuSub;
 			}
-			$topMenu[]=$getTopMenuSub;
 		}
 		$this->view->assign('topMenu',$topMenu);
 		
 		//GET LEFT MENU
 		$getLeftMenu = $this->contentHelper->getMenu('1','0');
-		foreach ($getLeftMenu as $getLeftMenuSub) {
-			$getLeftMenuSub['child'] = '';
-			$getSub = $this->contentHelper->getMenu('1','1');
-			foreach ($getSub as $sub) {
-				if($getLeftMenuSub['id'] == $sub['id_parent']){
-					$getLeftMenuSub['child'] = array($sub);
+		if (is_array($getLeftMenu)){
+			foreach ($getLeftMenu as $getLeftMenuSub) {
+				$getLeftMenuSub['child'] = '';
+				$getSub = $this->contentHelper->getMenu('1','1');
+				if (is_array($getSub)){
+					foreach ($getSub as $sub) {
+						if($getLeftMenuSub['id'] == $sub['id_parent']){
+							$getLeftMenuSub['child'] = array($sub);
+						}
+					}
 				}
+				$leftMenu[]=$getLeftMenuSub;
 			}
-			$leftMenu[]=$getLeftMenuSub;
 		}
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
@@ -60,31 +68,37 @@ class home extends Controller {
     function content(){
     	//GET TOP MENU
 		$getTopMenu = $this->contentHelper->getMenu('0','0');
-        
-        //print_r($getTopMenu);
-		foreach ($getTopMenu as $getTopMenuSub) {
-			$getTopMenuSub['child'] = '';
-			$getSub = $this->contentHelper->getMenu('0','1');
-			foreach ($getSub as $sub) {
-				if($getTopMenuSub['id'] == $sub['id_parent']){
-					$getTopMenuSub['child'] = array($sub);
+		if (is_array($getTopMenu)){
+			foreach ($getTopMenu as $getTopMenuSub) {
+				$getTopMenuSub['child'] = '';
+				$getSub = $this->contentHelper->getMenu('0','1');
+				if (is_array($getSub)){
+					foreach ($getSub as $sub) {
+						if($getTopMenuSub['id'] == $sub['id_parent']){
+							$getTopMenuSub['child'] = array($sub);
+						}
+					}
 				}
+				$topMenu[]=$getTopMenuSub;
 			}
-			$topMenu[]=$getTopMenuSub;
 		}
 		$this->view->assign('topMenu',$topMenu);
 		
 		//GET LEFT MENU
 		$getLeftMenu = $this->contentHelper->getMenu('1','0');
-		foreach ($getLeftMenu as $getLeftMenuSub) {
-			$getLeftMenuSub['child'] = '';
-			$getSub = $this->contentHelper->getMenu('1','1');
-			foreach ($getSub as $sub) {
-				if($getLeftMenuSub['id'] == $sub['id_parent']){
-					$getLeftMenuSub['child'] = array($sub);
+		if (is_array($getLeftMenu)){
+			foreach ($getLeftMenu as $getLeftMenuSub) {
+				$getLeftMenuSub['child'] = '';
+				$getSub = $this->contentHelper->getMenu('1','1');
+				if (is_array($getSub)){
+					foreach ($getSub as $sub) {
+						if($getLeftMenuSub['id'] == $sub['id_parent']){
+							$getLeftMenuSub['child'] = array($sub);
+						}
+					}
 				}
+				$leftMenu[]=$getLeftMenuSub;
 			}
-			$leftMenu[]=$getLeftMenuSub;
 		}
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
@@ -100,7 +114,6 @@ class home extends Controller {
 		$this->view->assign('title',$getTitle);
 		
 		return $this->loadView('detail');
-
     }
 
     function lang(){
