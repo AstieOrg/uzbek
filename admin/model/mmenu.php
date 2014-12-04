@@ -20,7 +20,7 @@ class mmenu extends Database {
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
-						{$this->prefix}_menu_list (nm_bhs, nm_eng, nm_rus, menu_type, pos, menu_stat, id_parent, date_created, n_stats)
+						{$this->prefix}_menu_list (nm_bhs, nm_eng, nm_rus, menu_type, pos, is_child, id_parent, date_created, n_stats)
 					VALUES
 						('".$data['mnameBahasa']."','".$data['mnameEng']."','".$data['mnameRus']."','".$data['menuType']."'
                         ,'".$data['menuPos']."','".$data['menuStat']."','".$data['menuParent']."','".$data['dateCreate']."'
@@ -36,7 +36,7 @@ class mmenu extends Database {
 							nm_rus = '{$data['mnameRus']}',
 							menu_type = '{$data['menuType']}',
 							pos = '{$data['menuPos']}',
-                            menu_stat = '{$data['menuStat']}',
+                            is_child = '{$data['menuStat']}',
 							id_parent = '{$data['menuParent']}',
                             date_created = '{$data['dateCreate']}',
 							n_stats = '{$data['stats']}'
@@ -62,6 +62,15 @@ class mmenu extends Database {
 //  
 //  			$result[$key]['username'] = $username['username'];
  		}
+ 		
+ 		return $result;
+	}
+    
+    function get_child($id)
+	{
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id_parent = '{$id}' ORDER BY date_created DESC";
+ 		
+ 		$result = $this->fetch($query,1);
  		
  		return $result;
 	}
