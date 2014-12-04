@@ -195,6 +195,35 @@ footer{
     margin-bottom: 20px;
 }
 
+/* GALLERY CSS*/
+.uzbek-album{
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.uzbek-album img{
+    width: 100%;
+}
+
+.caption_album{padding-top: 5px;}
+
+.caption_album p{margin:0}
+
+.uzbek-gallery{
+    margin: 0 3px 10px 3px;
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+/* END GALLERY CSS*/
+
 /* BOOTSTRAP CUSTOM CSS*/
 @media (min-width: 768px){
     .navbar-form.navbar-right:last-child {

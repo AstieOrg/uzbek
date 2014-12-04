@@ -1,6 +1,6 @@
 <?php
 
-class home extends Controller {
+class media extends Controller {
 	
 	var $models = FALSE;
 	var $view;
@@ -19,7 +19,7 @@ class home extends Controller {
         $this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
-	function index(){
+	function album(){
 		//GET TOP MENU
 		$getTopMenu = $this->contentHelper->getMenu('0','0');
 		if (is_array($getTopMenu)){
@@ -57,19 +57,11 @@ class home extends Controller {
 		}
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
-
-		$lang = $_SESSION['lang'];
-		$getNews = $this->contentHelper->getNews($lang,'8','0','6');
-		//pr($getNews);exit;
-
-		
-		
-		$this->view->assign('news',$getNews);
-		return $this->loadView('home');
+		return $this->loadView('album');
     }
 
-    function content(){
-    	//GET TOP MENU
+    function viewAlbum(){
+		//GET TOP MENU
 		$getTopMenu = $this->contentHelper->getMenu('0','0');
 		if (is_array($getTopMenu)){
 			foreach ($getTopMenu as $getTopMenuSub) {
@@ -85,6 +77,7 @@ class home extends Controller {
 				$topMenu[]=$getTopMenuSub;
 			}
 		}
+		//pr($topMenu);exit;
 		$this->view->assign('topMenu',$topMenu);
 		
 		//GET LEFT MENU
@@ -105,34 +98,8 @@ class home extends Controller {
 		}
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
-
-		$id = $_GET['id'];
-		$type = $_GET['type'];
-		$lang = $_SESSION['lang'];
-
-		$getTitle = $this->contentHelper->getTitle($id);
-		$this->view->assign('title',$getTitle);
 		
-		if($type == '0'){
-			$getContent = $this->contentHelper->getNews($lang,$id,'0','10');
-			$this->view->assign('content',$getContent);
-			return $this->loadView('list');
-		}
-		else{
-			$getContent = $this->contentHelper->getNews($lang,$id,'0','1');
-			$this->view->assign('content',$getContent);
-			return $this->loadView('detail');
-		}
-	}
-
-    function lang(){
-    	$basedomain = 'http://localhost/uzbek/framework';
-    	$lang = $_GET['lang'];
-    	$url = $_GET['url'];
-    	session_start();
-    	$_SESSION['lang'] = $lang;
-    	header('location:http://'.$url);
-    	die();
+		return $this->loadView('viewAlbum');
     }
 }
 

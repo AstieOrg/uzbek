@@ -11,8 +11,13 @@
 <!-- Jquery UI JS -->
 <script type="text/javascript" src="{$basedomain}plugin/jquery-ui/jquery-ui.js"></script>
 
+<!-- Bootstrap Image Gallery JS -->
+<script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/jquery.blueimp-gallery.min.js"></script>
+<script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/bootstrap-image-gallery.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
-    	
+    	// INITIATE GALLERY PLUGIN
+        $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
     });
 </script>

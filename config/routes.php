@@ -7,6 +7,7 @@
 
 $ROUTES = array(
 		'home',
-		'contact'
+		'contact',
+		'media'
         );
 ?>

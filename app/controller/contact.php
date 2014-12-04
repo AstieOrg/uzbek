@@ -29,7 +29,7 @@ class contact extends Controller {
 				if (is_array($getSub)){
 					foreach ($getSub as $sub) {
 						if($getTopMenuSub['id'] == $sub['id_parent']){
-							$getTopMenuSub['child'] = array($sub);
+							$getTopMenuSub['child'][] = $sub;
 						}
 					}
 				}
@@ -47,7 +47,7 @@ class contact extends Controller {
 				if (is_array($getSub)){
 					foreach ($getSub as $sub) {
 						if($getLeftMenuSub['id'] == $sub['id_parent']){
-							$getLeftMenuSub['child'] = array($sub);
+							$getLeftMenuSub['child'][] = $sub;
 						}
 					}
 				}
@@ -86,7 +86,7 @@ class contact extends Controller {
 	    		$empty = 'Empty Message.';
 	    	}
 
-    	if(!$data){
+    	if(!empty($data)){
 	    	$insertMail = $this->contentHelper->sendMsg('api_contact_list',$data);
 	    	echo "<script>alert('".$message."');window.location.href='".$basedomain."contact'</script>";
     	}
