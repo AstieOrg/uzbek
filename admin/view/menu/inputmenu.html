@@ -53,44 +53,44 @@ $(function () {
                                 <input type="text" name="mnameRus" class="form-control" value="{$data.nm_rus}" data-required="true"/>
 							</div>
 						</div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
 				<div class="form-group">
                                 <label for="text-input">Category</label>                                
                                 <select name="menuType" class="form-control" >
-                                    <option value="0" {if $data.menuType==0}selected{/if} >List</option>
-                                    <option value="1" {if $data.menuType==1}selected{/if} >Article</option>
-                                    <!--<option value="2" {if $data.menuType==2}selected{/if} >Gallery</option>-->
+                                    <option value="0" {if $data.menu_type==0}selected{/if} >List</option>
+                                    <option value="1" {if $data.menu_type==1}selected{/if} >Article</option>
+                                    <!--<option value="2" {if $data.menu_type==2}selected{/if} >Gallery</option>-->
                                 </select>
                             </div>
 						</div>	
-			<div class="col-sm-5">
+			<div class="col-sm-6">
 				<div class="form-group">
                                 <label for="text-input">Menu Position</label>
                                 
                                 <select name="menuPos" class="form-control" >
-                                    <option value="0" {if $data.menuPos==0}selected{/if} >Top menu</option>
-                                    <option value="1" {if $data.menuPos==1}selected{/if} >Side menu</option>
+                                    <option value="0" {if $data.pos==0}selected{/if} >Top menu</option>
+                                    <option value="1" {if $data.pos==1}selected{/if} >Side menu</option>
                                 </select>
                             </div>
 						</div>	
 						
-			<div class="col-sm-5">			
-			    <div class="form-group">
-				    <label type="text">Menu Status </label>
-				    <select name="menuStat" class="form-control" >
-					<option value="0" {if $data.menuStat==0}selected{/if} >Parent</option>
-					<option value="1" {if $data.menuStat==1}selected{/if} >Child</option>
-				    </select>
-			    </div>
+                <div class="col-sm-6">			
+    			    <div class="form-group">
+    				    <label type="text">Menu Status </label>
+    				    <select id="is_child" name="menuStat" class="form-control" >
+    					<option value="0" {if $data.is_child==0}selected{/if} >Parent</option>
+    					<option value="1" {if $data.is_child==1}selected{/if} >Child</option>
+    				    </select>
+    			    </div>
     			</div>		
-    			{if $data.menuStat==1}
-    			<div class="col-sm-5">			
-				<div class="form-group">
+                
+    			<div class="col-sm-6 parentMenu" style="display: none;">			
+				    <div class="form-group">
 				    <label type="text">Select Parent Menu </label>
 				      <select name="menuParent" class="form-control" >
 				      {foreach $menu as $eachMenu}
 			      
-				      <option value="{$eachMenu.id}" {if $data.menuParent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>      
+				      <option value="{$eachMenu.id}" {if $data.id_parent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>      
 					
 				      {/foreach}
 				      
@@ -98,30 +98,40 @@ $(function () {
 				      </select>
     				</div>
     			</div>		
-			{/if}				
+    			
+                {if $data.is_child==1}
+                <script>
+                $(document).ready(function() {
+                    $('.parentMenu').show();
+                } );
+                </script>
+                {/if}			
 								                                                
-                                            
-                        <div class="col-sm-6">
-                            <div class="form-group">
-    							<label for="select-input">Date created</label>
-    							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
-    								<input class="form-control" type="text" name="dateCreate" value="{$data.date_created}" data-required="true">
-    								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-    							</div>
-    							
-    						</div>
-    						
-    						<div class="form-group">
-    								<div class="checkbox">
-    									<label>
-    										<input type="checkbox" name="stats" class="" {$data.stats} >
-    										Publish Menu
-    									</label>
-    								</div>
-    						</div>
-    						
-    						<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
-                        </div>                        
+                        <div class="col-sm-12">
+                        <div class="row">               
+                            <div class="col-sm-6">
+                                <div class="form-group">
+            						<label for="select-input">Date created</label>
+            						<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+            							<input class="form-control" type="text" name="dateCreate" value="{$data.date_created}" data-required="true">
+            							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            						</div>
+            						
+            					</div>
+            					
+            					<div class="form-group">
+            							<div class="checkbox">
+            								<label>
+            									<input type="checkbox" name="stats" class="" {$data.stats} >
+            									Publish Menu
+            								</label>
+            							</div>
+            					</div>
+            					
+            					<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+                            </div>
+                        </div>
+                        </div>                     
                                                                                                                         
 					</div>
 				</div>
@@ -131,3 +141,16 @@ $(function () {
 	
 	</form>
 </div>
+<script>
+$(document).ready(function() {
+    /* Add event listener to the dropdown input */
+    $('#is_child').change( function() {
+        var is_child = $( this ).val();
+        if(is_child == 1){
+            $('.parentMenu').show();
+        }else{
+            $('.parentMenu').hide();
+        }
+    });
+} );
+</script>

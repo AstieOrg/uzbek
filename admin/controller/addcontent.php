@@ -39,9 +39,9 @@ class addcontent extends Controller {
 			$data = $this->models->get_content_id($_GET['id']);
             
             if($data){
-                $data['dateCreate'] = dateFormat($data['dateCreate'],'dd-mm-yyyy');
-               // $data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
-               // $data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
+                //$data['dateCreate'] = dateFormat($data['dateCreate'],'dd-mm-yyyy');
+                $data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
+                //$data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
             }
             
 			$this->view->assign('data',$data);
@@ -57,8 +57,7 @@ class addcontent extends Controller {
 	
 	public function contentinp(){
 		global $CONFIG;
-        
-        //print_r($_POST);exit;
+        $menuId = $_POST['menuId'];
 		
 		if(isset($_POST['stats'])){
 			if($_POST['stats']=='on') $_POST['stats']=1;
@@ -91,7 +90,6 @@ class addcontent extends Controller {
 							$x['action'] = 'update';
 						}
                         
-                        //pr($x);exit;
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
@@ -108,22 +106,10 @@ class addcontent extends Controller {
 				   	
 			   }catch (Exception $e){}
             
-            $redirect = $CONFIG['admin']['base_url'].'home';
-            if(isset($x['categoryid'])){
-                if($x['categoryid'] == '1'){
-                    $redirect = $CONFIG['admin']['base_url'].'home';
-                }elseif($x['categoryid']=='2'){
-                    $redirect = $CONFIG['admin']['base_url'].'agenda';
-                }elseif($x['categoryid']=='3'){
-                    if($x['articletype']=='1'){
-                        $redirect = $CONFIG['admin']['base_url'].'about/profile';
-                    }elseif($x['articletype']=='2'){
-                        $redirect = $CONFIG['admin']['base_url'].'about/struktur';
-                    }
-                }
-            }
+            $redirect = $CONFIG['admin']['base_url'].'content/menu/?id='.$menuId;
+            $message = 'Save data succeed';
             
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
+            echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
             }
 	}
 	

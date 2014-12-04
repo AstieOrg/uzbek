@@ -26,32 +26,41 @@ class home extends Controller {
 	public function index(){
 		$this->view->assign('active','active');
 		$data = $this->models->get_menu();
-// 		pr($data);exit;
 
 		if ($data){
 			foreach ($data as $key => $val){
-
+                
 				$data[$key]['date_created'] = dateFormat($val['date_created'],'article');
-
-				//$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
 				
 				if($val['position'] == '0') {
 					$data[$key]['pos'] = 'Top';
 				} else {
 					$data[$key]['pos'] = 'Side';
 				}
-				
-				if($val['menu_stat'] == '0') {
-					$data[$key]['menu_stat'] = 'Parent ';
-					$data[$key]['mstat_color'] = 'green';
-				} else {
-					$data[$key]['menu_stat'] = 'Child';
-					$data[$key]['mstat_color'] = 'blue'; 
+                
+                $data[$key]['id_parent'] = '-';
+                if($val['id_parent'] != 0) {
+                    $get_parent = $this->models->get_parent($val['id_parent']);
+                    $data[$key]['parent_data'] = $get_parent;
 				}
 				
-				if($val['id_parent'] == '') {
-					$data[$key]['id_parent'] = '-';
-				} 
+				if($val['is_child'] == 0) {
+					$data[$key]['is_child'] = 'Parent ';
+					$data[$key]['mstat_color'] = 'green';
+                    
+                    $getchild = $this->models->get_child($val['id']);
+                    if($getchild) $data[$key]['disabled'] = 'disabled';
+                    
+                    $get_content = $this->models->get_content($val['id']);
+                    if($get_content) $data[$key]['disabled'] = 'disabled';
+                    
+				} else {
+					$data[$key]['is_child'] = 'Child';
+					$data[$key]['mstat_color'] = 'blue';
+                    
+                    $get_content = $this->models->get_content($val['id']);
+                    if($get_content) $data[$key]['disabled'] = 'disabled';
+				}
 				
 				if($val['n_stats'] == '1') {
 					$data[$key]['n_stats'] = 'Publish';
@@ -60,9 +69,11 @@ class home extends Controller {
 					$data[$key]['n_stats'] = 'Unpublish';
 					$data[$key]['status_color'] = 'red'; 
 				}
+                
+                
 			}
 		}
-		// pr($data);exit;
+        //exit;
 		$this->view->assign('data',$data);
 
 		return $this->loadView('home');

@@ -28,19 +28,22 @@ class mcontent extends Database {
                         //pr($query);exit;
 
 		} else {
-            if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
-							title = '{$data['title']}',
-							brief = '{$data['brief']}',
-							content = '{$data['content']}',
-							image = '{$data['image']}',
-							file = '{$data['image_url']}',
-                            articletype = '{$data['articletype']}',
-							posted_date = '".$date."',
+							title        = '{$data['contentTitle']}',
+							lang_id      = '{$data['langID']}',
+							menuId       = '{$data['menuId']}',
+							parentid     = '{$data['parentMenu']}',
+							brief        = '{$data['brief']}',
+                            content      = '{$data['content']}',
+							image        = '{$data['image']}',
+                            file         = '{$data['image_url']}',
+							categoryid   = '{$data['categoryid']}',
+							articletype  = '{$data['articletype']}',
+                            posted_date  = '{$data['postdate']}',
                             expired_date = '{$data['expired_date']}',
-							authorid = '{$data['authorid']}',
-							n_status = {$data['n_status']}
+                            authorid     = '{$data['authorid']}'
+                            
 						WHERE
 							id = '{$data['id']}'";
 		}
@@ -48,6 +51,15 @@ class mcontent extends Database {
 		$result = $this->query($query);
 		
 		return $result;
+	}
+    
+    function get_menu($id)
+	{
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id = '{$id}' ORDER BY date_created DESC";
+ 		
+ 		$result = $this->fetch($query);
+ 		
+ 		return $result;
 	}
 	
 	function get_content($menuId=null)

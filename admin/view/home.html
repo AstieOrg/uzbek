@@ -82,11 +82,13 @@
 								{foreach $data as $var}
 								<tr>
 									<td class="checkbox-column">
-										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
+										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" {$var.disabled} />
 									</td>
 									<td><a href="{$basedomain}menu/addmenu/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.nm_eng}">{$var.nm_eng}</a></td>
-									<td style="color:{$var.mstat_color}">{$var.menu_stat}</td>
-									<td>{$var.id_parent}</td>									
+									<td style="color:{$var.mstat_color}">{$var.is_child}</td>
+									<td>
+                                        {$var.parent_data.nm_bhs}
+                                    </td>									
 									<td>{$var.position}</td>
 									<td style="color:{$var.status_color}">{$var.n_stats}</td>
 																		

@@ -83,10 +83,19 @@
                                         <input type="hidden" name="menuId" value="{$menuid}" />
                                         <input type="hidden" name="action" value="delete" />
 									</td>
-									<td><a href="{$basedomain}content/addcontent/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+									<td><a href="{$basedomain}addcontent/contentadd/?id={$var.id}&menuid={$menuid}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
 									<td>{$var.authorid}</td>
-									<td >{$var.lang_id}</td>
-									<td>{$var.parentid}</td>
+									<td >
+                                    {if ($var.lang_id==0)}
+                                        Bahasa Indonesia
+                                    {elseif ($var.lang_id==1)}
+                                        Inggris
+                                    {elseif ($var.lang_id==2)}
+                                        Rusia
+                                    {/if}
+                                    
+                                    </td>
+									<td>{$var.menu_data.nm_bhs}</td>
 									<td>{$var.created_date}</td>
 									<td style="color:{$var.status_color}">{$var.n_status}</td>
 									

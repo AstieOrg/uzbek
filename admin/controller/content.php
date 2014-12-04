@@ -53,18 +53,21 @@ class content extends Controller {
 	
 	public function menu(){
 	
-	$id = $_GET['id'];
-	//pr($menuId);exit;
+        $id = $_GET['id'];
+    
 		$this->view->assign('active','active');
 // 		$menuList = $this->getmenuModels->getMenuData();
 		$data = $this->models->get_content($id);
-
+        
 		if ($data){
 			foreach ($data as $key => $val){
 
 				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
 
 				//$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
+                
+                $get_menu = $this->models->get_menu($val['menuId']);
+                $data[$key]['menu_data'] = $get_menu;
 
 				if($val['n_status'] == '1') {
 					$data[$key]['n_status'] = 'Publish';
@@ -75,8 +78,6 @@ class content extends Controller {
 				}
 			}
 		}
-		
-		// pr($data);exit;
 // 		$this->view->assign('menu',$menuList);
 		$this->view->assign('data',$data);
 		$this->view->assign('menuid',$id);

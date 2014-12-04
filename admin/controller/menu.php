@@ -135,6 +135,8 @@ class menu extends Controller {
         if($ids){
             $data = $this->models->menu_del($ids, $action);
             $message = 'Data has been deleted';
+        }else{
+            $message = 'Data can not be deleted due to reference';
         }
 		
 		echo "<script>alert('".$message."');window.location.href='".$CONFIG['admin']['base_url']."home/'</script>";

@@ -38,8 +38,7 @@ class mmenu extends Database {
 							pos = '{$data['menuPos']}',
                             is_child = '{$data['menuStat']}',
 							id_parent = '{$data['menuParent']}',
-                            date_created = '{$data['dateCreate']}',
-							n_stats = '{$data['stats']}'
+                            date_created = '{$data['dateCreate']}'
 						WHERE
 							id = '{$data['id']}'";
 		}
@@ -69,6 +68,24 @@ class mmenu extends Database {
     function get_child($id)
 	{
  		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id_parent = '{$id}' ORDER BY date_created DESC";
+ 		
+ 		$result = $this->fetch($query,1);
+ 		
+ 		return $result;
+	}
+    
+    function get_parent($id)
+	{
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id = '{$id}' ORDER BY date_created DESC";
+ 		
+ 		$result = $this->fetch($query);
+ 		
+ 		return $result;
+	}
+    
+    function get_content($id)
+	{
+ 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE menuId = '{$id}' ORDER BY created_date DESC";
  		
  		$result = $this->fetch($query,1);
  		
