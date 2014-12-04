@@ -55,18 +55,18 @@ class mcontent extends Database {
     
     function get_menu($id)
 	{
- 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id = '{$id}' ORDER BY date_created DESC";
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id = '{$id}'";
  		
  		$result = $this->fetch($query);
  		
  		return $result;
 	}
 	
-	function get_content($menuId=null)
+	function get_content($menuId=null, $loop=1)
 	{
 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND menuId = '{$menuId}' OR n_status = '0' AND menuId = '{$menuId}' ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
+		//pr($query);exit;
+		$result = $this->fetch($query,$loop);
 
 // 		foreach ($result as $key => $value) {
 // 			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";

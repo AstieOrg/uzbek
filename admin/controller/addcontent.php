@@ -29,14 +29,16 @@ class addcontent extends Controller {
 	
 	public function contentadd(){
 	$menuId = $_GET['menuid'];
+    $id = $_GET['id'];
 	//pr($menuId); exit;		
 		$this->view->assign('active','active');
-	
+        
+        
 
-		if(isset($_GET['id']))
+		if($id)
 		{
 		//ini utk edit
-			$data = $this->models->get_content_id($_GET['id']);
+			$data = $this->models->get_content_id($id);
             
             if($data){
                 //$data['dateCreate'] = dateFormat($data['dateCreate'],'dd-mm-yyyy');

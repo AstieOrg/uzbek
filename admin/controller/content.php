@@ -52,37 +52,43 @@ class content extends Controller {
 	}
 	
 	public function menu(){
-	
+        global $CONFIG;
         $id = $_GET['id'];
     
 		$this->view->assign('active','active');
-// 		$menuList = $this->getmenuModels->getMenuData();
-		$data = $this->models->get_content($id);
+        $menuData = $this->models->get_menu($id);
         
-		if ($data){
-			foreach ($data as $key => $val){
-
-				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
-
-				//$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
-                
-                $get_menu = $this->models->get_menu($val['menuId']);
-                $data[$key]['menu_data'] = $get_menu;
-
-				if($val['n_status'] == '1') {
-					$data[$key]['n_status'] = 'Publish';
-					$data[$key]['status_color'] = 'green';
-				} else {
-					$data[$key]['n_status'] = 'Unpublish';
-					$data[$key]['status_color'] = 'red'; 
-				}
-			}
-		}
-// 		$this->view->assign('menu',$menuList);
-		$this->view->assign('data',$data);
-		$this->view->assign('menuid',$id);
-
-		return $this->loadView('content/content');
+        if($menuData['menu_type']==1){
+            $data = $this->models->get_content($id,0);
+            redirect($CONFIG['admin']['base_url']."addcontent/contentadd/?id=".$data['id']."&menuid=".$id);
+        }else{
+    		$data = $this->models->get_content($id);
+            
+    		if ($data){
+    			foreach ($data as $key => $val){
+    
+    				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
+    
+    				//$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
+                    
+                    $get_menu = $this->models->get_menu($val['menuId']);
+                    $data[$key]['menu_data'] = $get_menu;
+    
+    				if($val['n_status'] == '1') {
+    					$data[$key]['n_status'] = 'Publish';
+    					$data[$key]['status_color'] = 'green';
+    				} else {
+    					$data[$key]['n_status'] = 'Unpublish';
+    					$data[$key]['status_color'] = 'red'; 
+    				}
+    			}
+    		}
+    // 		$this->view->assign('menu',$menuList);
+    		$this->view->assign('data',$data);
+    		$this->view->assign('menuid',$id);
+    
+    		return $this->loadView('content/content');
+        }
 	}
     
     public function contentdel($action='delete'){

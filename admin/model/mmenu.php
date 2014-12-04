@@ -76,7 +76,7 @@ class mmenu extends Database {
     
     function get_parent($id)
 	{
- 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id = '{$id}' ORDER BY date_created DESC";
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id = '{$id}'";
  		
  		$result = $this->fetch($query);
  		
