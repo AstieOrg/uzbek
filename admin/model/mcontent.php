@@ -67,14 +67,18 @@ class mcontent extends Database {
 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND menuId = '{$menuId}' OR n_status = '0' AND menuId = '{$menuId}' ORDER BY created_date DESC";
 		//pr($query);exit;
 		$result = $this->fetch($query,$loop);
-
-// 		foreach ($result as $key => $value) {
-// 			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-// 
-// 			$username = $this->fetch($query,0);
-// 
-// 			$result[$key]['username'] = $username['username'];
-// 		}
+        
+        if($loop){
+     		foreach ($result as $key => $value) {
+                if($value['authorid']){
+         			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+         
+         			$username = $this->fetch($query,0);
+         
+         			$result[$key]['username'] = $username['username'];
+                }
+     		}
+        }
 		
 		return $result;
 	}

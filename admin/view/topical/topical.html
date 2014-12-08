@@ -46,9 +46,6 @@
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
                     
-                   
-                    
-					<a class="btn btn-link btn-sm" href="{$basedomain}topical/trash"><i class="fa fa-trash-o"></i> Trash</a>
 					</div>
 					
 					<table 
@@ -66,8 +63,9 @@
 									<!--<th data-filterable="true" data-sortable="true">Content ID</th>
 									<th data-filterable="true" data-sortable="true">Menu ID</th>-->
 									<th data-filterable="true" data-sortable="true">Title</th>
+                                    <th data-filterable="true" data-sortable="true">Icon</th>
 									<th data-filterable="true" data-sortable="true">Author</th>
-									<th data-filterable="true" data-sortable="true">ID Language</th>
+									<th data-filterable="true" data-sortable="true">Posted On</th>
 									<th data-filterable="true" data-sortable="true">Last Modified</th>
 									<th data-filterable="true" data-sortable="true">Status</th>
 									
@@ -82,11 +80,16 @@
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
 									</td>
-									<td><a href="{$basedomain}topical/addtopical/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td>{$var.authorid}</td>
-									<td >{$var.lang_id}</td>
+									<td><a href="{$basedomain}addtopical/topicaladd/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+                                    <td style="width: 150px;">
+                                        {if ($var.file_icon)}
+                                        <img class="img-responsive thumbnail" src="{$var.file_icon}" />
+                                        {/if}
+                                    </td>
+									<td>{$var.username}</td>
+									<td>{$var.posted_date}</td>
 									<td>{$var.created_date}</td>
-									<td style="color:{$var.status_color}">{$var.n_status}</td>
+									<td style="color:{$var.status_color}">{$var.n_stats}</td>
 									
 									
 									

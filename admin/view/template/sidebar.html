@@ -28,41 +28,23 @@
 					<i class="fa fa-file-text"></i>
 					Content Management
 					<span class="caret"></span>
-				</a>	
-				
-				{*}
-				<ul class="sub-nav">
-					<li>
-						<!--controller content, function : content-->
-						<a href="{$basedomain}content/article">
-							<i class="fa fa-file-text"></i> 
-							Article
-						</a>
-					</li>
-					<li>
-						<a href="{$basedomain}content/gallery">
-							<i class="fa fa-file-text"></i> 
-							Gallery
-						</a>
-					</li>
-				</ul>
-				{/*}
-			
-			
-			
-			{foreach $menu as $eachMenu}
-			<ul class="sub-nav">
- 			<li class="button {if $page.page=='{$eachMenu.nm_eng}'}active{/if}"> 
-			
-                <a href="{$basedomain}content/menu/?id={$eachMenu.id}">
-					<i class="fa fa-file-text"></i>
-					{$eachMenu.nm_eng}
-					<!--span class="caret"></span-->
-				</a>		
-			
- 			</li> 
-			</ul>
-			{/foreach}
+				</a>
+    			{foreach $menu as $eachMenu}
+    			<ul class="sub-nav">
+     			<li class="button {if $page.page=='{$eachMenu.nm_eng}'}active{/if}"> 
+    			
+                    <a href="{$basedomain}content/menu/?id={$eachMenu.id}">
+    					<i class="fa fa-file-text"></i>
+                        {if $eachMenu.parent}
+                            {$eachMenu.parent.nm_eng} -> 
+                        {/if}
+                        {$eachMenu.nm_eng}
+    					<!--span class="caret"></span-->
+    				</a>		
+    			
+     			</li> 
+    			</ul>
+    			{/foreach}
 			</li>
 			
 			<li class="button {if $page.page=='gallery'}active{/if}">
@@ -74,7 +56,7 @@
 				</a>				
 			</li>
 			
-			<li class="button {if $page.page=='topical'}active{/if}">
+			<li class="button {if $page.page=='topical' || $page.page=='addtopical'}active{/if}">
 				<a href="{$basedomain}topical">
 					<i class="fa fa-file-text"></i>
 					Topical Issues

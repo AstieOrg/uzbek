@@ -49,35 +49,26 @@ $(function () {
 			</div>
 			<div class="col-sm-12">
 							<div class="form-group">
-                                <label for="text-input">Menu Name in Russian</label>
-                                <input type="text" name="mnameRus" class="form-control" value="{$data.nm_rus}" data-required="true"/>
+                                <label for="text-input">Menu Name in Uzbekistan</label>
+                                <input type="text" name="nm_uzbek" class="form-control" value="{$data.nm_uzbek}" data-required="true"/>
 							</div>
 						</div>
-                        <div class="col-sm-6">
-				<div class="form-group">
+                        <div class="col-sm-7">
+				            <div class="form-group">
                                 <label for="text-input">Category</label>                                
-                                <select name="menuType" class="form-control" >
+                                <select id="menuType" name="menuType" class="form-control"  >
                                     <option value="0" {if $data.menu_type==0}selected{/if} >List</option>
                                     <option value="1" {if $data.menu_type==1}selected{/if} >Article</option>
                                     <!--<option value="2" {if $data.menu_type==2}selected{/if} >Gallery</option>-->
                                 </select>
                             </div>
-						</div>	
-			<div class="col-sm-6">
-				<div class="form-group">
-                                <label for="text-input">Menu Position</label>
-                                
-                                <select name="menuPos" class="form-control" >
-                                    <option value="0" {if $data.pos==0}selected{/if} >Top menu</option>
-                                    <option value="1" {if $data.pos==1}selected{/if} >Side menu</option>
-                                </select>
-                            </div>
+                            <input type="hidden" name="menuStat" value="0" />
 						</div>	
 						
-                <div class="col-sm-6">			
+                <div class="col-sm-7">			
     			    <div class="form-group">
     				    <label type="text">Menu Status </label>
-    				    <select id="is_child" name="menuStat" class="form-control" {$parentOption}>
+    				    <select id="is_child" name="menuStat" class="form-control" {if $data.menu_type==1}disabled{/if} {$parentOption}>
     					<option value="0" {if $data.is_child==0}selected{/if} >Parent</option>
     					<option value="1" {if $data.is_child==1}selected{/if} >Child</option>
     				    </select>
@@ -86,11 +77,11 @@ $(function () {
                 
     			<div class="col-sm-6 parentMenu" style="display: none;">			
 				    <div class="form-group">
-				    <label type="text">Select Parent Menu </label>
 				      <select name="menuParent" class="form-control" >
+                      <option value="0" selected >Select Parent Menu</option>
 				      {foreach $menu as $eachMenu}
 			      
-				      <option value="{$eachMenu.id}" {if $data.id_parent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>      
+				      <option value="{$eachMenu.id}" {if $data.id_parent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>
 					
 				      {/foreach}
 				      
@@ -151,6 +142,17 @@ $(document).ready(function() {
         }else{
             $('.parentMenu').hide();
         }
+    });
+    
+    $('#menuType').change( function(){
+        var is_article = $( this ).val();
+        if(is_article == 1){
+            $('#is_child').prop('selected', false);
+            $('#is_child').prop('disabled', true);
+        }else{
+            $('#is_child').prop('disabled', false);
+        }
+        
     });
 } );
 </script>

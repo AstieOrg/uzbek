@@ -68,18 +68,6 @@ class menu extends Controller {
 		} else {
 			$_POST['stats']=0;
 		}
-        
-		if(isset($_POST['menuType'])){
-			if($_POST['menuType']=='on') {
-				if($_POST['articleid_old']!=0){
-					$_POST['menuType'] = $_POST['articleid_old'];
-				} else {
-					$_POST['menuType']=1; 
-				}
-			}
-		} else {
-			$_POST['menuType']=0;
-		}
  		
 		if(isset($_POST)){
                 // validasi value yang masuk
@@ -127,7 +115,7 @@ class menu extends Controller {
                 }
             }
             
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
+            echo "<script>alert('Data saved');window.location.href='".$redirect."'</script>";
             }
 	}
 	

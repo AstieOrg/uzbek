@@ -36,8 +36,25 @@ class Controller extends Application{
 		$this->view = $CODEKIR['smarty'];
 		if($this->configkey=='admin'){
 			$menuData = $this->getMenu();
-			//pr($menuData);exit;
-			$this->view->assign('menu', $menuData);
+            
+            $count = 0;
+            foreach($menuData as $key => $menu){
+                if($menu['is_child']){
+                    $parentData = $this->getMenu($menu['id_parent']);
+                    $menuList[$count] = $menuData[$key];
+                    $menuList[$count]['parent'] = $parentData;
+                    $count = $count + 1;
+                }else{
+                    $getChild = $this->getMenu($menu['id'],true);
+                    if(!$getChild){
+                        $menuList[$count] = $menuData[$key];
+                        $count = $count + 1;
+                    }
+                }
+                
+            }
+            
+			$this->view->assign('menu', $menuList);
 		}
 		$this->view->assign('basedomain',$basedomain);
         $this->view->assign('rootpath',$rootpath);
@@ -343,9 +360,19 @@ class Controller extends Application{
 
 	}
 	
-	function getMenu(){
+	function getMenu($id=false,$getChild = false){
 		$menuHelper = new getMenuHelper;
-		$data = $menuHelper->getMenuData();
+        if($getChild){
+            $data = $menuHelper->getChild($id);
+        }else{
+            if($id){
+                $data = $menuHelper->getMenuId($id);
+            }else{
+                $data = $menuHelper->getMenuData();
+            }
+        }
+        
+		
 		if($data) return $data;
 		return false;
 	}

@@ -9,18 +9,23 @@ class mtopical extends Database {
 		$datetime = array();
         
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
-	        if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
+        if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
 		if($data['action'] == 'insert'){
 			//pr($data);exit;
 			//yang atas nama variabel @ db.
 			$query = "INSERT INTO  
 			  
-						{$this->prefix}_topical_issues (icon_image,file_icon,title,langid,brief,content,image,file,
-												created_date,posted_date,n_stats)
+						{$this->prefix}_topical_issues (
+                            icon_image,file_icon,title,
+                            langid,brief,content,
+                            image,file,created_date,
+                            posted_date,author_id,n_stats)
 					VALUES
-						('".$data['icon']."','".$data['icon_url']."','".$data['contentTitle']."','".$data['langID']."','".$data['brief']."','".$data['content']."','".$data['image']."',
-                        '".$data['image_url']."','".$date."','".$data['postdate']."','".$data['n_status']."')";
+						('".$data['icon']."','".$data['icon_url']."','".$data['contentTitle']."'
+                        ,'".$data['langID']."','".$data['brief']."','".$data['content']."'
+                        ,'".$data['image']."','".$data['image_url']."','".$date."'
+                        ,'".$data['postdate']."','".$data['authorid']."','".$data['n_stats']."')";
                         
                         //pr($query);exit;
 
@@ -28,18 +33,17 @@ class mtopical extends Database {
             if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
 			$query = "UPDATE {$this->prefix}_topical_issues
 						SET 
-							title = '{$data['title']}',
+							title = '{$data['contentTitle']}',
 							brief = '{$data['brief']}',
 							content = '{$data['content']}',
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
-							icon = '{$data['icon']}',
+							icon_image = '{$data['icon']}',
 							file_icon = '{$data['icon_url']}',
-                            articletype = '{$data['articletype']}',
 							posted_date = '".$date."',
                             expired_date = '{$data['expired_date']}',
-							authorid = '{$data['authorid']}',
-							n_status = {$data['n_status']}
+							author_id = '{$data['authorid']}',
+							n_stats = {$data['n_stats']}
 						WHERE
 							id = '{$data['id']}'";
 		}
@@ -51,17 +55,17 @@ class mtopical extends Database {
 	
 	function get_topical($n_stats=null)
 	{
-		$query = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = '1' OR n_stats = '0' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats != '2' ORDER BY posted_date DESC";
 		
 		$result = $this->fetch($query,1);
 
-// 		foreach ($result as $key => $value) {
-// 			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-// 
-// 			$username = $this->fetch($query,0);
-// 
-// 			$result[$key]['username'] = $username['username'];
-// 		}
+ 		foreach ($result as $key => $value) {
+ 			$query = "SELECT username FROM admin_member WHERE id={$value['author_id']} LIMIT 1";
+ 
+ 			$username = $this->fetch($query,0);
+ 
+ 			$result[$key]['username'] = $username['username'];
+ 		}
 		
 		return $result;
 	}
@@ -82,17 +86,6 @@ class mtopical extends Database {
 		return $result;
 	}
 	
-	function get_topical_slide()
-	{
-		$query = "SELECT nc.*, cc.category, ct.type FROM cdc_topical_issues nc LEFT JOIN cdc_topical_issues_category cc 
-					ON nc.categoryid = cc.id LEFT JOIN cdc_topical_issues_type ct ON nc.articletype = ct.id 
-					WHERE nc.n_status < 2 AND nc.articletype > 0  ORDER BY nc.createdate DESC";
-		
-		$result = $this->fetch($query,1);
-		
-		return $result;
-	}
-	
 	function get_topical_trash($categoryid=null)
 	{
 		$query = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_status = '2' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
@@ -110,47 +103,9 @@ class mtopical extends Database {
 		return $result;
 	}
 	
-	function topical_del($id)
+	function get_topical_id($id)
 	{
-		foreach ($id as $key => $value) {
-			
-			$query = "UPDATE {$this->prefix}_topical_issues SET n_status = '2' WHERE id = '{$value}'";
-		
-			$result = $this->query($query);
-		
-		}
-
-		return true;
-		
-	}
-	
-	function topical_delpermanent($id)
-	{
-		$query = "DELETE FROM cdc_topical_issues WHERE id = '{$id}'";
-		
-		$result = $this->query($query);
-		
-		return $result;
-		
-	}
-	
-	function topical_restore($id)
-	{
-		foreach ($id as $key => $value) {
-			
-			$query = "UPDATE {$this->prefix}_topical_issues SET n_status = '0' WHERE id = '{$value}'";
-		
-			$result = $this->query($query);
-		
-		}
-
-		return true;
-		
-	}
-	
-	function get_topical_id($menuId)
-	{
-		$query = "SELECT * FROM {$this->prefix}_topical_issues WHERE id= {$menuId} LIMIT 1";
+		$query = "SELECT * FROM {$this->prefix}_topical_issues WHERE id= {$id}";
 		
 		$result = $this->fetch($query,0);
 
@@ -159,81 +114,20 @@ class mtopical extends Database {
 
 		return $result;
 	}
-	
-	function frame_inp($data){
-
-		foreach ($data[0] as $key => $val) {
-			$tmpfield[] = $key;
-			$tmpvalue[] = "'$val'";
-		}
-
-		$field = implode(',', $tmpfield);
-		$value = implode(',', $tmpvalue);
-
-		$query = "INSERT INTO {$this->prefix}_topical_issues_repo ({$field}) VALUES ($value)";
-
-		$result = $this->query($query);
-
-		$queryid = "SELECT id FROM {$this->prefix}_topical_issues_repo ORDER BY created_date DESC LIMIT 1";
-
-		$id = $this->fetch($queryid,0);
-
-		$data[1]['otherid'] = $id['id'];
-
-		foreach ($data[1] as $key => $val) {
-			$tmpfield2[] = $key;
-			$tmpvalue2[] = "'$val'";
-		}
-
-		$field2 = implode(',', $tmpfield2);
-		$value2 = implode(',', $tmpvalue2);
-
-		$query2= "INSERT INTO {$this->prefix}_topical_issues_repo ({$field2}) VALUES ($value2)";
-
-		$result = $this->query($query2);
-		return true;
-	}
-
-	function get_frameList(){
-
-		global $CONFIG;
-
-		$query = "SELECT * FROM {$this->prefix}_news_content_repo WHERE gallerytype = 1 AND n_status = 1 ORDER BY created_date DESC";
-
-		$result = $this->fetch($query,1);
-
-		foreach ($result as $key => $val) {
-			$query = "SELECT * FROM {$this->prefix}_news_content_repo WHERE gallerytype = 2 AND n_status = 1 AND otherid = {$val['id']} LIMIT 1";
-			$res = $this->fetch($query,0);
-			$result[$key]['cover'] = $res['files'];
-			$result[$key]['covername'] = $res['title'];
-
-			//typealbum
-			if($val['typealbum'] == 4){
-				$result[$key]['typealbum'] = 'Facebook';
-			} elseif ($val['typealbum'] == 5) {
-				$result[$key]['typealbum'] = 'Twitter';
-			}
-			
-			//dimension
-			list($result[$key]['frWidth'], $result[$key]['frHeight'], $type, $attr) = @getimagesize($CONFIG['admin']['upload_path']."frame/".$result[$key]['files']);
-			list($result[$key]['covWidth'], $result[$key]['covHeight'], $type, $attr) = @getimagesize($CONFIG['admin']['upload_path']."cover/".$res['files']);
-		}
-
-		return $result;
-	}
-
-	function updateStatusFrame($id=false,$n_status=0)
+    
+    function topical_del($id)
 	{
-		if (!$id) return false;
+		//pr($id);
+		foreach ($id as $key => $value) {
+			
+			$query = "DELETE FROM {$this->prefix}_topical_issues WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
 
-
-		$query2= "UPDATE {$this->prefix}_news_content_repo SET n_status = {$n_status} WHERE id = {$id} LIMIT 1";
-
-		$result = $this->query($query2);
-		if ($result) return true;
-		return false;
-
+		return true;
+		
 	}
 }
 ?>

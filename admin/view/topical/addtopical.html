@@ -23,127 +23,91 @@ $(function () {
 
 		<div class="row">
 			<div class="col-md-9">
+            
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                            <i class="fa fa-tasks"></i>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#bahasa" aria-expanded="true" aria-controls="collapseOne">
+                            Content In Bahasa
+                            </a>
+                            </h4>
+                        </div>
+                        <div id="bahasa" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <div class="col-sm-12">
+            						<div class="form-group">
+                                        <label for="text-input">Content Title</label>
+                                        <input type="text" name="contentTitle" class="form-control" value="{$data.title}" data-required="true"/>
+            						</div>
+            					</div>      
+                                 			
+                    			<div class="col-sm-9">
+                    				<div class="form-group">
+                    				<label for="text-input">Brief</label>
+                    				<input type="text" name="brief" class="form-control" value="{$data.brief}" />
+                    				</div>
+                    			</div>
+            				
+                				<div class="col-sm-12">
+                					<div class="form-group">
+                					<label for="textarea-input">Description</label>
+                							<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content}</textarea>
+                					</div>
+                					
+                					
+                					<!-- hidden -->
+                					<input type="hidden" name="id" value="{$data.id}" />
+                					<input type="hidden" name="authorid" value="{$admin.id}" />
+                					<input type="hidden" name="image" value="{$data.image}" />
+                					<input type="hidden" name="image_url" value="{$data.file}" />
+                					<input type="hidden" name="icon" value="{$data.icon}" />
+                					<input type="hidden" name="icon_url" value="{$data.file_icon}" />
+                					
+                					<!-- hidden -->
+                							
+                				</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
 				<div class="portlet">
 				
 					<div class="portlet-header">
 
 						<h3>
 							<i class="fa fa-tasks"></i>
-							New Content Form
+							Posted Date
 						</h3>
 
 					</div> <!-- /.portlet-header -->
 				
 					<div class="portlet-content">
-				
-				<div class="col-sm-12">
-                            <div class="form-group">                        
-                                <label for="file_icon">Icon Image</label>                        
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-        						  <div class="fileupload-new thumbnail" style="width: 64px; height: 64px;">
-                                    <img src="{$data.fileIcon}" alt="{$data.icon}" /></div>
-        						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
-        						  <div>
-        							<span class="btn btn-default btn-file">
-                                        <span class="fileupload-new">Select image</span>
-                                        <span class="fileupload-exists">Change</span>
-                                        <input type="file" name="file_icon"/>
-                                    </span>
-        							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
-        						  </div>
-        						</div>
-                            </div>
-			    </div>
-				
-				<div class="col-sm-12">
-							<div class="form-group">
-                                <label for="text-input">Content Title</label>
-                                <input type="text" name="contentTitle" class="form-control" value="{$data.contentTitle}" data-required="true"/>
-							</div>
-						</div>
-			
-				
-				<div class="col-sm-5">
-				<div class="form-group">
-                                <label for="text-input">Language</label>
-                                
-                                <select name="langID" class="form-control" >
-                                    <option value="0" {if $data.langID==0}selected{/if} >Bahasa Indonesia</option>
-                                    <option value="1" {if $data.langID==1}selected{/if} >Inggris</option>
-                                    <option value="2" {if $data.langID==2}selected{/if} >Rusia</option>
-                                </select>
-                                </div>
-                                </div>
-                                
-                     			
-				<div class="col-sm-9">
-					<div class="form-group">
-					<label for="text-input">Brief</label>
-					<input type="text" name="brief" class="form-control" value="{$data.brief}" />
-					</div>
-				</div>
-				
-				<div class="col-sm-12">
-							<div class="form-group">
-							<label for="textarea-input">Description</label>
-									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content}</textarea>
-							</div>
-							
-							
-									<!-- hidden -->
-									<input type="hidden" name="id" value="{$data.id}" />
-									<input type="hidden" name="categoryid" value="1" />
-									<input type="hidden" name="authorid" value="{$admin.id}" />
-									<input type="hidden" name="image" value="{$data.image}" />
-									<input type="hidden" name="image_url" value="{$data.file}" />
-									<input type="hidden" name="icon" value="{$data.icon}" />
-									<input type="hidden" name="icon_url" value="{$data.fileIcon}" />
-									
-									<!-- hidden -->
-							
-						</div>
-                                                
-                        <div class="col-sm-12">
-                            <div class="form-group">                        
-                                <label for="file_image">Cover Image</label>                        
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-        						  <div class="fileupload-new thumbnail" style="width: 200px; height: 180px;">
-                                    <img src="{$data.file}" alt="{$data.image}" /></div>
-        						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
-        						  <div>
-        							<span class="btn btn-default btn-file">
-                                        <span class="fileupload-new">Select image</span>
-                                        <span class="fileupload-exists">Change</span>
-                                        <input type="file" name="file_image"/>
-                                    </span>
-        							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
-        						  </div>
-        						</div>
-                            </div>
+                            
+                        <div class="col-sm-6">
+                        	<div class="form-group">
+                        		<label for="select-input">Postdate</label>
+                        	    <div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                        		    <input class="form-control" type="text" name="postdate" value="{$data.posted_date}" data-required="true">
+                        		    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        	    </div>
+                        		
+                        	</div>
+                        	
+                        	<div class="form-group">
+                        			<div class="checkbox">
+                        				<label>
+                        					<input type="checkbox" name="n_stats" class="" {$data.n_stats} >
+                        					Publish
+                        				</label>
+                        			</div>
+                        	</div>
+                        	
+                        	<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+                        	
                         </div>
-                        
-						 <div class="col-sm-6">
-							<div class="form-group">
-    							<label for="select-input">Postdate</label>
-							    <div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
-								    <input class="form-control" type="text" name="postdate" value="{$data.posted_date}" data-required="true">
-								    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-							    </div>
-    							
-							</div>
-    						
-							<div class="form-group">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="n_status" class="" {$data.n_status} >
-											Publish
-										</label>
-									</div>
-							</div>
-							
-							<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
-    						
-    						</div>
 			    
 			                   
                                                                                                                         
@@ -151,6 +115,71 @@ $(function () {
 				</div>
                                 
 			</div>
+            
+            <div class="col-md-3">
+                <div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Cover Image
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+                        <div class="form-group">                       
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+    						  <div class="fileupload-new thumbnail" style="width: 208px; min-height: 120px;">
+                                <img src="{$data.file}" alt="{$data.image}" /></div>
+    						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
+    						  <div>
+    							<span class="btn btn-default btn-file">
+                                    <span class="fileupload-new">Select image</span>
+                                    <span class="fileupload-exists">Change</span>
+                                    <input type="file" name="file_image"/>
+                                </span>
+    							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+    						  </div>
+    						</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Icon
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+                        <div class="form-group">                        
+                            <label for="file_icon">Icon Image</label>                        
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+    						  <div class="fileupload-new thumbnail" style="width: 208px; min-height: 120px;">
+                                <img src="{$data.file_icon}" alt="{$data.icon}" /></div>
+    						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
+    						  <div>
+    							<span class="btn btn-default btn-file">
+                                    <span class="fileupload-new">Select image</span>
+                                    <span class="fileupload-exists">Change</span>
+                                    <input type="file" name="file_icon"/>
+                                </span>
+    							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+    						  </div>
+    						</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
 		</div>
 	
 	</form>

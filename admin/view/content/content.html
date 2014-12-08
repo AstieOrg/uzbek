@@ -64,10 +64,10 @@
 									<!--<th data-filterable="true" data-sortable="true">Content ID</th>
 									<th data-filterable="true" data-sortable="true">Menu ID</th>-->
 									<th data-filterable="true" data-sortable="true">Title</th>
-									<th data-filterable="true" data-sortable="true">Author</th>
 									<th data-filterable="true" data-sortable="true">ID Language</th>
 									<th data-filterable="true" data-sortable="true">Parent Menu</th>
 									<th data-filterable="true" data-sortable="true">Last Modified</th>
+									<th data-filterable="true" data-sortable="true">Author</th>
 									<th data-filterable="true" data-sortable="true">Status</th>
 									
 									
@@ -84,7 +84,6 @@
                                         <input type="hidden" name="action" value="delete" />
 									</td>
 									<td><a href="{$basedomain}addcontent/contentadd/?id={$var.id}&menuid={$menuid}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td>{$var.authorid}</td>
 									<td >
                                     {if ($var.lang_id==0)}
                                         Bahasa Indonesia
@@ -97,6 +96,7 @@
                                     </td>
 									<td>{$var.menu_data.nm_bhs}</td>
 									<td>{$var.created_date}</td>
+									<td>{$var.username}</td>
 									<td style="color:{$var.status_color}">{$var.n_status}</td>
 									
 									

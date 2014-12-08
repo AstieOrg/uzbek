@@ -20,4 +20,3 @@ ul.menu li li:hover ul, ul.menu li li.sfHover ul { left: 14em; top: 0; }
 .sf-sub-indicator { position: absolute; display: block; right: .75em; top: 1.05em; width: 10px; height:	 10px; text-indent: -999em; 					overflow: hidden; background: url('../images/arrows.png') no-repeat -10px -100px; }
 a > .sf-sub-indicator {  top: .8em; background-position: 0 -100px;  }
 .menu ul a > .sf-sub-indicator { background-position: 0 0; }
-

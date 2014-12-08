@@ -25,7 +25,9 @@ class topical extends Controller {
 	
 	public function index(){
 		$this->view->assign('active','active');
+
 		$data = $this->models->get_topical();
+        //pr($data);exit;
 
 		if ($data){
 			foreach ($data as $key => $val){
@@ -50,31 +52,33 @@ class topical extends Controller {
 
 		return $this->loadView('topical/topical');
 	}
-	
-	
-	public function frame(){
+    
+    public function topicaldel(){
 
-		$data = $this->models->get_frameList();
-		// pr($data);
-		$this->view->assign('data',$data);
-
-		return $this->loadView('listFrame');
-	}
-	
-	function ajax()
-	{
+		global $CONFIG;
+        $path = 'news';
+        
+        foreach($_POST['ids'] as $id){
+            $getfile = $this->models->get_topical_id($id);
+            $delImage[] = $getfile['image'];
+            $delIcon[] = $getfile['icon_image'];
+        }
+        
+        foreach ($delImage as $image){
+            deleteFile($image,$path.'/image');
+        }
+        
+        foreach ($delIcon as $icon){
+            deleteFile($icon,$path.'/icon');
+        }                
+        
+		$data = $this->models->topical_del($_POST['ids']);
 		
-		$id = _p('id');
-		$n_status = _p('n_status');
+        $redirect = $CONFIG['admin']['base_url'].'topical';
+        $message = 'Data has been deleted';
+        
+		echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
 		
-		$data = $this->models->updateStatusFrame($id, $n_status);
-		if ($data){
-			print json_encode(array('status'=>true));
-		}else{
-			print json_encode(array('status'=>false));
-		}
-
-		exit;
 	}
 }
 
