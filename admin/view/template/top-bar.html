@@ -11,6 +11,35 @@
 	</ul>
 
 	<ul class="nav navbar-nav pull-right">
+		<li id="header_inbox_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                <i class="fa fa-envelope-o"></i>
+                <span class="badge bg-theme">{count($notif)}</span>
+            </a>
+
+            <ul class="dropdown-menu extended inbox">
+            {if count($notif) != 0}
+                <li>
+                    <p class="green">You have {count($notif)} new messages</p>
+                </li>
+                {foreach $notif as $getNotif}
+                <li>
+                    <a href="{$basedomain}contact/view/?id={$getNotif.id}">
+                        <span class="subject">
+                            <span class="from"><strong>{$getNotif.name}</strong></span>
+                        </span>
+                        <span class="message">
+                            {$getNotif.subject}
+                        </span>
+                    </a>
+                </li>
+                {/foreach}
+            {/if}
+                <li>
+                    <a href="{$basedomain}contact">See all messages</a>
+                </li>
+            </ul>
+        </li>
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
 				<i class="fa fa-user"></i>

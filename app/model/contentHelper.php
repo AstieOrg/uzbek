@@ -12,7 +12,7 @@ class contentHelper extends Database {
 	}
 
     function getMenu($position, $is_child){
-        $sql = "SELECT * FROM api_menu_list WHERE pos = $position AND is_child = $is_child AND n_stats=1;";
+        $sql = "SELECT * FROM {$this->prefix}_menu_list WHERE pos = $position AND is_child = $is_child AND n_stats=1;";
         $res = $this->fetch($sql,1);
 
         if ($res) return $res;
@@ -20,7 +20,7 @@ class contentHelper extends Database {
     }
 
     function getTitle($id){
-        $sql = "SELECT * FROM api_menu_list WHERE id = $id;";
+        $sql = "SELECT * FROM {$this->prefix}_menu_list WHERE id = $id;";
         $res = $this->fetch($sql,1);
 
         if ($res) return $res;

@@ -11,7 +11,7 @@
 	}
 </script>
 <div id="content-header">
-	<h1>Menu Management</h1>
+	<h1>Contact Us Management</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -26,7 +26,7 @@
 
 					<h3>
 						<i class="fa fa-table"></i>
-						Menu Management Form
+						Contact Us Form
 					</h3>
 
 				</div> <!-- /.portlet-header -->
@@ -72,25 +72,26 @@
 									<th data-filterable="true" data-sortable="true">Name</th>
 									<th data-filterable="true" data-sortable="true">Date Received</th>
 									<th data-filterable="true" data-sortable="true">Mail</th>
-									<th data-filterable="true" data-sortable="true">Telephone</th>
+									<th data-filterable="true" data-sortable="true">Address</th>
 									<th data-filterable="true" data-sortable="true">Subject</th>
 									<th data-filterable="true" data-sortable="true">Message</th>
 								</tr>
 							</thead>
 							<!-- Bingung ini buat apa -->
-							<tbody>
+							<tbody style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
 								{foreach $data as $var}
+
 								<tr>
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
 									</td>
 <!-- 									<td><a href="{$basedomain}contact/contactus" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.id}</a></td> -->
-									<td>{$var.name}</td>
-									<td>{$var.date_received}</td>
-									<td>{$var.mail}</td>
-									<td>{$var.tel}</td>
-									<td>{$var.subject}</td>
-									<td>{$var.message}</td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.name}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.date_received}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.mail}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.address}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.subject}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.message|truncate:25:"...":true}</a></td>
 									
 								
 																		

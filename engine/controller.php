@@ -16,21 +16,15 @@ class Controller extends Application{
 				$GLOBALS['CODEKIR']['LOGS'] = new helper_model;	
 			}elseif($this->configkey=='admin'){
 				$this->loadModel('getMenuHelper');
+				$this->loadModel('mcontact');
 			}
-			
 		}
-		
-		
-		
-
 	}
-	
-	
 	
 	function index()
 	{
 		
-		global $CONFIG, $LOCALE, $basedomain, $rootpath, $title, $DATA, $app_domain, $CODEKIR;
+		global $CONFIG, $LOCALE, $basedomain, $app_domain, $title, $DATA, $app_domain, $CODEKIR;
 		$filePath = APP_CONTROLLER.$this->page.$this->php_ext;
 		
 		$this->view = $CODEKIR['smarty'];
@@ -53,11 +47,17 @@ class Controller extends Application{
                 }
                 
             }
+            $this->view->assign('menu', $menuList);
+
+            $notif = $this->inbox_notif();
+            if($notif){
+            	$this->view->assign('notif', $notif);
+            }
             
-			$this->view->assign('menu', $menuList);
 		}
+
 		$this->view->assign('basedomain',$basedomain);
-        $this->view->assign('rootpath',$rootpath);
+        $this->view->assign('app_domain',$app_domain);
 		$this->view->assign('page',$DATA[$this->configkey]);
 		
 		
@@ -288,8 +288,6 @@ class Controller extends Application{
 				exit;
 			}
 		}
-		
-		
 	}
 	
 	public function loadMHelper()
@@ -345,7 +343,6 @@ class Controller extends Application{
 		$getHelper = new helper_model;
 
 		$getHelper->logActivity($action,$comment);
-
 	}
 
 	function getAgenda()
@@ -357,7 +354,6 @@ class Controller extends Application{
 		if (!empty($data)) {return json_encode($data);}
         else if (empty($data)){return json_encode('empty');}
 		else return false;
-
 	}
 	
 	function getMenu($id=false,$getChild = false){
@@ -371,8 +367,13 @@ class Controller extends Application{
                 $data = $menuHelper->getMenuData();
             }
         }
-        
-		
+        if($data) return $data;
+		return false;
+	}
+
+	function inbox_notif(){
+		$notification = new mcontact;
+		$data = $notification->get_contact(true,'0');
 		if($data) return $data;
 		return false;
 	}

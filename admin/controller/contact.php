@@ -25,7 +25,7 @@ class contact extends Controller {
 	
 	public function index(){
 		$this->view->assign('active','active');
-		$data = $this->models->get_contact(0);
+		$data = $this->models->get_contact(false,'');
 		//pr($data);exit;
 
 		if ($data){
@@ -42,7 +42,20 @@ class contact extends Controller {
 		$this->view->assign('data',$data);
 
 		return $this->loadView('contact/contactus');
+	}
 
+	public function view(){
+		$id = $_GET['id'];
+		$read = $this->models->read_msg($id);
+		$getMsg = $this->models->get_single_msg($id);
+		//pr($getMsg);
+		if ($getMsg){
+			foreach ($getMsg as $key => $val){
+				$getMsg[$key]['date_received'] = dateFormat($val['date_received'],'article');
+			}
+		}
+		$this->view->assign('msg',$getMsg);
+		return $this->loadView('contact/viewMessage');
 	}
 
 	public function frame(){

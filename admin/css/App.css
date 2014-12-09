@@ -3101,6 +3101,8 @@ table.dataTable th:active {
   text-decoration: underline;
   background: transparent;
 }
+
+
 /* ---------------------------------- */
 /* @Content */
 #content {
@@ -3433,4 +3435,45 @@ ul.support-list li {
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   
+}
+
+.dropdown-menu.extended {
+  max-width: 300px !important;
+  min-width: 160px !important;
+  top: 42px;
+  width: 235px !important;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.176) !important;
+  border: none !important;
+}
+
+.dropdown-menu.extended li{margin: 0;}
+
+.dropdown-menu.extended li p {
+  background-color: #4E4E4E;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 10px;
+}
+
+.dropdown-menu.extended li a {
+  padding: 15px 10px !important;
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px solid #EBEBEB !important;
+  font-size: 12px;
+  list-style: none;
+  border-radius: 0;
+}
+.dropdown-menu.extended li a:hover{
+  background-color: #EEE;
+  color: #282828;
+  border-radius: 0;
+}
+.dropdown-menu.inbox li a .subject {
+  display: block;
+}
+.dropdown-menu.inbox li a .message {
+  display: block !important;
+  font-size: 11px;
 }

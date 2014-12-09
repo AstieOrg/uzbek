@@ -51,10 +51,14 @@ class mcontact extends Database {
 		return $result;
 	}
 	//n_stat : status menu itu udah di delete atau belum, klo 1 udah di delete -> masuk ke trash
-	function get_contact($n_stats=null)
+	function get_contact($condition,$n_stats)
 	{
- 		$query = "SELECT * FROM {$this->prefix}_contact_list WHERE n_stats = '{$n_stats}' ORDER BY date_received DESC";
- 		
+		if($condition){
+ 			$query = "SELECT * FROM {$this->prefix}_contact_list WHERE n_stats = '{$n_stats}' ORDER BY date_received DESC";
+ 		}
+ 		else{
+ 			$query = "SELECT * FROM {$this->prefix}_contact_list ORDER BY date_received DESC";
+ 		}
  		$result = $this->fetch($query,1);
  
  		foreach ($result as $key => $value) {
@@ -68,6 +72,19 @@ class mcontact extends Database {
  		return $result;
 	}
     
+    function read_msg($id){
+    	$query = "UPDATE {$this->prefix}_contact_list SET n_stats = '1' WHERE id = $id;";
+    	$result = $this->query($query);
+    	return true;
+    }
+
+    function get_single_msg($id){
+    	$query = "SELECT * FROM {$this->prefix}_contact_list WHERE id = $id";
+    	$result = $this->fetch($query,1);
+    	return $result;
+    }
+
+
     function get_contact_filter($menuType=null,$articletype=null,$type=1)
 	{
 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE stats = '1' AND menu_type = '{$menuType}' AND articleType = '{$articletype}' OR stats = '0' AND menu_type = '{$menuType}' AND articleType = '{$articletype}' ORDER BY created_date DESC";
