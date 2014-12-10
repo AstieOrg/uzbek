@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 10 Des 2014 pada 09.19
+-- Generation Time: 10 Des 2014 pada 09.22
 -- Versi Server: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `topical_issues`
+-- Struktur dari tabel `uzbemb_topical_issues`
 --
 
-CREATE TABLE IF NOT EXISTS `topical_issues` (
+CREATE TABLE IF NOT EXISTS `uzbemb_topical_issues` (
 `id` int(11) NOT NULL,
   `created_date` date NOT NULL,
   `posted_date` date NOT NULL,
@@ -64,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `topical_issues` (
 --
 
 --
--- Indexes for table `topical_issues`
+-- Indexes for table `uzbemb_topical_issues`
 --
-ALTER TABLE `topical_issues`
+ALTER TABLE `uzbemb_topical_issues`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -74,9 +74,9 @@ ALTER TABLE `topical_issues`
 --
 
 --
--- AUTO_INCREMENT for table `topical_issues`
+-- AUTO_INCREMENT for table `uzbemb_topical_issues`
 --
-ALTER TABLE `topical_issues`
+ALTER TABLE `uzbemb_topical_issues`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
