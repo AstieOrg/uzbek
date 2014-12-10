@@ -1,7 +1,7 @@
 <?php
 // defined ('MICRODATA') or exit ( 'Forbidden Access' );
 
-class addcontent extends Controller {
+class headlines extends Controller {
 	
 	var $models = FALSE;
 	
@@ -12,28 +12,28 @@ class addcontent extends Controller {
 		$this->view = $this->setSmarty();
 		$sessionAdmin = new Session;
 		$this->admin = $sessionAdmin->get_session();
-		// $this->validatePage();
 	}
 	public function loadmodule()
 	{
 		
 		$this->models = $this->loadModel('mcontent');
-		// gak usah. kan menunya udah ada di sidebar
-		//$this->getmodels = $this->loadModel('getMenuHelper');
 	
 	}
 	public function index(){
-	
-
+        global $CONFIG;
+        $check = $this->models->getheadline();
+        
+        if($check){
+            redirect($CONFIG['admin']['base_url']."headlines/content/?id=".$check['id']);
+        }
+        return $this->loadView('headlines/headlineinp');
 	}
 	
-	public function contentadd(){
+	public function content(){
 	$menuId = $_GET['menuid'];
     $id = $_GET['id'];
-	//pr($menuId); exit;		
+    		
 		$this->view->assign('active','active');
-        
-        
 
 		if($id)
 		{
@@ -50,14 +50,13 @@ class addcontent extends Controller {
 		} 
 		
 	
-	      	$this->view->assign('admin',$this->admin['admin']);
-	      	$this->view->assign('menuid',$menuId);
-		/* folder: content file:addcontent.html */
-		return $this->loadView('content/addcontent');
+      	$this->view->assign('admin',$this->admin['admin']);
+      	$this->view->assign('menuid',$menuId);
+		return $this->loadView('headlines/headlineinp');
 	}
 	
 	
-	public function contentinp(){
+	public function headlineinp(){
 		global $CONFIG;
         $menuId = $_POST['menuId'];
 		
@@ -108,76 +107,11 @@ class addcontent extends Controller {
 				   	
 			   }catch (Exception $e){}
             
-            $redirect = $CONFIG['admin']['base_url'].'content/menu/?id='.$menuId;
+            $redirect = $CONFIG['admin']['base_url'].'headlines';
             $message = 'Save data succeed';
             
             echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
             }
-	}
-	
-	public function contentdel(){
-
-		global $CONFIG;
-		// pr($_POST);exit;
-		$data = $this->models->content_del($_POST['ids']);
-		
-		echo "<script>alert('Data dipindahkan ke trash');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
-		
-	}
-	
-	public function trash(){
-       
-		$data = $this->models->get_content_trash(1);
-		if ($data){
-			foreach ($data as $key => $val){
-				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
-
-				$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
-
-				if($val['n_status'] == '2') {
-					$data[$key]['n_status'] = 'Deleted';
-					$data[$key]['status_color'] = 'red';
-				} 
-			}
-		}
-
-		$this->view->assign('active','active');
-		$this->view->assign('data',$data);
-
-		return $this->loadView('content/viewtrash');
-
-	}
-	
-	
-	public function contentrest(){
-
-		global $CONFIG;
-		
-		$data = $this->models->content_restore($_POST['ids']);
-        
-        $redirect = $CONFIG['admin']['base_url'].'home';
-        if(isset($_POST['categoryid'])){
-            if($_POST['categoryid'] == '1'){
-                $redirect = $CONFIG['admin']['base_url'].'article';
-            }elseif($_POST['categoryid']=='2'){
-                $redirect = $CONFIG['admin']['base_url'].'agenda';
-            }
-        }
-		
-		echo "<script>alert('Data berhasil dikembalikan');window.location.href='".$redirect."/trash'</script>";
-		
-	}
-	
-	public function contentdelp(){
-
-		global $CONFIG;
-		
-		$id = $_GET['id'];
-
-		$data = $this->models->article_delpermanent($id);
-		
-		echo "<script>alert('Data berhasil di hapus secara permanen');window.location.href='".$CONFIG['admin']['base_url']."article/trash'</script>";
-		
 	}
 
 }
