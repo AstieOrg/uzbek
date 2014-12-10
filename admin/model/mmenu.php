@@ -144,16 +144,6 @@ class mmenu extends Database {
 		
 	}
 	
-	function menu_delpermanent($id)
-	{
-		$query = "DELETE FROM cdc_news_content WHERE id = '{$id}'";
-		
-		$result = $this->query($query);
-		
-		return $result;
-		
-	}
-	
 	function menu_restore($id)
 	{
 		foreach ($id as $key => $value) {

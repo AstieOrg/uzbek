@@ -99,17 +99,6 @@ class mcontent extends Database {
 		return $result;
 	}
 	
-	function get_content_slide()
-	{
-		$query = "SELECT nc.*, cc.category, ct.type FROM cdc_news_content nc LEFT JOIN cdc_news_content_category cc 
-					ON nc.categoryid = cc.id LEFT JOIN cdc_news_content_type ct ON nc.articletype = ct.id 
-					WHERE nc.n_status < 2 AND nc.articletype > 0  ORDER BY nc.createdate DESC";
-		
-		$result = $this->fetch($query,1);
-		
-		return $result;
-	}
-	
 	function get_content_trash($categoryid=null)
 	{
 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '2' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
@@ -143,16 +132,6 @@ class mcontent extends Database {
 		}
 
 		return true;
-		
-	}
-	
-	function content_delpermanent($id)
-	{
-		$query = "DELETE FROM cdc_news_content WHERE id = '{$id}'";
-		
-		$result = $this->query($query);
-		
-		return $result;
 		
 	}
 	
