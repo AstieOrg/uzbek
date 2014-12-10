@@ -62,7 +62,7 @@
 									</th>
 									<!--<th data-filterable="true" data-sortable="true">Content ID</th>
 									<th data-filterable="true" data-sortable="true">Menu ID</th>-->
-									<th data-filterable="true" data-sortable="true">Title</th>
+									<th data-filterable="true" data-sortable="true">Title in English</th>
                                     <th data-filterable="true" data-sortable="true">Icon</th>
 									<th data-filterable="true" data-sortable="true">Author</th>
 									<th data-filterable="true" data-sortable="true">Posted On</th>
@@ -80,7 +80,7 @@
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
 									</td>
-									<td><a href="{$basedomain}addtopical/topicaladd/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+									<td><a href="{$basedomain}addtopical/topicaladd/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title_en}">{$var.title_en}</a></td>
                                     <td style="width: 150px;">
                                         {if ($var.file_icon)}
                                         <img class="img-responsive thumbnail" src="{$var.file_icon}" />

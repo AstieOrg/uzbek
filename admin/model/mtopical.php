@@ -1,7 +1,7 @@
 <?php
 class mtopical extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	function topical_inp($data)
 	{
 		
@@ -17,13 +17,17 @@ class mtopical extends Database {
 			$query = "INSERT INTO  
 			  
 						{$this->prefix}_topical_issues (
-                            icon_image,file_icon,title,
-                            langid,brief,content,
+                            icon_image,file_icon,langid,
+                            title_bhs,brief_bhs,content_bhs,
+                            title_en,brief_en,content_en,
+                            title_uzbek,brief_uzbek,content_uzbek,
                             image,file,created_date,
                             posted_date,author_id,n_stats)
 					VALUES
-						('".$data['icon']."','".$data['icon_url']."','".$data['contentTitle']."'
-                        ,'".$data['langID']."','".$data['brief']."','".$data['content']."'
+						('".$data['icon']."','".$data['icon_url']."','".$data['langID']."'
+                        ,'".$data['title_bhs']."','".$data['brief_bhs']."','".$data['content_bhs']."'
+                        ,'".$data['title_en']."','".$data['brief_en']."','".$data['content_en']."'
+                        ,'".$data['title_uzbek']."','".$data['brief_uzbek']."','".$data['content_uzbek']."'
                         ,'".$data['image']."','".$data['image_url']."','".$date."'
                         ,'".$data['postdate']."','".$data['authorid']."','".$data['n_stats']."')";
                         
@@ -33,9 +37,18 @@ class mtopical extends Database {
             if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
 			$query = "UPDATE {$this->prefix}_topical_issues
 						SET 
-							title = '{$data['contentTitle']}',
-							brief = '{$data['brief']}',
-							content = '{$data['content']}',
+							title_bhs = '{$data['title_bhs']}',
+							brief_bhs = '{$data['brief_bhs']}',
+							content_bhs = '{$data['content_bhs']}',
+                            
+                            title_en = '{$data['title_en']}',
+							brief_en = '{$data['brief_en']}',
+							content_en = '{$data['content_en']}',
+                            
+                            title_uzbek = '{$data['title_uzbek']}',
+							brief_uzbek = '{$data['brief_uzbek']}',
+							content_uzbek = '{$data['content_uzbek']}',
+                            
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
 							icon_image = '{$data['icon']}',
