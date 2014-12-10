@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14.6
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 05, 2014 at 04:02 AM
--- Server version: 5.5.29-MariaDB-log
--- PHP Version: 5.3.17
+-- Host: 127.0.0.1
+-- Generation Time: 10 Des 2014 pada 08.58
+-- Versi Server: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,25 +17,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `db_api`
+-- Database: `project_uzbek`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `api_topical_issues`
+-- Struktur dari tabel `api_topical_issues`
 --
 
 CREATE TABLE IF NOT EXISTS `api_topical_issues` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `created_date` date NOT NULL,
   `posted_date` date NOT NULL,
   `expired_date` date DEFAULT NULL,
   `langid` tinyint(4) NOT NULL,
   `author_id` tinyint(4) DEFAULT NULL,
-  `title` varchar(200) NOT NULL,
-  `brief` text NOT NULL,
-  `content` text NOT NULL,
+  `title_bhs` varchar(200) NOT NULL,
+  `brief_bhs` text NOT NULL,
+  `content_bhs` text NOT NULL,
+  `title_en` varchar(200) NOT NULL,
+  `brief_en` text NOT NULL,
+  `content_en` text NOT NULL,
+  `title_uzbek` varchar(200) NOT NULL,
+  `brief_uzbek` text NOT NULL,
+  `content_uzbek` text NOT NULL,
   `image` varchar(200) NOT NULL,
   `thumbnail_image` varchar(200) DEFAULT NULL,
   `slider_image` varchar(200) DEFAULT NULL,
@@ -50,17 +56,28 @@ CREATE TABLE IF NOT EXISTS `api_topical_issues` (
   `filesize_icon` int(11) DEFAULT NULL,
   `can_save` int(11) DEFAULT NULL,
   `tags` text,
-  `n_stats` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `n_stats` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- Dumping data for table `api_topical_issues`
+-- Indexes for dumped tables
 --
 
-INSERT INTO `api_topical_issues` (`id`, `created_date`, `posted_date`, `expired_date`, `langid`, `author_id`, `title`, `brief`, `content`, `image`, `thumbnail_image`, `slider_image`, `url`, `source_url`, `file`, `icon_image`, `url_icon`, `source_icon`, `file_icon`, `filesize`, `filesize_icon`, `can_save`, `tags`, `n_stats`) VALUES
-(3, '2014-12-05', '2014-12-05', NULL, 0, NULL, 'aaaaaaaaaa', 'aaaa', 'lolololo', '16d16b0c4026f8e167df931d4a6aded9.PNG', NULL, NULL, NULL, NULL, 'http://localhost/uzbek_new/public_assets/news/16d16b0c4026f8e167df931d4a6aded9.PNG', '3fb2acbf6d5d3efcfeb1a3ec1b3c6ac9.png', NULL, NULL, 'http://localhost/uzbek_new/public_assets/news/3fb2acbf6d5d3efcfeb1a3ec1b3c6ac9.png', NULL, NULL, NULL, NULL, 0);
+--
+-- Indexes for table `api_topical_issues`
+--
+ALTER TABLE `api_topical_issues`
+ ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `api_topical_issues`
+--
+ALTER TABLE `api_topical_issues`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
