@@ -1,7 +1,7 @@
 <?php
 class contentHelper extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	var $salt = "";
 	function __construct()
 	{
