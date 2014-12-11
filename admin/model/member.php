@@ -1,7 +1,7 @@
 <?php
 class mkepakaran extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	function category_inp($data)
 	{
 		

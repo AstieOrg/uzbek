@@ -2,7 +2,7 @@
 /*Query Database*/
 class mcontact extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	function contact_inp($data)
 	{
 		

@@ -1,7 +1,7 @@
 <?php
 class mcontent extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	function content_inp($data)
 	{
 		

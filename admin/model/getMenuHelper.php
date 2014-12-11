@@ -1,7 +1,7 @@
 <?php
 
 class getMenuHelper extends Database {
-	var $prefix = "api";
+	var $prefix = "uzbemb";
     function __construct()
     {
         global $basedomain;

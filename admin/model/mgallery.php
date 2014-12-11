@@ -1,7 +1,7 @@
 <?php
 class mgallery extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	function gallery_inp($data)
 	{
 		

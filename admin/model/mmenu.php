@@ -2,7 +2,7 @@
 /*Query Database*/
 class mmenu extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	function menu_inp($data)
 	{
 		

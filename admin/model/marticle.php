@@ -1,7 +1,7 @@
 <?php
 class marticle extends Database {
 	
-	var $prefix = "api";
+	var $prefix = "uzbemb";
 	function article_inp($data)
 	{
 		
