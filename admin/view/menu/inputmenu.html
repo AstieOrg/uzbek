@@ -96,7 +96,14 @@ $(function () {
                     $('.parentMenu').show();
                 } );
                 </script>
-                {/if}			
+                {/if}
+                
+                <div class="col-sm-3">
+    				<div class="form-group">
+    					<label for="text-input">Position</label>
+    					<input type="text" name="pos" class="form-control" value="{$data.pos}" data-required="true"/>
+    				</div>
+    			</div>
 								                                                
                         <div class="col-sm-12">
                         <div class="row">               
@@ -113,7 +120,7 @@ $(function () {
             					<div class="form-group">
             							<div class="checkbox">
             								<label>
-            									<input type="checkbox" name="stats" class="" {$data.stats} >
+            									<input type="checkbox" name="n_stats" class="" {$data.n_stats} >
             									Publish Menu
             								</label>
             							</div>

@@ -46,17 +46,9 @@
 					    <option value="1">Side Menu</option>
 					</select>
 					
-					<!--"{$basedomain}menuconf/addmenu"--> 
-					<!--<div class="col-sm-12" style="margin-left: -15px;">
-					<a class="btn btn-default btn-sm" href="{$basedomain}article/addarticle"><i class="fa fa-plus"></i> Add new menu</a>-->
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
                     
-                    
-                    
-					<a class="btn btn-link btn-sm" href="{$basedomain}contact/trash"><i class="fa fa-trash-o"></i> Trash</a>
-					</div>
-					
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable"
 						data-provide="datatable" 
@@ -77,13 +69,13 @@
 									<th data-filterable="true" data-sortable="true">Message</th>
 								</tr>
 							</thead>
-							<!-- Bingung ini buat apa -->
+                            
 							<tbody style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
 								{foreach $data as $var}
 
 								<tr>
 									<td class="checkbox-column">
-										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
+										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" {$var.disabled} />
 									</td>
 <!-- 									<td><a href="{$basedomain}contact/contactus" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.id}</a></td> -->
 									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.name}</a></td>
@@ -94,15 +86,6 @@
 									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.message|truncate:25:"...":true}</a></td>
 									
 								
-																		
-                                    <!--kondisi untuk ngubah nilai numerik jadi Tulisan-->
-                                    <!--<td>
-                                        {if $var.articleType=='1'}
-                                            Berita
-                                        {elseif $var.articleType=='2'}
-                                            Kliping Kegiatan
-                                        {/if}
-                                    </td>-->
 								</tr>
 								{/foreach}
 							</tbody>

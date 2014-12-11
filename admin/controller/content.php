@@ -100,37 +100,21 @@ class content extends Controller {
         if($_POST['action']) $action = $_POST['action'];
         
         if($ids){
+            foreach($_POST['ids'] as $id){
+                $getfile = $this->models->get_content_id($id);
+                $delImage[] = $getfile['image'];
+            }
+            
+            foreach ($delImage as $image){
+                deleteFile($image,'news');
+            }
+            
             $data = $this->models->content_del($ids, $action);
             $message = 'Data has been deleted';
         }
 		
 		echo "<script>alert('".$message."');window.location.href='".$CONFIG['admin']['base_url']."content/menu/?id=".$menuid."'</script>";
 		
-	}
-	
-	public function frame(){
-
-		$data = $this->models->get_frameList();
-		// pr($data);
-		$this->view->assign('data',$data);
-
-		return $this->loadView('listFrame');
-	}
-	
-	function ajax()
-	{
-		
-		$id = _p('id');
-		$n_status = _p('n_status');
-		
-		$data = $this->models->updateStatusFrame($id, $n_status);
-		if ($data){
-			print json_encode(array('status'=>true));
-		}else{
-			print json_encode(array('status'=>false));
-		}
-
-		exit;
 	}
 }
 

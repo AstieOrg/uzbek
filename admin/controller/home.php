@@ -26,17 +26,12 @@ class home extends Controller {
 	public function index(){
 		$this->view->assign('active','active');
 		$data = $this->models->get_menu();
+        
 
 		if ($data){
 			foreach ($data as $key => $val){
                 
 				$data[$key]['date_created'] = dateFormat($val['date_created'],'article');
-				
-				if($val['position'] == '0') {
-					$data[$key]['pos'] = 'Top';
-				} else {
-					$data[$key]['pos'] = 'Side';
-				}
                 
                 $data[$key]['id_parent'] = '-';
                 if($val['id_parent'] != 0) {

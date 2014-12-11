@@ -23,8 +23,8 @@ class mmenu extends Database {
 						{$this->prefix}_menu_list (nm_bhs, nm_eng, nm_uzbek, menu_type, pos, is_child, id_parent, date_created, n_stats)
 					VALUES
 						('".$data['mnameBahasa']."','".$data['mnameEng']."','".$data['nm_uzbek']."','".$data['menuType']."'
-                        ,'".$data['menuPos']."','".$data['menuStat']."','".$data['menuParent']."','".$data['dateCreate']."'
-                        ,'".$data['stats']."')";
+                        ,'".$data['pos']."','".$data['menuStat']."','".$data['menuParent']."','".$data['dateCreate']."'
+                        ,'".$data['n_stats']."')";
 
 		} // kondisi untuk update.
 		else {
@@ -35,10 +35,11 @@ class mmenu extends Database {
 							nm_eng = '{$data['mnameEng']}',
 							nm_uzbek = '{$data['nm_uzbek']}',
 							menu_type = '{$data['menuType']}',
-							pos = '{$data['menuPos']}',
+							pos = '{$data['pos']}',
                             is_child = '{$data['menuStat']}',
 							id_parent = '{$data['menuParent']}',
-                            date_created = '{$data['dateCreate']}'
+                            date_created = '{$data['dateCreate']}',
+                            n_stats = '{$data['n_stats']}'
 						WHERE
 							id = '{$data['id']}'";
 		}

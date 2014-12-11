@@ -57,30 +57,22 @@ class contact extends Controller {
 		$this->view->assign('msg',$getMsg);
 		return $this->loadView('contact/viewMessage');
 	}
+    
+    public function contactdel($action='delete'){
 
-	public function frame(){
-
-		$data = $this->models->get_frameList();
-		// pr($data);
-		$this->view->assign('data',$data);
-
-		return $this->loadView('listFrame');
-	}
-	
-	function ajax()
-	{
+		global $CONFIG;
+        //pr($_POST);exit;
+		$menuid = $_POST['menuId'];
+        $ids = $_POST['ids'];
+        if($_POST['action']) $action = $_POST['action'];
+        
+        if($ids){
+            $data = $this->models->contact_del($ids, $action);
+            $message = 'Data has been deleted';
+        }
 		
-		$id = _p('id');
-		$n_status = _p('n_status');
+		echo "<script>alert('".$message."');window.location.href='".$CONFIG['admin']['base_url']."contact'</script>";
 		
-		$data = $this->models->updateStatusFrame($id, $n_status);
-		if ($data){
-			print json_encode(array('status'=>true));
-		}else{
-			print json_encode(array('status'=>false));
-		}
-
-		exit;
 	}
 }
 

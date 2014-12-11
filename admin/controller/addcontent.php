@@ -95,8 +95,8 @@ class addcontent extends Controller {
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
-                                $delete = deleteFile($x['image'],'news');
-								if($x['action'] == 'update') deleteFile($x['image']);
+                                //$delete = deleteFile($x['image'],'news');
+								if($x['action'] == 'update') deleteFile($x['image'],'news');
 								$image = uploadFile('file_image','news','image');
 								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];

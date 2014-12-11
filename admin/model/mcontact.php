@@ -73,46 +73,17 @@ class mcontact extends Database {
     	$result = $this->fetch($query,1);
     	return $result;
     }
-
-
-    function get_contact_filter($menuType=null,$articletype=null,$type=1)
-	{
-		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE stats = '1' AND menu_type = '{$menuType}' AND articleType = '{$articletype}' OR stats = '0' AND menu_type = '{$menuType}' AND articleType = '{$articletype}' ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,0);
-        
-        if($result){
-    		$query = "SELECT username FROM admin_member WHERE id={$result['authorid']} LIMIT 1";
     
-    		$username = $this->fetch($query,0);
-    
-    		$result['username'] = $username['username'];
-		}
-		return $result;
-	}
-	
-	function get_contact_trash($categoryid=null)
-	{
-		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE n_status = '2' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
-		
-		$result = $this->fetch($query,1);
-
-		foreach ($result as $key => $value) {
-			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-
-			$username = $this->fetch($query,0);
-
-			$result[$key]['username'] = $username['username'];
-		}
-		
-		return $result;
-	}
-	
-	function contact_del($id)
+    function contact_del($id, $action)
 	{
 		foreach ($id as $key => $value) {
 			
-			$query = "UPDATE {$this->prefix}_menu_list SET stats = '2' WHERE id = '{$value}'";
+			
+            if($action == 'delete'){
+                $query = "DELETE FROM {$this->prefix}_contact_list WHERE id = '{$value}'";
+            }else{
+                $query = "UPDATE {$this->prefix}_contact_list SET n_status = '2' WHERE id = '{$value}'";
+            }
 		
 			$result = $this->query($query);
 		
@@ -120,42 +91,6 @@ class mcontact extends Database {
 
 		return true;
 		
-	}
-	
-	function contact_delpermanent($id)
-	{
-		$query = "DELETE FROM cdc_news_content WHERE id = '{$id}'";
-		
-		$result = $this->query($query);
-		
-		return $result;
-		
-	}
-	
-	function contact_restore($id)
-	{
-		foreach ($id as $key => $value) {
-			
-			$query = "UPDATE {$this->prefix}_menu_list SET stats = '0' WHERE id = '{$value}'";
-		
-			$result = $this->query($query);
-		
-		}
-
-		return true;
-		
-	}
-	
-	function get_contact_id($data)
-	{
-		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE id= {$data} LIMIT 1";
-		
-		$result = $this->fetch($query,0);
-
-		//if($result['posted_date'] != '') $result['posted_date'] = dateFormat($result['posted_date'],'dd-mm-yyyy');
-		($result['stats'] == 1) ? $result['stats'] = 'checked' : $result['stats'] = '';
-
-		return $result;
 	}
 }
 ?>
