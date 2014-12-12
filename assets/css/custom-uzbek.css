@@ -71,9 +71,8 @@ ul.nav.navbar-nav li.active a:hover{
 
 /** FULL COLUMN HEIGHT **/
 .uzbek-container{
-    box-shadow: 0px 0px 15px #DDDDDD;
+    box-shadow: 0px -6px 10px #DDDDDD;
     display:table;
-    margin-bottom: 20px;
 }
 .uzbek-row{
     display:table-row;
@@ -98,12 +97,6 @@ ul.nav.navbar-nav li.active a:hover{
 }
 .col-bottom {
     vertical-align:bottom;
-}
-
-@media (min-width: 992px){
-    .uzbek-leftbar {
-        width: 20%;
-    }
 }
     .uzbek-leftbar ul{
         list-style: none;
@@ -142,7 +135,9 @@ ul.nav.navbar-nav li.active a:hover{
 
 .uzbek-midbar{
     margin: 20px 0;
+    padding-right: 0;
 }
+    .uzbek-indexMedia{margin-bottom: 20px;}
     .uzbek-indexMedia .image{
         padding: 10px 10px 30px 10px;
         background-color: #24A5CF;
@@ -158,22 +153,6 @@ ul.nav.navbar-nav li.active a:hover{
         color: #FFF;
     }
     .uzbek-indexMedia .video a.title{color: #282828;}
-@media (min-width: 992px){
-    .uzbek-midbar {
-        width: 60%;
-    }
-}
-
-.uzbek-rightbar{
-    /*background-color: #EAEAEA;*/
-    padding: 20px 15px;
-    min-height: 450px;
-}
-@media (min-width: 992px){
-    .uzbek-rightbar {
-        width: 20%;
-    }
-}
 
 .uzbek-indexNews{margin-bottom: 20px;}
 .uzbek-indexNews h3{
@@ -188,6 +167,42 @@ ul.nav.navbar-nav li.active a:hover{
 .uzbek-indexNews a.title{color: #0450a6; text-decoration: underline;}
 .uzbek-indexNews p.content{margin: 10px 0;}
 .uzbek-indexNews a.more{color: #056285;}
+
+.uzbek-botContainer{
+    margin-bottom: 20px;
+    margin-top: -5px;
+    box-shadow: 0px 6px 10px #DDDDDD;
+    padding: 40px 0 15px 0;
+}
+    .uzbek-botContainer .row{margin: 0;}
+
+.uzbek-bottomBar{background-color: #FFF;}
+
+.uzbek-bottomMenu .menu{
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+    margin: 5px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+.uzbek-bottomMenu .menu a{display: block;color: #282828;}
+@media (min-width: 992px){}
+    .uzbek-bottomMenu .menu {
+        width: 23.9%;
+    }
+}
+
+.doubleLine{margin: 0 -15px;}
+.doubleLine .thick{
+    border-bottom: 3px solid #4bd0ed;
+    margin-bottom: 1px;
+}
+
+.doubleLine .thin{
+    border-bottom: 1px solid #4bd0ed;
+}
+
 
 footer{
     text-align: center;
