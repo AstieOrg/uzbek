@@ -33,6 +33,12 @@ class home extends Controller {
                 
 				$data[$key]['date_created'] = dateFormat($val['date_created'],'article');
                 
+                if($val['pos'] == '0') {
+					$data[$key]['pos'] = 'Top';
+				} else {
+					$data[$key]['pos'] = 'Side';
+				}
+                
                 $data[$key]['id_parent'] = '-';
                 if($val['id_parent'] != 0) {
                     $get_parent = $this->models->get_parent($val['id_parent']);
