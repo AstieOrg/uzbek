@@ -11,6 +11,19 @@
 
         <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar">
             {include file="template/banner.html"}
+
+            {foreach $headlines as $getHeadlines}
+              {if $smarty.session.lang == '0'}
+                {$content = 'content_bhs'}
+              {elseif $smarty.session.lang == '1'}
+                {$content = 'content_en'}
+              {else}
+                {$content = 'content_uzbek'}
+              {/if}
+
+              {$getHeadlines.$content|html_entity_decode}
+            {/foreach}
+            
             <div class="uzbek-indexNews">
                 <h3>NEWS</h3>
                 <!-- START NEWS -->

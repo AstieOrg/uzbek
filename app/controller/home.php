@@ -36,7 +36,6 @@ class home extends Controller {
 				$topMenu[]=$getTopMenuSub;
 			}
 		}
-		//pr($topMenu);exit;
 		$this->view->assign('topMenu',$topMenu);
 		
 		//GET LEFT MENU
@@ -55,16 +54,17 @@ class home extends Controller {
 				$leftMenu[]=$getLeftMenuSub;
 			}
 		}
-		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
 
-		$lang = $_SESSION['lang'];
-		$getNews = $this->contentHelper->getNews($lang,'8','0','6');
-		//pr($getNews);exit;
+		//GET HEADLINES
+		$getHeadlines = $this->contentHelper->getHeadlines();
+		$this->view->assign('headlines',$getHeadlines);
 
-		
-		
+		//GET NEWS
+		$lang = $_SESSION['lang'];
+		$getNews = $this->contentHelper->getNews($lang,'26','0','6');
 		$this->view->assign('news',$getNews);
+		
 		return $this->loadView('home');
     }
 

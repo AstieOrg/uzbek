@@ -4,46 +4,128 @@
 
 <div class="container uzbek-container">
       <div class="row uzbek-row">
-<!-- FILE LEFTBAR -->
-    {include file="template/leftbar.html"}
-<!-- END FILE LEFTBAR -->
+        <!-- FILE LEFTBAR -->
+            {include file="template/leftbar.html"}
+        <!-- END FILE LEFTBAR -->
 
 
-<div class="col-xs-12 col-sm-6 uzbek-col col-top uzbek-midbar">
-    <div class="uzbek-indexNews">
-        {if $smarty.session.lang == '0'}
-          {$menu = 'nm_bhs'}
-        {elseif $smarty.session.lang == '1'}
-          {$menu = 'nm_eng'}
-        {else}
-          {$menu = 'nm_rus'}
-        {/if}
-        {foreach $title as $getTitle}
-        <h3>{$getTitle.$menu}</h3>
-        {/foreach}
-        <!-- START NEWS -->
-        
-        <div class="row">
-            {foreach $content as $getContent}
-            <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
-                <p class="date">{$getContent.posted_date}</p>
-                <a href="{$basedomain}home/content/?id={$getContent.menuId}&&type=1" class="title">{$getContent.title}</a>
-                <p class="content text-justify">{$getContent.brief}</p>
-                <!--<a href="#" class="more pull-right">Read more..</a>
-                <div class="clearfix"></div>-->
+        <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar">
+            <div class="uzbek-indexNews">
+                {if $smarty.session.lang == '0'}
+                  {$menu = 'nm_bhs'}
+                {elseif $smarty.session.lang == '1'}
+                  {$menu = 'nm_eng'}
+                {else}
+                  {$menu = 'nm_uzbek'}
+                {/if}
+                {foreach $title as $getTitle}
+                <h3>{$getTitle.$menu}</h3>
+                {/foreach}
+                <!-- START NEWS -->
+                
+                <div class="row">
+                    {foreach $content as $getContent}
+                    <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
+                        <p class="date">{$getContent.posted_date}</p>
+                        <a href="{$basedomain}home/content/?id={$getContent.menuId}&&type=1" class="title">{$getContent.title}</a>
+                        <p class="content text-justify">{$getContent.brief}</p>
+                        <!--<a href="#" class="more pull-right">Read more..</a>
+                        <div class="clearfix"></div>-->
+                    </div>
+                    <hr>
+                    {/foreach}
+                </div>    
             </div>
-            <hr>
-            {/foreach}
-        </div>    
-    </div>
 
+        </div>
+    </div>
 </div>
 
-<!-- FILE RIGHTBAR -->
-    {include file="template/rightbar.html"}
-<!-- END FILE RIGHTBAR -->
-</div>
+<div class="container uzbek-botContainer">
+  <div class="row">
+    <div class="col-md-12 uzbek-bottomBar">
+      <div class="doubleLine">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div class="title text-center" style="margin-top: -40px;">
+          <span style="background:none;">
+            <img src="{$basedomain}assets/img/uzbekistan emblem.png" style="width: 72px;">
+          </span></div>
+      </div>
+
+      <h3>IMPORTANT LINKS</h3>
+
+      <div class="uzbek-bottomMenu row">
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
 
 <!-- FILE JAVASCRIPT -->
     {include file="template/javascript.html"}

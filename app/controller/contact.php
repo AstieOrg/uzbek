@@ -87,7 +87,7 @@ class contact extends Controller {
 	    	}
 
     	if(!empty($data)){
-	    	$insertMail = $this->contentHelper->sendMsg('api_contact_list',$data);
+	    	$insertMail = $this->contentHelper->sendMsg('uzbemb_contact_list',$data);
 	    	echo "<script>alert('".$message."');window.location.href='".$basedomain."contact'</script>";
     	}
     	else{
