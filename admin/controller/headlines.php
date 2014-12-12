@@ -16,7 +16,7 @@ class headlines extends Controller {
 	public function loadmodule()
 	{
 		
-		$this->models = $this->loadModel('mcontent');
+		$this->models = $this->loadModel('mheadlines');
 	
 	}
 	public function index(){
@@ -38,7 +38,7 @@ class headlines extends Controller {
 		if($id)
 		{
 		//ini utk edit
-			$data = $this->models->get_content_id($id);
+			$data = $this->models->get_headlines_id($id);
             
             if($data){
                 //$data['dateCreate'] = dateFormat($data['dateCreate'],'dd-mm-yyyy');
@@ -60,22 +60,10 @@ class headlines extends Controller {
 		global $CONFIG;
         $menuId = $_POST['menuId'];
 		
-		if(isset($_POST['stats'])){
-			if($_POST['stats']=='on') $_POST['stats']=1;
+		if(isset($_POST['n_stats'])){
+			if($_POST['n_stats']=='on') $_POST['n_stats']=1;
 		} else {
-			$_POST['stats']=0;
-		}
-        
-		if(isset($_POST['menuType'])){
-			if($_POST['menuType']=='on') {
-				if($_POST['articleid_old']!=0){
-					$_POST['menuType'] = $_POST['articleid_old'];
-				} else {
-					$_POST['menuType']=1; 
-				}
-			}
-		} else {
-			$_POST['menuType']=0;
+			$_POST['n_stats']=0;
 		}
  		
 		if(isset($_POST)){
@@ -102,7 +90,7 @@ class headlines extends Controller {
 								$x['image'] = $image['full_name'];
 							}
 						}
-						$data = $this->models->content_inp($x);
+						$data = $this->models->headlines_inp($x);
 			   		}
 				   	
 			   }catch (Exception $e){}

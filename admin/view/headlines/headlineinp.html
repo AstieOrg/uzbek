@@ -4,6 +4,8 @@ $(function () {
 	//$('#expiredate').datepicker ();
 	
 	$("#isi").jqte();
+    $("#isi_en").jqte();
+    $("#isi_uzbek").jqte();
 	
 	$('input:checkbox, input:radio').iCheck({
 		checkboxClass: 'icheckbox_minimal-blue',
@@ -38,21 +40,36 @@ $(function () {
 				
 				        <div class="col-sm-12">
 							<div class="form-group">
-							<label for="textarea-input">Content</label>
-									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content}</textarea>
+							<label for="textarea-input">Content in Bahasa</label>
+									<textarea name="content_bhs" id="isi"  cols="10" rows="20" class="form-control">{$data.content_bhs}</textarea>
 							</div>
 							
 							
 							<!-- hidden -->
 							<input type="hidden" name="id" value="{$data.id}" />
-							<input type="hidden" name="categoryid" value="3" />
 							<input type="hidden" name="authorid" value="{$admin.id}" />
 							<!-- hidden -->
+                            
+						</div>
+                        
+                        <div class="col-sm-12">
+							<div class="form-group">
+							<label for="textarea-input">Content in English</label>
+									<textarea name="content_en" id="isi_en"  cols="10" rows="20" class="form-control">{$data.content_en}</textarea>
+							</div>
+                            
+						</div>
+                        
+                        <div class="col-sm-12">
+							<div class="form-group">
+							<label for="textarea-input">Content in Uzbekistan</label>
+									<textarea name="content_uzbek" id="isi_uzbek"  cols="10" rows="20" class="form-control">{$data.content_uzbek}</textarea>
+							</div>
+							
                             
 							<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
                             
 						</div>
-			    
 			                   
                                                                                                                         
 					</div>
