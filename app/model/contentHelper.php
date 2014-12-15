@@ -49,7 +49,23 @@ class contentHelper extends Database {
 	}
 
 	function getTopicalIssues(){
-		$sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = '1';";
+		$sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = 1;";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	function getTopical($table,$id){
+		$sql = "SELECT * FROM {$this->prefix}$table WHERE id = {$id} AND n_stats = 1;";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	function getBottomMenu(){
+		$sql = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats = 1;";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

@@ -68,6 +68,10 @@ class home extends Controller {
 		$lang = $_SESSION['lang'];
 		$getNews = $this->contentHelper->getNews($lang,'26','0','6');
 		$this->view->assign('news',$getNews);
+
+		//GET BOTTOM MENU
+		$getBottomMenu = $this->contentHelper->getBottomMenu();
+		$this->view->assign('bottomMenu',$getBottomMenu);
 		
 		return $this->loadView('home');
     }
@@ -110,6 +114,10 @@ class home extends Controller {
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
 
+		//GET BOTTOM MENU
+		$getBottomMenu = $this->contentHelper->getBottomMenu();
+		$this->view->assign('bottomMenu',$getBottomMenu);
+
 		//GET TOPICAL ISSUES
 		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
 		$this->view->assign('topicalIssues',$getTopicalIssues);
@@ -132,9 +140,15 @@ class home extends Controller {
 			return $this->loadView('detail');
 		}
 		else if($type == '2'){
-			$getContent = $this->contentHelper->getNews($lang,$id,'0','1');
+			$getContent = $this->contentHelper->getTopical('_topical_issues', $id);
 			$this->view->assign('content',$getContent);
-			return $this->loadView('detail');
+			//pr($getContent);
+			return $this->loadView('detail_topical');
+		}
+		else if($type == '3'){
+			$getContent = $this->contentHelper->getTopical('_menu_bottom', $id);
+			$this->view->assign('content',$getContent);
+			return $this->loadView('detail_topical');
 		}
 	}
 

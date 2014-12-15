@@ -42,11 +42,11 @@
 	<!-- START MENU -->
 		{foreach $topicalIssues as $getTopical}
 		<div class="menu">
-			<a href="#" class="row">
-				<div class="col-md-5" style="padding-left:0;">
-					<img src="{$basedomain}public_assets/news/icon/{$getTopical.icon_image}" class="img-responsive">
+			<a href="{$basedomain}home/content/?id={$getTopical.id}&&type=2" class="row">
+				<div class="col-md-3" style="padding:0;">
+					<img src="{$basedomain}public_assets/news/icon/{$getTopical.icon_image}" width="50px" height="50px">
 				</div>
-				<div class="col-md-7" style="padding-left:0;">
+				<div class="col-md-9" style="padding-left:0; font-size: 12px;">
 					{$getTopical.$title}
 				</div>
 			</a>

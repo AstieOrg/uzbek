@@ -182,6 +182,7 @@ ul.nav.navbar-nav li.active a:hover{
     border-radius: 5px;
     border: 1px solid #CCCCCC;
     margin: 5px;
+    padding: 5px;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;

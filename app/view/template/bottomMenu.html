@@ -1,0 +1,40 @@
+<div class="container uzbek-botContainer">
+  <div class="row">
+    <div class="col-md-12 uzbek-bottomBar">
+      <div class="doubleLine">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div class="title text-center" style="margin-top: -40px;">
+          <span style="background:none;">
+            <img src="{$basedomain}assets/img/uzbekistan emblem.png" style="width: 72px;">
+          </span></div>
+      </div>
+
+      <h3>IMPORTANT LINKS</h3>
+
+      <div class="uzbek-bottomMenu row">
+
+        {if $smarty.session.lang == '0' || $smarty.session.lang == ''}
+              {$title = 'title_bhs'}
+            {elseif $smarty.session.lang == '1'}
+              {$title = 'title_en'}
+            {else}
+              {$title = 'title_uzbek'}
+            {/if}
+        
+        {foreach $bottomMenu as $getBottom}
+        <div class="menu col-md-4">
+          <a href="{$basedomain}home/content/?id={$getBottom.id}&&type=3" class="row">
+            <div class="col-md-3" style="padding:0;">
+              <img src="{$basedomain}public_assets/news/icon/{$getBottom.icon_image}" width="50px" height="50px">
+            </div>
+            <div class="col-md-9" style="padding-left:0; font-size: 12px;">
+              {$getBottom.$title}
+            </div>
+          </a>
+        </div>
+        {/foreach}
+
+    </div>
+  </div>
+</div>

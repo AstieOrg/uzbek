@@ -12,25 +12,28 @@
         <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar">
             <div class="uzbek-indexNews">
                 {if $smarty.session.lang == '0' || $smarty.session.lang == ''}
-                  {$menu = 'nm_bhs'}
+                    {$title = 'title_bhs'}
+                    {$content2 = 'content_bhs'}
                 {elseif $smarty.session.lang == '1'}
-                  {$menu = 'nm_eng'}
+                    {$title = 'title_en'}
+                    {$content2 = 'content_bhs'}
                 {else}
-                  {$menu = 'nm_uzbek'}
+                    {$title = 'title_uzbek'}
+                     {$content2 = 'content_bhs'}
                 {/if}
-                {foreach $title as $getTitle}
-                <h3>{$getTitle.$menu}</h3>
-                {/foreach}
+                
+
+                {foreach $content as $getContent}
+                <h3>{$getContent.$title}</h3>
                 <!-- START NEWS -->
                 
                 <div class="row">
-                    {foreach $content as $getContent}
+                    
                     <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
-                        <h4>{$getContent.title}</h4>
                         {if $getContent.image}
-                          <img src="{$basedomain}public_assets/news/{$getContent.image}" class="img-responsive">
+                          <img src="{$basedomain}public_assets/news/image/{$getContent.image}" class="img-responsive">
                         {/if}
-                        <p class="content text-justify">{$getContent.content|html_entity_decode}</p>
+                        <p class="content text-justify">{$getContent.$content2|html_entity_decode}</p>
                         <!--<a href="#" class="more pull-right">Read more..</a>
                         <div class="clearfix"></div>-->
                     </div>
