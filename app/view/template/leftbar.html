@@ -2,7 +2,7 @@
 	
 	<div class="sidebar">
 		<ul class="dropdown-menu" style="display: block; position: static;"> 
-			{if $smarty.session.lang == '0'}
+			{if $smarty.session.lang == '0' || $smarty.session.lang == ''}
             	{$menu = 'nm_bhs'}
             {elseif $smarty.session.lang == '1'}
             	{$menu = 'nm_eng'}

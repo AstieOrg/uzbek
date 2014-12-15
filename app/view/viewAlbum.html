@@ -4,75 +4,157 @@
 
 <div class="container uzbek-container">
       <div class="row uzbek-row">
-<!-- FILE LEFTBAR -->
-    {include file="template/leftbar.html"}
-<!-- END FILE LEFTBAR -->
+        <!-- FILE LEFTBAR -->
+            {include file="template/leftbar.html"}
+        <!-- END FILE LEFTBAR -->
 
 
-<div class="col-xs-12 col-sm-6 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
-    
-    <div class="pull-right"><a href="{$basedomain}gallery" class="btn flora-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
-        <h3>Album Name</h3>
-        
-        
-    <div id="links">
-        <a href="{$basedomain}public_assets/gallery/1a.jpg" title="Uzbekistan" data-gallery>
-            <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
-        </a>
-        <a href="{$basedomain}public_assets/gallery/1a.jpg" title="Uzbekistan" data-gallery>
-            <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
-        </a>
-        <a href="{$basedomain}public_assets/gallery/1a.jpg" title="" data-gallery>
-            <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
-        </a>
-        <a href="{$basedomain}public_assets/gallery/1a.jpg" title="" data-gallery>
-            <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
-        </a>
-    </div>
+        <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
+            
+            <div class="pull-right"><a href="{$basedomain}media/album" class="btn flora-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
+                <h3>Album Name</h3>
+                
+                
+            <div id="links">
+                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="Uzbekistan" data-gallery>
+                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
+                </a>
+                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="Uzbekistan" data-gallery>
+                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
+                </a>
+                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="" data-gallery>
+                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
+                </a>
+                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="" data-gallery>
+                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
+                </a>
+            </div>
 
-</div>
+        </div>
 
 
-<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
-    <!-- The container for the modal slides -->
-    <div class="slides"></div>
-    <!-- Controls for the borderless lightbox -->
-    <h3 class="title"></h3>
-    <a class="prev"><i class="glyphicon glyphicon-chevron-left" style="font-size: 25px;top: -5px;"></i></a>
-    <a class="next"><i class="glyphicon glyphicon-chevron-right" style="font-size: 25px;top: -5px;"></i></a>
-    <a class="close"><i class="glyphicon glyphicon-remove"></i></a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-    <!-- The modal dialog, which will be used to wrap the lightbox content -->
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body next"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left prev">
-                        <i class="glyphicon glyphicon-chevron-left"></i>
-                        Previous
-                    </button>
-                    <button type="button" class="btn btn-primary next">
-                        Next
-                        <i class="glyphicon glyphicon-chevron-right"></i>
-                    </button>
+        <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+        <div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+            <!-- The container for the modal slides -->
+            <div class="slides"></div>
+            <!-- Controls for the borderless lightbox -->
+            <h3 class="title"></h3>
+            <a class="prev"><i class="glyphicon glyphicon-chevron-left" style="font-size: 25px;top: -5px;"></i></a>
+            <a class="next"><i class="glyphicon glyphicon-chevron-right" style="font-size: 25px;top: -5px;"></i></a>
+            <a class="close"><i class="glyphicon glyphicon-remove"></i></a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+            <!-- The modal dialog, which will be used to wrap the lightbox content -->
+            <div class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body next"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left prev">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next">
+                                Next
+                                <i class="glyphicon glyphicon-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- FILE RIGHTBAR -->
-    {include file="template/rightbar.html"}
-<!-- END FILE RIGHTBAR -->
-</div>
+<div class="container uzbek-botContainer">
+  <div class="row">
+    <div class="col-md-12 uzbek-bottomBar">
+      <div class="doubleLine">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div class="title text-center" style="margin-top: -40px;">
+          <span style="background:none;">
+            <img src="{$basedomain}assets/img/uzbekistan emblem.png" style="width: 72px;">
+          </span></div>
+      </div>
+
+      <h3>IMPORTANT LINKS</h3>
+
+      <div class="uzbek-bottomMenu row">
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+
+        <div class="menu col-md-3">
+          <a href="#" class="row">
+            <div class="col-md-5" style="padding-left:0;">
+              <img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+            </div>
+            <div class="col-md-7" style="padding-left:0;">
+              Election 2014
+            </div>
+          </a>
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
 
 <!-- FILE JAVASCRIPT -->
     {include file="template/javascript.html"}

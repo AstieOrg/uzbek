@@ -13,7 +13,7 @@
             {include file="template/banner.html"}
 
             {foreach $headlines as $getHeadlines}
-              {if $smarty.session.lang == '0'}
+              {if $smarty.session.lang == '0' || $smarty.session.lang == ''}
                 {$content = 'content_bhs'}
               {elseif $smarty.session.lang == '1'}
                 {$content = 'content_en'}
