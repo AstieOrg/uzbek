@@ -12,22 +12,17 @@
         <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
             
             <div class="pull-right"><a href="{$basedomain}media/album" class="btn flora-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
-                <h3>Album Name</h3>
+                {foreach $titleAlbum as $title}
+                <h3>{$title.title}</h3>
+                {/foreach}
                 
                 
             <div id="links">
-                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="Uzbekistan" data-gallery>
-                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
+                {foreach $viewAlbum as $album}
+                <a href="{$basedomain}public_assets/gallery/images/{$album.content}" title="" data-gallery>
+                    <img src="{$basedomain}public_assets/gallery/images/{$album.content}" style="max-width: 200px;" class="uzbek-gallery">
                 </a>
-                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="Uzbekistan" data-gallery>
-                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
-                </a>
-                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="" data-gallery>
-                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
-                </a>
-                <a href="{$basedomain}public_assets/gallery/1a.jpg" title="" data-gallery>
-                    <img src="{$basedomain}public_assets/gallery/thumbs/1a.jpg" class="uzbek-gallery">
-                </a>
+                {/foreach}
             </div>
 
         </div>

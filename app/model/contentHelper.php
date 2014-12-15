@@ -64,8 +64,40 @@ class contentHelper extends Database {
 		return false;
 	}
 
+	function getNewestPhoto(){
+		$sql = "SELECT * FROM {$this->prefix}_news_content_repo ORDER BY id DESC LIMIT 5;";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
 	function getBottomMenu(){
 		$sql = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats = 1;";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	function getAlbum(){
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid = 9";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	function titleAlbum($id){
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE id = {$id}";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	function viewAlbum($id){
+		$sql = "SELECT * FROM {$this->prefix}_news_content_repo WHERE otherid = {$id}";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

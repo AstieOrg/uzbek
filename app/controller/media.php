@@ -57,6 +57,20 @@ class media extends Controller {
 		}
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
+
+		//GET TOPICAL ISSUES
+		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
+		$this->view->assign('topicalIssues',$getTopicalIssues);
+
+		//GET BOTTOM MENU
+		$getBottomMenu = $this->contentHelper->getBottomMenu();
+		$this->view->assign('bottomMenu',$getBottomMenu);
+
+		//GET ALBUM
+		$getAlbum = $this->contentHelper->getAlbum();
+		$this->view->assign('album',$getAlbum);	
+		//pr($getAlbum);	
+
 		return $this->loadView('album');
     }
 
@@ -98,6 +112,22 @@ class media extends Controller {
 		}
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
+
+		//GET TOPICAL ISSUES
+		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
+		$this->view->assign('topicalIssues',$getTopicalIssues);
+
+		//GET BOTTOM MENU
+		$getBottomMenu = $this->contentHelper->getBottomMenu();
+		$this->view->assign('bottomMenu',$getBottomMenu);
+
+		$id = $_GET['id'];
+		//GET TITLE ALBUM
+		$titleAlbum = $this->contentHelper->titleAlbum($id);
+		$this->view->assign('titleAlbum',$titleAlbum);	
+		//VIEW ALBUM
+		$viewAlbum = $this->contentHelper->viewAlbum($id);
+		$this->view->assign('viewAlbum',$viewAlbum);	
 		
 		return $this->loadView('viewAlbum');
     }

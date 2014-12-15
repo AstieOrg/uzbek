@@ -69,6 +69,10 @@ class home extends Controller {
 		$getNews = $this->contentHelper->getNews($lang,'26','0','6');
 		$this->view->assign('news',$getNews);
 
+		//GET NEWEST PHOTO
+		$getNewestPhoto = $this->contentHelper->getNewestPhoto();
+		$this->view->assign('newestPhoto',$getNewestPhoto);
+
 		//GET BOTTOM MENU
 		$getBottomMenu = $this->contentHelper->getBottomMenu();
 		$this->view->assign('bottomMenu',$getBottomMenu);
