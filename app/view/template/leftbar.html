@@ -4,10 +4,13 @@
 		<ul class="dropdown-menu" style="display: block; position: static;"> 
 			{if $smarty.session.lang == '0' || $smarty.session.lang == ''}
             	{$menu = 'nm_bhs'}
+            	{$title = 'title_bhs'}
             {elseif $smarty.session.lang == '1'}
             	{$menu = 'nm_eng'}
+            	{$title = 'title_en'}
             {else}
             	{$menu = 'nm_uzbek'}
+            	{$title = 'title_uzbek'}
             {/if}
 	            
 			{foreach $leftMenu as $getLeftMenu} 
@@ -37,37 +40,18 @@
 		<h3>TOPICAL ISSUES</h3>
 
 	<!-- START MENU -->
+		{foreach $topicalIssues as $getTopical}
 		<div class="menu">
 			<a href="#" class="row">
 				<div class="col-md-5" style="padding-left:0;">
-					<img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
+					<img src="{$basedomain}public_assets/news/icon/{$getTopical.icon_image}" class="img-responsive">
 				</div>
 				<div class="col-md-7" style="padding-left:0;">
-					Election 2014
+					{$getTopical.$title}
 				</div>
 			</a>
 		</div>
+		{/foreach}
 
-		<div class="menu">
-			<a href="#" class="row">
-				<div class="col-md-5" style="padding-left:0;">
-					<img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
-				</div>
-				<div class="col-md-7" style="padding-left:0;">
-					Election 2014
-				</div>
-			</a>
-		</div>
-
-		<div class="menu">
-			<a href="#" class="row">
-				<div class="col-md-5" style="padding-left:0;">
-					<img src="{$basedomain}public_assets/icon/election.png" class="img-responsive">
-				</div>
-				<div class="col-md-7" style="padding-left:0;">
-					Election 2014
-				</div>
-			</a>
-		</div>		
 	</div>
 </div>

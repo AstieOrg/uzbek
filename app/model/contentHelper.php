@@ -48,6 +48,14 @@ class contentHelper extends Database {
 		return false;
 	}
 
+	function getTopicalIssues(){
+		$sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = '1';";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
     function sendMsg($table,$data){
         $sql = "INSERT INTO `{$table}` (`id`, `name`, `mail`, `address`, `subject`, `message`, `n_stats`, `date_received`) VALUES ('', '{$data['name']}', '{$data['mail']}', '{$data['address']}', '{$data['subject']}', '{$data['message']}', '', CURRENT_TIMESTAMP);";
         //pr($sql);exit;
