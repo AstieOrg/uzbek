@@ -12,21 +12,12 @@
 
 	<nav id="sidebar">		
 		
-		<ul id="main-nav" class="open-active">			
-			
-			<li class="button {if $page.page=='banner'}active{/if}">
-				<a href="{$basedomain}banner">
-					<i class="fa fa-file-text"></i>
-					Banner
-					<!--span class="caret"></span-->
-				</a>				
-			</li>
+		<ul id="main-nav" class="open-active">
             
 			<li class="button {if $page.page=='home' || $page.page=='article' || $page.page=='agenda'}active{/if}">
 				<a href="{$basedomain}home">
 					<i class="fa fa-file-text"></i>
 					Top &amp; Left Menu
-					<!--span class="caret"></span-->
 				</a>				
 			</li>
             
@@ -34,7 +25,13 @@
 				<a href="{$basedomain}bmenu">
 					<i class="fa fa-file-text"></i>
 					Bottom Menu
-					<!--span class="caret"></span-->
+				</a>				
+			</li>
+            
+            <li class="button {if $page.page=='banner'}active{/if}">
+				<a href="{$basedomain}banner">
+					<i class="fa fa-file-text"></i>
+					Banner
 				</a>				
 			</li>
 			
@@ -54,21 +51,41 @@
                             {$eachMenu.parent.nm_eng} -> 
                         {/if}
                         {$eachMenu.nm_eng}
-    					<!--span class="caret"></span-->
     				</a>		
     			
      			</li> 
     			</ul>
     			{/foreach}
 			</li>
-			
-			<li class="button {if $page.page=='gallery'}active{/if}">
-				<a href="{$basedomain}gallery">
+            
+            <li class="dropdown {if $page.page=='video' || $page.page=='gallery' }active{/if}">
+				<a href="">
 					<i class="fa fa-file-text"></i>
 					Gallery
-					<!--span class="caret"></span-->
-					
-				</a>				
+					<span class="caret"></span>
+				</a>
+    			
+    			<ul class="sub-nav">
+         			<li class="button"> 
+        			
+                        <a href="{$basedomain}gallery">
+        					<i class="fa fa-picture-o"></i>
+                            Image
+        				</a>		
+        			
+         			</li> 
+    			</ul>
+                
+                <ul class="sub-nav">
+         			<li class="button"> 
+        			
+                        <a href="{$basedomain}video">
+        					<i class="glyphicon glyphicon-play"></i>
+                            Video
+        				</a>		
+        			
+         			</li> 
+    			</ul>
 			</li>
 			
 			<li class="button {if $page.page=='topical' || $page.page=='addtopical'}active{/if}">

@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `uzbemb_video` (
   `title_uzbek` varchar(200) NOT NULL,
   `brief_uzbek` text NOT NULL,
   `content_uzbek` text NOT NULL,
-  `image` varchar(200) NOT NULL,
+  `video` varchar(200) NOT NULL,
   `thumbnail_image` varchar(200) DEFAULT NULL,
   `slider_image` varchar(200) DEFAULT NULL,
   `url` varchar(200) DEFAULT NULL,
