@@ -14,13 +14,7 @@
 
       <div class="uzbek-bottomMenu row">
 
-        {if $smarty.session.lang == '0' || $smarty.session.lang == ''}
-              {$title = 'title_bhs'}
-            {elseif $smarty.session.lang == '1'}
-              {$title = 'title_en'}
-            {else}
-              {$title = 'title_uzbek'}
-            {/if}
+        {$title = $language.title_field}
         
         {foreach $bottomMenu as $getBottom}
         <div class="menu col-md-4">

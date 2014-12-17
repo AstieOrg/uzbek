@@ -2,16 +2,9 @@
 	
 	<div class="sidebar">
 		<ul class="dropdown-menu" style="display: block; position: static;"> 
-			{if $smarty.session.lang == '0' || $smarty.session.lang == ''}
-            	{$menu = 'nm_bhs'}
-            	{$title = 'title_bhs'}
-            {elseif $smarty.session.lang == '1'}
-            	{$menu = 'nm_eng'}
-            	{$title = 'title_en'}
-            {else}
-            	{$menu = 'nm_uzbek'}
-            	{$title = 'title_uzbek'}
-            {/if}
+			
+			{$menu = $language.menu_field}
+			{$title = $language.title_field}
 	            
 			{foreach $leftMenu as $getLeftMenu} 
 			{if $getLeftMenu.child == ''}

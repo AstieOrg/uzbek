@@ -57,11 +57,20 @@ class contact extends Controller {
 		//pr($leftMenu);
 		$this->view->assign('leftMenu',$leftMenu);
 
-		$getNews = $this->contentHelper->getNews('0','8','0','6');
+		//GET BOTTOM MENU
+		$getBottomMenu = $this->contentHelper->getBottomMenu();
+		$this->view->assign('bottomMenu',$getBottomMenu);
 
-		
-		
-		$this->view->assign('news',$getNews);
+		//GET TOPICAL ISSUES
+		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
+		$this->view->assign('topicalIssues',$getTopicalIssues);
+
+		//SET LANGUAGE
+		$lang = $_SESSION['lang'];
+		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
+		elseif ($lang == '1') {require_once('lang/eng.php');}
+		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
+		$this->view->assign('language',$LANG);
 		return $this->loadView('contact');
     }
 

@@ -69,7 +69,13 @@ class media extends Controller {
 		//GET ALBUM
 		$getAlbum = $this->contentHelper->getAlbum();
 		$this->view->assign('album',$getAlbum);	
-		//pr($getAlbum);	
+		
+		//SET LANGUAGE
+		$lang = $_SESSION['lang'];
+		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
+		elseif ($lang == '1') {require_once('lang/eng.php');}
+		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
+		$this->view->assign('language',$LANG);
 
 		return $this->loadView('album');
     }
@@ -128,6 +134,13 @@ class media extends Controller {
 		//VIEW ALBUM
 		$viewAlbum = $this->contentHelper->viewAlbum($id);
 		$this->view->assign('viewAlbum',$viewAlbum);	
+		
+		//SET LANGUAGE
+		$lang = $_SESSION['lang'];
+		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
+		elseif ($lang == '1') {require_once('lang/eng.php');}
+		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
+		$this->view->assign('language',$LANG);
 		
 		return $this->loadView('viewAlbum');
     }

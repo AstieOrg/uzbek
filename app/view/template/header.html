@@ -19,23 +19,14 @@
 	    </div>
 	    <div class="navbar-collapse collapse">
 	        <ul class="nav navbar-nav">
-	        	{if $smarty.session.lang == '0' || $smarty.session.lang == ''}
-	            	{$menu = 'nm_bhs'}
-	            	{$home = 'Beranda'}
-	            	{$contact = 'Kontak'}
-	            {elseif $smarty.session.lang == '1'}
-	            	{$menu = 'nm_eng'}
-	            	{$home = 'Home'}
-	            	{$contact = 'Contact'}
-	            {else}
-	            	{$menu = 'nm_uzbek'}
-	            	{$home = 'Home'}
-	            	{$contact = 'Contact'}
-	            {/if}
+
+	            {$menu = $language.menu_field}
+	            {$home = $language.home}
+	            {$contact = $language.contact}
 
 	            <li><a href="{$basedomain}">{$home}</a></li>
 
-	            {foreach $topMenu as $getTopMenu}
+				{foreach $topMenu as $getTopMenu}
 	            {if $getTopMenu.child == ''}
 	        		<li><a href="{$basedomain}home/content/?id={$getTopMenu.id}&&type={$getTopMenu.menu_type}">{$getTopMenu.$menu}</a></li>
 	        	{else}

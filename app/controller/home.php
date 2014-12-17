@@ -76,6 +76,14 @@ class home extends Controller {
 		//GET BOTTOM MENU
 		$getBottomMenu = $this->contentHelper->getBottomMenu();
 		$this->view->assign('bottomMenu',$getBottomMenu);
+
+		//SET LANGUAGE
+		$lang = $_SESSION['lang'];
+		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
+		elseif ($lang == '1') {require_once('lang/eng.php');}
+		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
+		$this->view->assign('language',$LANG);
+
 		
 		return $this->loadView('home');
     }
@@ -132,6 +140,13 @@ class home extends Controller {
 
 		$getTitle = $this->contentHelper->getTitle($id);
 		$this->view->assign('title',$getTitle);
+
+		//SET LANGUAGE
+		$lang = $_SESSION['lang'];
+		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
+		elseif ($lang == '1') {require_once('lang/eng.php');}
+		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
+		$this->view->assign('language',$LANG);
 		
 		if($type == '0'){
 			$getContent = $this->contentHelper->getNews($lang,$id,'0','10');
@@ -159,7 +174,7 @@ class home extends Controller {
     function lang(){
     	$basedomain = 'http://localhost/uzbek/framework';
     	$lang = $_GET['lang'];
-    	$url = $_GET['url'];
+    	$url = str_replace("uzbk/","",$_GET['url']);
     	session_start();
     	$_SESSION['lang'] = $lang;
     	header('location:http://'.$url);
