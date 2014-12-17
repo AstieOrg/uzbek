@@ -4,6 +4,7 @@
 
 $LANG['menu_field'] = 'nm_eng';
 $LANG['title_field'] = 'title_en';
+$LANG['brief_field'] = 'brief_en';
 $LANG['content_field'] = 'content_en';
 $LANG['home'] = 'Home';
 $LANG['contact'] = 'Contact';

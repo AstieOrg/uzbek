@@ -7,18 +7,20 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="{$basedomain}public_assets/banner/1.jpg" style="width: 100%;">
-      <div class="carousel-caption">
-        Lorem Ipsum
+    {$brief = $language.brief_field}
+    {foreach $banner as $getBanner}
+      {if $getBanner@first}
+        <div class="item active">
+      {else}
+        <div class="item">
+      {/if}
+        <img src="{$basedomain}public_assets/banner/{$getBanner.image}" class="img-responsive">
+        <div class="carousel-caption">
+          {$getBanner.$brief}
+        </div>
       </div>
-    </div>
-    <div class="item">
-      <img src="{$basedomain}public_assets/banner/1.jpg" style="width: 100%;">
-      <div class="carousel-caption">
-        Lorem Ipsum
-      </div>
-    </div>
+    {/foreach}
+    
   </div>
 
   <!-- Controls -->

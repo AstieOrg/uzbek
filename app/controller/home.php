@@ -56,6 +56,10 @@ class home extends Controller {
 		}
 		$this->view->assign('leftMenu',$leftMenu);
 
+		//GET BANNER
+		$getBanner = $this->contentHelper->getBanner();
+		$this->view->assign('banner',$getBanner);
+
 		//GET TOPICAL ISSUES
 		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
 		$this->view->assign('topicalIssues',$getTopicalIssues);

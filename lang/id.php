@@ -4,6 +4,7 @@
 
 $LANG['menu_field'] = 'nm_bhs';
 $LANG['title_field'] = 'title_bhs';
+$LANG['brief_field'] = 'brief_bhs';
 $LANG['content_field'] = 'content_bhs';
 $LANG['home'] = 'Beranda';
 $LANG['contact'] = 'Kontak';

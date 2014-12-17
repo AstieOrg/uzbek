@@ -4,6 +4,7 @@
 
 $LANG['menu_field'] = 'nm_uzbek';
 $LANG['title_field'] = 'title_uzbek';
+$LANG['brief_field'] = 'brief_uzbek';
 $LANG['content_field'] = 'content_uzbek';
 $LANG['home'] = 'Home';
 $LANG['contact'] = 'Contact';
