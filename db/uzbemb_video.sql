@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 12 Des 2014 pada 16.17
+-- Generation Time: 18 Des 2014 pada 17.10
 -- Versi Server: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `uzbemb_video` (
   `expired_date` date DEFAULT NULL,
   `langid` tinyint(4) NOT NULL,
   `author_id` tinyint(4) DEFAULT NULL,
+  `video_type` varchar(50) NOT NULL,
   `title_bhs` varchar(200) NOT NULL,
   `brief_bhs` text NOT NULL,
   `content_bhs` text NOT NULL,
@@ -44,20 +45,10 @@ CREATE TABLE IF NOT EXISTS `uzbemb_video` (
   `content_uzbek` text NOT NULL,
   `video` varchar(200) NOT NULL,
   `thumbnail_image` varchar(200) DEFAULT NULL,
-  `slider_image` varchar(200) DEFAULT NULL,
-  `url` varchar(200) DEFAULT NULL,
-  `source_url` varchar(100) DEFAULT NULL,
   `file` varchar(200) NOT NULL,
-  `icon_image` varchar(200) NOT NULL,
-  `url_icon` varchar(200) DEFAULT NULL,
-  `source_icon` varchar(100) DEFAULT NULL,
-  `file_icon` varchar(200) NOT NULL,
   `filesize` int(11) DEFAULT NULL,
-  `filesize_icon` int(11) DEFAULT NULL,
-  `can_save` int(11) DEFAULT NULL,
-  `tags` text,
   `n_stats` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Indexes for dumped tables
@@ -77,7 +68,7 @@ ALTER TABLE `uzbemb_video`
 -- AUTO_INCREMENT for table `uzbemb_video`
 --
 ALTER TABLE `uzbemb_video`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
