@@ -42,6 +42,7 @@ class menu extends Controller {
                 //$data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
                 
                 $getchild = $this->models->get_child($data['id']);
+                
                 if($getchild) $parentOption = 'disabled';
                 
                 $get_content = $this->models->get_content($data['id']);
@@ -62,7 +63,7 @@ class menu extends Controller {
     
 	public function menuinp(){
 		global $CONFIG;
-		
+        
 		if(isset($_POST['n_stats'])){
 			if($_POST['n_stats']=='on') $_POST['n_stats']=1;
 		} else {

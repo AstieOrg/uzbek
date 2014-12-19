@@ -68,7 +68,8 @@ $(function () {
                 <div class="col-sm-7">			
     			    <div class="form-group">
     				    <label type="text">Menu Status </label>
-    				    <select id="is_child" name="menuStat" class="form-control" {if $data.menu_type==1}disabled{/if} {$parentOption}>
+                        <!-- {if $data.menu_type==1}disabled{/if} -->
+    				    <select id="is_child" name="menuStat" class="form-control" {$parentOption}>
     					<option value="0" {if $data.is_child==0}selected{/if} >Parent</option>
     					<option value="1" {if $data.is_child==1}selected{/if} >Child</option>
     				    </select>
@@ -158,6 +159,10 @@ $(document).ready(function() {
         }else{
             $('.parentMenu').hide();
         }
+    });
+    
+    $('#validate-enhanced').bind('submit', function() {
+        $(this).find('#is_child').removeAttr('disabled');
     });
     
 //    $('#menuType').change( function(){
