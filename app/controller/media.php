@@ -71,11 +71,15 @@ class media extends Controller {
 		$this->view->assign('album',$getAlbum);	
 		
 		//SET LANGUAGE
-		$lang = $_SESSION['lang'];
-		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
-		elseif ($lang == '1') {require_once('lang/eng.php');}
-		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
-		$this->view->assign('language',$LANG);
+		$lang = $_GET['lang'];
+		if ($lang == 'id'){require_once('lang/id.php');}
+		elseif ($lang == 'en'){require_once('lang/eng.php');}
+		elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
+		else{require_once('lang/id.php');}
+
+		session_start();
+    	$_SESSION['lang'] = $lang;
+    	$this->view->assign('language',$LANG);
 
 		return $this->loadView('album');
     }
@@ -136,6 +140,15 @@ class media extends Controller {
 		$this->view->assign('viewAlbum',$viewAlbum);	
 		
 		//SET LANGUAGE
+		$lang2 = $_GET['lang'];
+		if ($lang2 == 'en'){$lang3 ='1';}
+		elseif ($lang2 == 'id') {$lang3 = '0';}
+		elseif ($lang2 == 'uz') {$lang3 = '2';}
+		else{echo $lang3 = '';}
+
+		session_start();
+    	$_SESSION['lang'] = $lang3;
+    	
 		$lang = $_SESSION['lang'];
 		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
 		elseif ($lang == '1') {require_once('lang/eng.php');}

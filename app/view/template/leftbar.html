@@ -8,12 +8,12 @@
 	            
 			{foreach $leftMenu as $getLeftMenu} 
 			{if $getLeftMenu.child == ''}
-				<li><a href="{$basedomain}home/content/?id={$getLeftMenu.id}&&type={$getLeftMenu.menu_type}" class=" ">{$getLeftMenu.$menu} </a></li>
+				<li><a href="{$basedomain}home/content/?id={$getLeftMenu.id}&&type={$getLeftMenu.menu_type}&&lang={$smarty.session.lang}" class=" ">{$getLeftMenu.$menu} </a></li>
 			{else}
 				<li class="dropdown-submenu"><a href="#">{$getLeftMenu.$menu}</a>
 					<ul class="dropdown-menu">
 						{foreach $getLeftMenu.child as $getSubMenu}
-					        <li><a href="{$basedomain}home/content/?id={$getSubMenu.id}&&type={$getSubMenu.menu_type}">{$getSubMenu.$menu}</a></li>
+					        <li><a href="{$basedomain}home/content/?id={$getSubMenu.id}&&type={$getSubMenu.menu_type}&&lang={$smarty.session.lang}">{$getSubMenu.$menu}ss</a></li>
 					    {/foreach}
 					</ul>
 				</li>
@@ -35,7 +35,7 @@
 	<!-- START MENU -->
 		{foreach $topicalIssues as $getTopical}
 		<div class="menu">
-			<a href="{$basedomain}home/content/?id={$getTopical.id}&&type=2" class="row">
+			<a href="{$basedomain}home/content/?id={$getTopical.id}&&type=2&&lang={$smarty.session.lang}" class="row">
 				<div class="col-md-3" style="padding:0;">
 					<img src="{$basedomain}public_assets/news/icon/{$getTopical.icon_image}" width="50px" height="50px">
 				</div>

@@ -57,7 +57,7 @@ class contentHelper extends Database {
 	}
 
 	function getTopicalIssues(){
-		$sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = 1;";
+		$sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = 1 ORDER BY id DESC LIMIT 5;";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

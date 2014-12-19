@@ -66,11 +66,16 @@ class contact extends Controller {
 		$this->view->assign('topicalIssues',$getTopicalIssues);
 
 		//SET LANGUAGE
-		$lang = $_SESSION['lang'];
-		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
-		elseif ($lang == '1') {require_once('lang/eng.php');}
-		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
-		$this->view->assign('language',$LANG);
+		$lang = $_GET['lang'];
+		if ($lang == 'id'){require_once('lang/id.php');}
+		elseif ($lang == 'en'){require_once('lang/eng.php');}
+		elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
+		else{require_once('lang/id.php');}
+
+		session_start();
+    	$_SESSION['lang'] = $lang;
+    	$this->view->assign('language',$LANG);
+    	
 		return $this->loadView('contact');
     }
 

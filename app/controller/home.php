@@ -69,8 +69,12 @@ class home extends Controller {
 		$this->view->assign('headlines',$getHeadlines);
 
 		//GET NEWS
-		$lang = $_SESSION['lang'];
-		$getNews = $this->contentHelper->getNews($lang,'26','0','6');
+		$lang = $_GET['lang'];
+		if($lang == 'id'){$langID = '0';}
+		elseif($lang == 'en'){$langID = '1';}
+		elseif($lang == 'uz'){$langID = '2';}
+		else{$langID = '0';}
+		$getNews = $this->contentHelper->getNews($langID,'26','0','6');
 		$this->view->assign('news',$getNews);
 
 		//GET NEWEST PHOTO
@@ -82,13 +86,17 @@ class home extends Controller {
 		$this->view->assign('bottomMenu',$getBottomMenu);
 
 		//SET LANGUAGE
-		$lang = $_SESSION['lang'];
-		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
-		elseif ($lang == '1') {require_once('lang/eng.php');}
-		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
-		$this->view->assign('language',$LANG);
+		$lang = $_GET['lang'];
+		if ($lang == 'id'){require_once('lang/id.php');}
+		elseif ($lang == 'en'){require_once('lang/eng.php');}
+		elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
+		else{require_once('lang/id.php');}
 
+		session_start();
+    	$_SESSION['lang'] = $lang;
+    	$this->view->assign('language',$LANG);
 		
+
 		return $this->loadView('home');
     }
 
@@ -146,19 +154,30 @@ class home extends Controller {
 		$this->view->assign('title',$getTitle);
 
 		//SET LANGUAGE
-		$lang = $_SESSION['lang'];
-		if($lang == '0' || $lang == ''){require_once('lang/id.php');}
-		elseif ($lang == '1') {require_once('lang/eng.php');}
-		elseif ($lang ==  '2') {require_once('lang/uzbek.php');}
-		$this->view->assign('language',$LANG);
+		$lang = $_GET['lang'];
+		if ($lang == 'id'){require_once('lang/id.php');}
+		elseif ($lang == 'en'){require_once('lang/eng.php');}
+		elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
+		else{require_once('lang/id.php');}
+
+		session_start();
+    	$_SESSION['lang'] = $lang;
+    	$this->view->assign('language',$LANG);
 		
+		//SET TYPE
+		$lang = $_GET['lang'];
+		if($lang == 'id'){$langID = '0';}
+		elseif($lang == 'en'){$langID = '1';}
+		elseif($lang == 'uz'){$langID = '2';}
+		else{$langID = '0';}
+
 		if($type == '0'){
-			$getContent = $this->contentHelper->getNews($lang,$id,'0','10');
+			$getContent = $this->contentHelper->getNews($langID,$id,'0','10');
 			$this->view->assign('content',$getContent);
 			return $this->loadView('list');
 		}
 		else if($type == '1' || $type ==''){
-			$getContent = $this->contentHelper->getNews($lang,$id,'0','1');
+			$getContent = $this->contentHelper->getNews($langID,$id,'0','1');
 			$this->view->assign('content',$getContent);
 			return $this->loadView('detail');
 		}
@@ -176,13 +195,24 @@ class home extends Controller {
 	}
 
     function lang(){
-    	$basedomain = 'http://localhost/uzbek/framework';
-    	$lang = $_GET['lang'];
-    	$url = str_replace("uzbk/","",$_GET['url']);
-    	session_start();
-    	$_SESSION['lang'] = $lang;
-    	header('location:http://'.$url);
-    	die();
+    	global $basedomain;
+    	$lang = $_POST['lang'];
+    	$oldLang = $_SESSION['lang'];
+
+    	if('http://'.$_POST['url'] == $basedomain){
+    		header('location:http://'.$_POST['url'].'home/index/?lang='.$lang);
+    		die();
+    	}
+    	else{
+
+	    	//pr($lang);
+	    	$url_uzbk = str_replace("uzbk/","",$_POST['url']);
+	    	$url = str_replace("lang=".$oldLang,"lang=".$lang,$url_uzbk);
+	    	//pr ($url);
+	    	
+	    	header('location:http://'.$url);
+	    	die();
+    	}
     }
 }
 

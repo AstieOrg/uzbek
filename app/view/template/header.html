@@ -1,10 +1,30 @@
 <div class="uzbek-header">
     <img src="{$basedomain}assets/img/desain.jpg">
     <div class="uzbek-language">
-	    <a href="{$basedomain}home/lang/?lang=0&&url={$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}"><img src="{$basedomain}assets/img/id.png" style="width: 20px;"></a>
-	    <a href="{$basedomain}home/lang/?lang=1&&url={$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}"><img src="{$basedomain}assets/img/us.png" style="width: 20px;"></a>
-	    <a href="{$basedomain}home/lang/?lang=2&&url={$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}"><img src="{$basedomain}assets/img/uz.png" style="width: 20px;"></a>
+	    
+	    <form method="POST" action="{$basedomain}home/lang" style="float:left;">
+	    	<input value="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" name="url" type="hidden">
+	    	<input value="id" name="lang" type="hidden">
+	    	<button type="submit" style="padding: 0; border: none; background: transparent; margin-right: 5px;"><img src="{$basedomain}assets/img/id.png" style="width: 20px;"></button>
+	    </form>
+
+	    <form method="POST" action="{$basedomain}home/lang" style="float:left;">
+	    	<input value="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" name="url" type="hidden">
+	    	<input value="en" name="lang" type="hidden">
+	    	<button type="submit" style="padding: 0; border: none; background: transparent; margin-right: 5px;"><img src="{$basedomain}assets/img/us.png" style="width: 20px;"></button>
+	    </form>
+
+	    <form method="POST" action="{$basedomain}home/lang" style="float:left;">
+	    	<input value="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" name="url" type="hidden">
+	    	<input value="uz" name="lang" type="hidden">
+	    	<button type="submit" style="padding: 0; border: none; background: transparent;"><img src="{$basedomain}assets/img/uz.png" style="width: 20px;"></button>
+	    </form>
+
+	    <div class="clearfix"></div>
+
     </div>
+
+    
     
     <!-- NAVBAR -->
 
@@ -28,19 +48,19 @@
 
 				{foreach $topMenu as $getTopMenu}
 	            {if $getTopMenu.child == ''}
-	        		<li><a href="{$basedomain}home/content/?id={$getTopMenu.id}&&type={$getTopMenu.menu_type}">{$getTopMenu.$menu}</a></li>
+	        		<li><a href="{$basedomain}home/content/?id={$getTopMenu.id}&&type={$getTopMenu.menu_type}&&lang={$smarty.session.lang}">{$getTopMenu.$menu}</a></li>
 	        	{else}
 	        		<li class="dropdown">
 	            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$getTopMenu.$menu} <span class="caret"></span></a>
 	                <ul class="dropdown-menu" role="menu">
 	                    {foreach $getTopMenu.child as $getSubMenu}
-	                    	<li><a href="{$basedomain}home/content/?id={$getSubMenu.id}&&type={$getSubMenu.menu_type}">{$getSubMenu.$menu}</a></li>
+	                    	<li><a href="{$basedomain}home/content/?id={$getSubMenu.id}&&type={$getSubMenu.menu_type}&&lang={$smarty.session.lang}">{$getSubMenu.$menu}</a></li>
 	                    {/foreach}
 	                </ul>
 	            </li>
 	            {/if}
 	            {/foreach}
-	            <li><a href="{$basedomain}contact">{$contact}</a></li>
+	            <li><a href="{$basedomain}contact/index/?lang={$smarty.session.lang}">{$contact}</a></li>
 	        </ul>
 	        <form class="navbar-form navbar-right uzbek-search" role="search">
 	            <div class="form-group">
