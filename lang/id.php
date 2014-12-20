@@ -17,5 +17,7 @@ $LANG['fullname'] = 'Nama Lengkap';
 $LANG['subject'] = 'Subjek';
 $LANG['send_message'] = 'Kirim Pesan';
 $LANG['send'] = 'Kirim';
+$LANG['photo_gallery'] = 'Galeri Foto';
+$LANG['video'] = 'Video';
 
 ?>

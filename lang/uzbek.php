@@ -19,5 +19,7 @@ $LANG['fullname'] = 'Fullname';
 $LANG['subject'] = 'Subject';
 $LANG['send_message'] = 'Send Message';
 $LANG['send'] = 'Send';
+$LANG['photo_gallery'] = 'Photo Gallery';
+$LANG['video'] = 'Video';
 
 ?>

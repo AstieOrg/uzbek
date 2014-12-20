@@ -139,11 +139,15 @@ ul.nav.navbar-nav li.active a:hover{
 }
     .uzbek-indexMedia{margin-bottom: 20px;}
     .uzbek-indexMedia .image{
+        width: 30%;
+        float: left;
         padding: 10px 10px 30px 10px;
         background-color: #24A5CF;
         font-size: 20px;
     }
     .uzbek-indexMedia .video{
+        width: 70%;
+        float: left;
         padding: 10px 10px 30px 10px;
         background-color: #CCC;
         font-size: 20px;
@@ -154,7 +158,11 @@ ul.nav.navbar-nav li.active a:hover{
     }
     .uzbek-indexMedia .video a.title{color: #282828;}
 
-.uzbek-indexNews{margin-bottom: 20px;}
+.uzbek-indexNews{
+    margin-bottom: 20px;
+    font-family: Verdana, tahoma;
+    font-size: 12px;
+}
 .uzbek-indexNews h3{
     border-bottom: 4px solid #4bd0ed;
     color: #003280;
@@ -162,7 +170,7 @@ ul.nav.navbar-nav li.active a:hover{
 .uzbek-indexNews p.date{
     margin: 0;
     color: #b47702;
-    font-size: 12px;
+    font-size: 11px;
 }
 .uzbek-indexNews a.title{color: #0450a6; text-decoration: underline;}
 .uzbek-indexNews p.content{margin: 10px 0;}

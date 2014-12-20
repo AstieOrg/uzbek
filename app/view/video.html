@@ -13,18 +13,18 @@
             
             <div class="row" style="margin: 0;">
                 
-                {foreach $album as $getAlbum}
-                <div class="col-md-4" style="margin-bottom: 10px;">
-                    <div class="uzbek-album">
-                    <a href="{$basedomain}media/viewAlbum/?id={$getAlbum.id}">
-                        <img src="{$basedomain}public_assets/gallery/images/{$getAlbum.image}">
-                    </a>
-                    <div class="caption_album">
-                        <a href="{$basedomain}media/viewAlbum/?id={$getAlbum.id}">{$getAlbum.title}</a>
-                        <!--<p class="text-muted">100 photos</p>-->
-                    </div>
-                    </div>
-                </div>
+                {foreach $video as $getVideo}
+                  {if $getVideo.video_type == 'file'}
+                  <div class="col-md-4">
+                  <video height="130" controls>
+                    <source src="{$basedomain}public_assets/video/{$getVideo.video}" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>
+                  <a href="{$basedomain}media/viewVideo/?id={$getVideo.id}" style="color: #111; font-size: 11px;display: block;">{$getVideo.title_en}</a>
+                  </div>
+                  {elseif $getVideo.video_type == 'embed'}
+                  {*}{$getVideo.content_en}{/*}
+                  {/if}
                 {/foreach}
             </div>
 

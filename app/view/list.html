@@ -22,8 +22,8 @@
                 <div class="row">
                     {foreach $content as $getContent}
                     <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
-                        <p class="date">{$getContent.posted_date}</p>
-                        <a href="{$basedomain}home/content/?id={$getContent.menuId}&&type=1" class="title">{$getContent.title}</a>
+                        <p class="date">{$getContent.posted_date|date_format}</p>
+                        <a href="{$basedomain}home/content/?id={$getContent.menuId}&&type=1&&lang={$smarty.session.lang}" class="title">{$getContent.title}</a>
                         <p class="content text-justify">{$getContent.brief}</p>
                         <!--<a href="#" class="more pull-right">Read more..</a>
                         <div class="clearfix"></div>-->
@@ -44,6 +44,8 @@
 <!-- FILE JAVASCRIPT -->
     {include file="template/javascript.html"}
 <!-- END FILE JAVASCRIPT -->
+
+</div>
 
 <!-- FILE FOOTER -->
     {include file="template/footer.html"}

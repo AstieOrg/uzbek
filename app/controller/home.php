@@ -81,6 +81,10 @@ class home extends Controller {
 		$getNewestPhoto = $this->contentHelper->getNewestPhoto();
 		$this->view->assign('newestPhoto',$getNewestPhoto);
 
+		//GET NEWEST VIDEO
+		$getNewestVideo = $this->contentHelper->getNewestVideo();
+		$this->view->assign('newestVideo',$getNewestVideo);
+
 		//GET BOTTOM MENU
 		$getBottomMenu = $this->contentHelper->getBottomMenu();
 		$this->view->assign('bottomMenu',$getBottomMenu);

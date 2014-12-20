@@ -80,6 +80,14 @@ class contentHelper extends Database {
 		return false;
 	}
 
+	function getNewestVideo(){
+		$sql = "SELECT * FROM {$this->prefix}_video WHERE video_type = 'file' ORDER BY id DESC LIMIT 2;";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
 	function getBottomMenu(){
 		$sql = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats = 1;";
 		//pr($sql);exit;
@@ -106,6 +114,22 @@ class contentHelper extends Database {
 
 	function viewAlbum($id){
 		$sql = "SELECT * FROM {$this->prefix}_news_content_repo WHERE otherid = {$id}";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	function getVideo(){
+		$sql = "SELECT * FROM {$this->prefix}_video";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	function viewVideo($id){
+		$sql = "SELECT * FROM {$this->prefix}_video WHERE id = {$id}";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;
