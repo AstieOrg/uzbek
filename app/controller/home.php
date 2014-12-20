@@ -202,15 +202,15 @@ class home extends Controller {
     	global $basedomain;
     	$lang = $_POST['lang'];
     	$oldLang = $_SESSION['lang'];
+    	$url_uzbk = str_replace("uzbk/","",$_POST['url']);
 
-    	if('http://'.$_POST['url'] == $basedomain){
-    		header('location:http://'.$_POST['url'].'home/index/?lang='.$lang);
+    	if('http://'.$url_uzbk == $basedomain){
+    		header('location:http://'.$url_uzbk.'home/index/?lang='.$lang);
     		die();
     	}
     	else{
 
 	    	//pr($lang);
-	    	$url_uzbk = str_replace("uzbk/","",$_POST['url']);
 	    	$url = str_replace("lang=".$oldLang,"lang=".$lang,$url_uzbk);
 	    	//pr ($url);
 	    	
