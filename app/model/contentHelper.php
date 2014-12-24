@@ -11,14 +11,6 @@ class contentHelper extends Database {
 		$this->date = date('Y-m-d H:i:s');
 	}
 
-    function getMenu($position, $is_child){
-        $sql = "SELECT * FROM {$this->prefix}_menu_list WHERE pos = $position AND is_child = $is_child AND n_stats=1;";
-        $res = $this->fetch($sql,1);
-
-        if ($res) return $res;
-        return false;
-    }
-
     function getTitle($id){
         $sql = "SELECT * FROM {$this->prefix}_menu_list WHERE id = $id;";
         $res = $this->fetch($sql,1);
@@ -56,14 +48,6 @@ class contentHelper extends Database {
 		return false;
 	}
 
-	function getTopicalIssues(){
-		$sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = 1 ORDER BY id DESC LIMIT 5;";
-		//pr($sql);exit;
-		$res = $this->fetch($sql,1);
-		if ($res) return $res;
-		return false;
-	}
-
 	function getTopical($table,$id){
 		$sql = "SELECT * FROM {$this->prefix}$table WHERE id = {$id} AND n_stats = 1;";
 		//pr($sql);exit;
@@ -82,14 +66,6 @@ class contentHelper extends Database {
 
 	function getNewestVideo(){
 		$sql = "SELECT * FROM {$this->prefix}_video WHERE video_type = 'file' ORDER BY id DESC LIMIT 2;";
-		//pr($sql);exit;
-		$res = $this->fetch($sql,1);
-		if ($res) return $res;
-		return false;
-	}
-
-	function getBottomMenu(){
-		$sql = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats = 1;";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

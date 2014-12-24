@@ -5,18 +5,21 @@
 	    <form method="POST" action="{$basedomain}home/lang" style="float:left;">
 	    	<input value="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" name="url" type="hidden">
 	    	<input value="id" name="lang" type="hidden">
+	    	<input value="{$smarty.get.lang}" name="oldLang" type="hidden">
 	    	<button type="submit" style="padding: 0; border: none; background: transparent; margin-right: 5px;"><img src="{$basedomain}assets/img/id.png" style="width: 20px;"></button>
 	    </form>
 
 	    <form method="POST" action="{$basedomain}home/lang" style="float:left;">
 	    	<input value="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" name="url" type="hidden">
 	    	<input value="en" name="lang" type="hidden">
+	    	<input value="{$smarty.get.lang}" name="oldLang" type="hidden">
 	    	<button type="submit" style="padding: 0; border: none; background: transparent; margin-right: 5px;"><img src="{$basedomain}assets/img/us.png" style="width: 20px;"></button>
 	    </form>
 
 	    <form method="POST" action="{$basedomain}home/lang" style="float:left;">
 	    	<input value="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" name="url" type="hidden">
 	    	<input value="uz" name="lang" type="hidden">
+	    	<input value="{$smarty.get.lang}" name="oldLang" type="hidden">
 	    	<button type="submit" style="padding: 0; border: none; background: transparent;"><img src="{$basedomain}assets/img/uz.png" style="width: 20px;"></button>
 	    </form>
 
@@ -45,7 +48,6 @@
 	            {$contact = $language.contact}
 
 	            <li><a href="{$basedomain}">{$home}</a></li>
-
 				{foreach $topMenu as $getTopMenu}
 	            {if $getTopMenu.child == ''}
 	        		<li><a href="{$basedomain}home/content/?id={$getTopMenu.id}&&type={$getTopMenu.menu_type}&&lang={$smarty.session.lang}">{$getTopMenu.$menu}</a></li>

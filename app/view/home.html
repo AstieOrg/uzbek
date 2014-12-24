@@ -1,102 +1,77 @@
-<!-- FILE HEADER -->
-    {include file="template/header.html"}
-<!-- END FILE HEADER -->
+<div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar">
+    {include file="template/banner.html"}
 
-<div class="container uzbek-container">
-      <div class="row uzbek-row">
-      <!-- FILE LEFTBAR -->
-          {include file="template/leftbar.html"}
-      <!-- END FILE LEFTBAR -->
+    {foreach $headlines as $getHeadlines}
+      {$content = $language.content_field}
 
-
-        <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar">
-            {include file="template/banner.html"}
-
-            {foreach $headlines as $getHeadlines}
-              {$content = $language.content_field}
-
-              {$getHeadlines.$content|html_entity_decode}
+      {$getHeadlines.$content|html_entity_decode}
+    {/foreach}
+    
+    <div class="uzbek-indexNews">
+        <h3>NEWS</h3>
+        <!-- START NEWS -->
+        
+        <div class="row">
+            {foreach $news as $briefNews}
+            <div class="col-md-4" style="margin-top: 10px; margin-bottom: 10px;">
+                <p class="date">{$briefNews.posted_date|date_format}</p>
+                <a href="{$basedomain}home/content/?id={$briefNews.menuId}&&type=1&&lang={$smarty.session.lang}" class="title">{$briefNews.title}</a>
+                <p class="content">{$briefNews.brief}</p>
+                <!--<a href="#" class="more pull-right">Read more..</a>
+                <div class="clearfix"></div>-->
+            </div>
             {/foreach}
-            
-            <div class="uzbek-indexNews">
-                <h3>NEWS</h3>
-                <!-- START NEWS -->
+        </div>    
+    </div>
+
+    <div class="uzbek-indexMedia">
+        <div class="image">
+            <a href="{$basedomain}media/album" class="title">Photo</a>
+            <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel" style="border: 4px solid #FFF;">
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+                {foreach $newestPhoto as $getNewestPhoto}
+                {if $getNewestPhoto@first}
+                <div class="item active">
+                {else}
+                <div class="item">
+                {/if}
                 
-                <div class="row">
-                    {foreach $news as $briefNews}
-                    <div class="col-md-4" style="margin-top: 10px; margin-bottom: 10px;">
-                        <p class="date">{$briefNews.posted_date|date_format}</p>
-                        <a href="{$basedomain}home/content/?id={$briefNews.menuId}&&type=1&&lang={$smarty.session.lang}" class="title">{$briefNews.title}</a>
-                        <p class="content">{$briefNews.brief}</p>
-                        <!--<a href="#" class="more pull-right">Read more..</a>
-                        <div class="clearfix"></div>-->
-                    </div>
-                    {/foreach}
-                </div>    
-            </div>
-
-            <div class="uzbek-indexMedia">
-                <div class="image">
-                    <a href="{$basedomain}media/album" class="title">Photo</a>
-                    <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel" style="border: 4px solid #FFF;">
-
-                      <!-- Wrapper for slides -->
-                      <div class="carousel-inner" role="listbox">
-                        {foreach $newestPhoto as $getNewestPhoto}
-                        {if $getNewestPhoto@first}
-                        <div class="item active">
-                        {else}
-                        <div class="item">
-                        {/if}
-                        
-                          <img src="{$basedomain}public_assets/gallery/images/{$getNewestPhoto.content}" class="img-responsive" style="height: 155px;">
-                        </div>
-                        {/foreach}
-                      </div>
-
-                      <!-- Controls -->
-                      <a class="left carousel-control" href="#carousel-example-generic2" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="right carousel-control" href="#carousel-example-generic2" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                      </a>
-                    </div>
+                  <img src="{$basedomain}public_assets/gallery/images/{$getNewestPhoto.content}" class="img-responsive" style="height: 155px;">
                 </div>
-                <div class="video">
-                    <a href="{$basedomain}media/video" class="title">Video</a><br>
-                    {foreach $newestVideo as $video}
-                      {if $video.video_type == 'file'}
-                      <div class="col-md-6">
-                      <video height="130" controls>
-                        <source src="{$basedomain}public_assets/video/{$video.video}" type="video/mp4">
-                        Your browser does not support HTML5 video.
-                      </video>
-                      <a href="{$basedomain}media/viewVideo/?id={$getVideo.id}" style="color: #FFF; font-size: 11px;display: block;">{$video.title_en}</a>
-                      </div>
-                      {/if}
-                    {/foreach}
+                {/foreach}
                 </div>
-                <div class="clearfix"></div>
-            </div>
-          <div class="clearfix"></div>
-        </div>  
 
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic2" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic2" role="button" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+          </div>
+        <div class="video">
+            <a href="{$basedomain}media/video" class="title">Video</a><br>
+            {foreach $newestVideo as $video}
+              {if $video.video_type == 'file'}
+              <div class="col-md-6">
+              <video height="130" controls>
+                <source src="{$basedomain}public_assets/video/{$video.video}" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+              <a href="{$basedomain}media/viewVideo/?id={$getVideo.id}" style="color: #FFF; font-size: 11px;display: block;">{$video.title_en}</a>
+              </div>
+              {/if}
+            {/foreach}
+        </div>
+        <div class="clearfix"></div>
       </div>
+    <div class="clearfix"></div>
+  </div>  
 </div>
 
-<!-- FILE BOTTOM MENU -->
-    {include file="template/bottomMenu.html"}
-<!-- END FILE BOTTOM MENU -->
-
-<!-- FILE JAVASCRIPT -->
-    {include file="template/javascript.html"}
-<!-- END FILE JAVASCRIPT -->
-
 </div>
-
-<!-- FILE FOOTER -->
-    {include file="template/footer.html"}
-<!-- END FILE FOOTER -->

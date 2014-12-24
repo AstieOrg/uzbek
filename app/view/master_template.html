@@ -5,26 +5,28 @@
 		var basedomain = "{$basedomain}";
 	</script>
 	
-    {*}
     <!-- HEADER DEFAULT -->
     {include file="template/header.html"}
-    
+
     <!-- LEFTBAR -->
     <div class="container uzbek-container">
       <div class="row uzbek-row">
-        {include file="template/leftbar.html"}
-        
-    <!-- CONTENT -->
-	{$content}
+      <!-- FILE LEFTBAR -->
+          {include file="template/leftbar.html"}
+      <!-- END FILE LEFTBAR -->
 
-    <!-- RIGHTBAR -->
-        {include file="template/rightbar.html"}
-      </div>
-    </div>
-	
-	<!-- FOOTER -->
-    {include file="template/footer.html"}
-    {/*}
-
-    <!-- CONTENT -->
     {$content}
+
+    <!-- FILE BOTTOM MENU -->
+    {include file="template/bottomMenu.html"}
+    <!-- END FILE BOTTOM MENU -->
+
+    <!-- FILE JAVASCRIPT -->
+        {include file="template/javascript.html"}
+    <!-- END FILE JAVASCRIPT -->
+
+    </div>
+
+    <!-- FILE FOOTER -->
+        {include file="template/footer.html"}
+    <!-- END FILE FOOTER -->

@@ -20,49 +20,20 @@ class home extends Controller {
 	}
 	
 	function index(){
-		//GET TOP MENU
-		$getTopMenu = $this->contentHelper->getMenu('0','0');
-		if (is_array($getTopMenu)){
-			foreach ($getTopMenu as $getTopMenuSub) {
-				$getTopMenuSub['child'] = '';
-				$getSub = $this->contentHelper->getMenu('0','1');
-				if (is_array($getSub)){
-					foreach ($getSub as $sub) {
-						if($getTopMenuSub['id'] == $sub['id_parent']){
-							$getTopMenuSub['child'][] = $sub;
-						}
-					}
-				}
-				$topMenu[]=$getTopMenuSub;
-			}
-		}
-		$this->view->assign('topMenu',$topMenu);
-		
-		//GET LEFT MENU
-		$getLeftMenu = $this->contentHelper->getMenu('1','0');
-		if (is_array($getLeftMenu)){
-			foreach ($getLeftMenu as $getLeftMenuSub) {
-				$getLeftMenuSub['child'] = '';
-				$getSub = $this->contentHelper->getMenu('1','1');
-				if (is_array($getSub)){
-					foreach ($getSub as $sub) {
-						if($getLeftMenuSub['id'] == $sub['id_parent']){
-							$getLeftMenuSub['child'][] = $sub;
-						}
-					}
-				}
-				$leftMenu[]=$getLeftMenuSub;
-			}
-		}
-		$this->view->assign('leftMenu',$leftMenu);
+		//SET LANGUAGE
+		$lang = $_GET['lang'];
+		if ($lang == 'id'){require('lang/id.php');}
+		elseif ($lang == 'en'){require('lang/eng.php');}
+		elseif ($lang == 'uz'){require('lang/uzbek.php');}
+		else{require('lang/id.php');}
+
+		session_start();
+    	$_SESSION['lang'] = $lang;
+    	$this->view->assign('language',$LANG);
 
 		//GET BANNER
 		$getBanner = $this->contentHelper->getBanner();
 		$this->view->assign('banner',$getBanner);
-
-		//GET TOPICAL ISSUES
-		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
-		$this->view->assign('topicalIssues',$getTopicalIssues);
 
 		//GET HEADLINES
 		$getHeadlines = $this->contentHelper->getHeadlines();
@@ -84,90 +55,30 @@ class home extends Controller {
 		//GET NEWEST VIDEO
 		$getNewestVideo = $this->contentHelper->getNewestVideo();
 		$this->view->assign('newestVideo',$getNewestVideo);
-
-		//GET BOTTOM MENU
-		$getBottomMenu = $this->contentHelper->getBottomMenu();
-		$this->view->assign('bottomMenu',$getBottomMenu);
-
-		//SET LANGUAGE
-		$lang = $_GET['lang'];
-		if ($lang == 'id'){require_once('lang/id.php');}
-		elseif ($lang == 'en'){require_once('lang/eng.php');}
-		elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
-		else{require_once('lang/id.php');}
-
-		session_start();
-    	$_SESSION['lang'] = $lang;
-    	$this->view->assign('language',$LANG);
 		
 
 		return $this->loadView('home');
     }
 
     function content(){
-    	//GET TOP MENU
-		$getTopMenu = $this->contentHelper->getMenu('0','0');
-		if (is_array($getTopMenu)){
-			foreach ($getTopMenu as $getTopMenuSub) {
-				$getTopMenuSub['child'] = '';
-				$getSub = $this->contentHelper->getMenu('0','1');
-				if (is_array($getSub)){
-					foreach ($getSub as $sub) {
-						if($getTopMenuSub['id'] == $sub['id_parent']){
-							$getTopMenuSub['child'][] = $sub;
-						}
-					}
-				}
-				$topMenu[]=$getTopMenuSub;
-			}
-		}
-		$this->view->assign('topMenu',$topMenu);
-		
-		//GET LEFT MENU
-		$getLeftMenu = $this->contentHelper->getMenu('1','0');
-		if (is_array($getLeftMenu)){
-			foreach ($getLeftMenu as $getLeftMenuSub) {
-				$getLeftMenuSub['child'] = '';
-				$getSub = $this->contentHelper->getMenu('1','1');
-				if (is_array($getSub)){
-					foreach ($getSub as $sub) {
-						if($getLeftMenuSub['id'] == $sub['id_parent']){
-							$getLeftMenuSub['child'][] = $sub;
-						}
-					}
-				}
-				$leftMenu[]=$getLeftMenuSub;
-			}
-		}
-		//pr($leftMenu);
-		$this->view->assign('leftMenu',$leftMenu);
+    	//SET LANGUAGE
+		$lang = $_GET['lang'];
+		if ($lang == 'id'){require('lang/id.php');}
+		elseif ($lang == 'en'){require('lang/eng.php');}
+		elseif ($lang == 'uz'){require('lang/uzbek.php');}
+		else{require('lang/id.php');}
 
-		//GET BOTTOM MENU
-		$getBottomMenu = $this->contentHelper->getBottomMenu();
-		$this->view->assign('bottomMenu',$getBottomMenu);
+		session_start();
+    	$_SESSION['lang'] = $lang;
+    	$this->view->assign('language',$LANG);
 
-		//GET TOPICAL ISSUES
-		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
-		$this->view->assign('topicalIssues',$getTopicalIssues);
-
-		$id = $_GET['id'];
+    	$id = $_GET['id'];
 		$type = $_GET['type'];
 		$lang = $_SESSION['lang'];
 
 		$getTitle = $this->contentHelper->getTitle($id);
 		$this->view->assign('title',$getTitle);
 
-		//SET LANGUAGE
-		$lang = $_GET['lang'];
-		if ($lang == 'id'){require_once('lang/id.php');}
-		elseif ($lang == 'en'){require_once('lang/eng.php');}
-		elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
-		else{require_once('lang/id.php');}
-
-		session_start();
-    	$_SESSION['lang'] = $lang;
-    	$this->view->assign('language',$LANG);
-		
 		//SET TYPE
 		$lang = $_GET['lang'];
 		if($lang == 'id'){$langID = '0';}
@@ -201,7 +112,7 @@ class home extends Controller {
     function lang(){
     	global $basedomain;
     	$lang = $_POST['lang'];
-    	$oldLang = $_SESSION['lang'];
+    	$oldLang = $_POST['oldLang'];
     	$url_uzbk = str_replace("uzbk/","",$_POST['url']);
 
     	if('http://'.$url_uzbk == $basedomain){
@@ -210,9 +121,7 @@ class home extends Controller {
     	}
     	else{
 
-	    	//pr($lang);
 	    	$url = str_replace("lang=".$oldLang,"lang=".$lang,$url_uzbk);
-	    	//pr ($url);
 	    	
 	    	header('location:http://'.$url);
 	    	die();

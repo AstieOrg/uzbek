@@ -1,47 +1,22 @@
-<!-- FILE HEADER -->
-    {include file="template/header.html"}
-<!-- END FILE HEADER -->
-
-<div class="container uzbek-container">
-      <div class="row uzbek-row">
-        <!-- FILE LEFTBAR -->
-            {include file="template/leftbar.html"}
-        <!-- END FILE LEFTBAR -->
-
-
-        <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
-            
-            <div class="row" style="margin: 0;">
-                
-                {foreach $album as $getAlbum}
-                <div class="col-md-4" style="margin-bottom: 10px;">
-                    <div class="uzbek-album">
-                    <a href="{$basedomain}media/viewAlbum/?id={$getAlbum.id}">
-                        <img src="{$basedomain}public_assets/gallery/images/{$getAlbum.image}">
-                    </a>
-                    <div class="caption_album">
-                        <a href="{$basedomain}media/viewAlbum/?id={$getAlbum.id}">{$getAlbum.title}</a>
-                        <!--<p class="text-muted">100 photos</p>-->
-                    </div>
-                    </div>
-                </div>
-                {/foreach}
+<div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
+    
+    <div class="row" style="margin: 0;">
+        
+        {foreach $album as $getAlbum}
+        <div class="col-md-4" style="margin-bottom: 10px;">
+            <div class="uzbek-album">
+            <a href="{$basedomain}media/viewAlbum/?id={$getAlbum.id}">
+                <img src="{$basedomain}public_assets/gallery/images/{$getAlbum.image}">
+            </a>
+            <div class="caption_album">
+                <a href="{$basedomain}media/viewAlbum/?id={$getAlbum.id}">{$getAlbum.title}</a>
+                <!--<p class="text-muted">100 photos</p>-->
             </div>
-
+            </div>
         </div>
+        {/foreach}
     </div>
-</div>
-
-<!-- FILE BOTTOM MENU -->
-    {include file="template/bottomMenu.html"}
-<!-- END FILE BOTTOM MENU -->
-
-<!-- FILE JAVASCRIPT -->
-    {include file="template/javascript.html"}
-<!-- END FILE JAVASCRIPT -->
 
 </div>
-
-<!-- FILE FOOTER -->
-    {include file="template/footer.html"}
-<!-- END FILE FOOTER -->
+</div>
+</div>

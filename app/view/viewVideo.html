@@ -1,51 +1,27 @@
-<!-- FILE HEADER -->
-    {include file="template/header.html"}
-<!-- END FILE HEADER -->
+<div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
+    
+    <div class="pull-right"><a href="{$basedomain}media/video" class="btn flora-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
 
-<div class="container uzbek-container">
-      <div class="row uzbek-row">
-        <!-- FILE LEFTBAR -->
-            {include file="template/leftbar.html"}
-        <!-- END FILE LEFTBAR -->
+    <div class="clearfix"></div>
 
-
-        <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
-            
-            <div class="pull-right"><a href="{$basedomain}media/video" class="btn flora-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
-
-            <div class="clearfix"></div>
-
-            <div class="row" style="margin: 0;">
-                
-                {foreach $viewVideo as $getVideo}
-                  <h3>{$getVideo.title_en}</h3>
-                  {if $getVideo.video_type == 'file'}
-                  <div class="col-md-4">
-                  <video width="700" controls>
-                    <source src="{$basedomain}public_assets/video/{$getVideo.video}" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                  </video>
-                  </div>
-                  {elseif $getVideo.video_type == 'embed'}
-                  {*}{$getVideo.content_en}{/*}
-                  {/if}
-                {/foreach}
-            </div>
-
-        </div>
+    <div class="row" style="margin: 0;">
+        
+        {foreach $viewVideo as $getVideo}
+          <h3>{$getVideo.title_en}</h3>
+          {if $getVideo.video_type == 'file'}
+          <div class="col-md-4">
+          <video width="700" controls>
+            <source src="{$basedomain}public_assets/video/{$getVideo.video}" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          </div>
+          {elseif $getVideo.video_type == 'embed'}
+          {*}{$getVideo.content_en}{/*}
+          {/if}
+        {/foreach}
     </div>
-</div>
-
-<!-- FILE BOTTOM MENU -->
-    {include file="template/bottomMenu.html"}
-<!-- END FILE BOTTOM MENU -->
-
-<!-- FILE JAVASCRIPT -->
-    {include file="template/javascript.html"}
-<!-- END FILE JAVASCRIPT -->
 
 </div>
 
-<!-- FILE FOOTER -->
-    {include file="template/footer.html"}
-<!-- END FILE FOOTER -->
+</div>
+</div>

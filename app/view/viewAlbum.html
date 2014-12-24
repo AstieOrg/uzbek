@@ -1,80 +1,56 @@
-<!-- FILE HEADER -->
-    {include file="template/header.html"}
-<!-- END FILE HEADER -->
+<div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
+    
+    <div class="pull-right"><a href="{$basedomain}media/album" class="btn flora-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
+        {foreach $titleAlbum as $title}
+        <h3>{$title.title}</h3>
+        {/foreach}
+        
+        
+    <div id="links">
+        {foreach $viewAlbum as $album}
+        <a href="{$basedomain}public_assets/gallery/images/{$album.content}" title="" data-gallery>
+            <img src="{$basedomain}public_assets/gallery/images/{$album.content}" style="max-width: 200px;" class="uzbek-gallery">
+        </a>
+        {/foreach}
+    </div>
 
-<div class="container uzbek-container">
-      <div class="row uzbek-row">
-        <!-- FILE LEFTBAR -->
-            {include file="template/leftbar.html"}
-        <!-- END FILE LEFTBAR -->
-
-
-        <div class="col-xs-12 col-sm-9 uzbek-col col-top uzbek-midbar" style=" padding-top: 20px;">
-            
-            <div class="pull-right"><a href="{$basedomain}media/album" class="btn flora-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
-                {foreach $titleAlbum as $title}
-                <h3>{$title.title}</h3>
-                {/foreach}
-                
-                
-            <div id="links">
-                {foreach $viewAlbum as $album}
-                <a href="{$basedomain}public_assets/gallery/images/{$album.content}" title="" data-gallery>
-                    <img src="{$basedomain}public_assets/gallery/images/{$album.content}" style="max-width: 200px;" class="uzbek-gallery">
-                </a>
-                {/foreach}
-            </div>
-
-        </div>
+</div>
 
 
-        <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-        <div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
-            <!-- The container for the modal slides -->
-            <div class="slides"></div>
-            <!-- Controls for the borderless lightbox -->
-            <h3 class="title"></h3>
-            <a class="prev"><i class="glyphicon glyphicon-chevron-left" style="font-size: 25px;top: -5px;"></i></a>
-            <a class="next"><i class="glyphicon glyphicon-chevron-right" style="font-size: 25px;top: -5px;"></i></a>
-            <a class="close"><i class="glyphicon glyphicon-remove"></i></a>
-            <a class="play-pause"></a>
-            <ol class="indicator"></ol>
-            <!-- The modal dialog, which will be used to wrap the lightbox content -->
-            <div class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title"></h4>
-                        </div>
-                        <div class="modal-body next"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left prev">
-                                <i class="glyphicon glyphicon-chevron-left"></i>
-                                Previous
-                            </button>
-                            <button type="button" class="btn btn-primary next">
-                                Next
-                                <i class="glyphicon glyphicon-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev"><i class="glyphicon glyphicon-chevron-left" style="font-size: 25px;top: -5px;"></i></a>
+    <a class="next"><i class="glyphicon glyphicon-chevron-right" style="font-size: 25px;top: -5px;"></i></a>
+    <a class="close"><i class="glyphicon glyphicon-remove"></i></a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- FILE BOTTOM MENU -->
-    {include file="template/bottomMenu.html"}
-<!-- END FILE BOTTOM MENU -->
-
-<!-- FILE JAVASCRIPT -->
-    {include file="template/javascript.html"}
-<!-- END FILE JAVASCRIPT -->
-
 </div>
-
-<!-- FILE FOOTER -->
-    {include file="template/footer.html"}
-<!-- END FILE FOOTER -->
+</div>

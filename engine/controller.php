@@ -30,31 +30,30 @@ class Controller extends Application{
 		$this->view = $CODEKIR['smarty'];
 		if($this->configkey=='admin'){
 			$menuData = $this->getMenu();
-            
-            $count = 0;
-            foreach($menuData as $key => $menu){
-                if($menu['is_child']){
-                    $parentData = $this->getMenu($menu['id_parent']);
-                    $menuList[$count] = $menuData[$key];
-                    $menuList[$count]['parent'] = $parentData;
-                    $count = $count + 1;
-                }else{
-                    $getChild = $this->getMenu($menu['id'],true);
-                    if(!$getChild){
-                        $menuList[$count] = $menuData[$key];
-                        $count = $count + 1;
-                    }
-                }
-                
-            }
-            $this->view->assign('menu', $menuList);
-
+            if($menuData){
+	            $count = 0;
+	            foreach($menuData as $key => $menu){
+	                if($menu['is_child']){
+	                    $parentData = $this->getMenu($menu['id_parent']);
+	                    $menuList[$count] = $menuData[$key];
+	                    $menuList[$count]['parent'] = $parentData;
+	                    $count = $count + 1;
+	                }else{
+	                    $getChild = $this->getMenu($menu['id'],true);
+	                    if(!$getChild){
+	                        $menuList[$count] = $menuData[$key];
+	                        $count = $count + 1;
+	                    }
+	                }
+	                
+	            }
+	            $this->view->assign('menu', $menuList);
+	        }
             $notif = $this->inbox_notif();
             if($notif){
             	$this->view->assign('notif', $notif);
             }
-            
-		}
+        }
 
 		$this->view->assign('basedomain',$basedomain);
         $this->view->assign('app_domain',$app_domain);
@@ -72,8 +71,21 @@ class Controller extends Application{
 		//inject Data
 
 		if ($this->configkey=='default'){
-			$this->view->assign('dateToday',date('Y-m-d'));
-			$this->view->assign('agenda',$this->getAgenda());
+			//SET LANGUAGE
+			$lang = $_GET['lang'];
+			if ($lang == 'id'){require_once('lang/id.php');}
+			elseif ($lang == 'en'){require_once('lang/eng.php');}
+			elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
+			else{require_once('lang/id.php');}
+
+			session_start();
+	    	$_SESSION['lang'] = $lang;
+	    	$this->view->assign('language',$LANG);
+
+			$this->view->assign('topMenu',$this->topMenu());
+			$this->view->assign('leftMenu',$this->leftMenu());
+			$this->view->assign('topicalIssues',$this->topicalIssues());
+			$this->view->assign('bottomMenu',$this->bottomMenu());
 		}
 		
 		
@@ -375,6 +387,66 @@ class Controller extends Application{
 		$notification = new mcontact;
 		$data = $notification->get_contact(true,'0');
 		if($data) return $data;
+		return false;
+	}
+
+	function topMenu(){
+		//GET TOP MENU
+		$getHelper = new helper_model;
+		$getTopMenu = $getHelper->getMenu('0','0');
+		if (is_array($getTopMenu)){
+			foreach ($getTopMenu as $getTopMenuSub) {
+				$getTopMenuSub['child'] = '';
+				$getSub = $getHelper->getMenu('0','1');
+				if (is_array($getSub)){
+					foreach ($getSub as $sub) {
+						if($getTopMenuSub['id'] == $sub['id_parent']){
+							$getTopMenuSub['child'][] = $sub;
+						}
+					}
+				}
+				$topMenu[]=$getTopMenuSub;
+			}
+		}
+		if($topMenu)return $topMenu;
+		return false;
+	}
+
+	function leftMenu(){
+		//GET LEFT MENU
+		$getHelper = new helper_model;
+		$getLeftMenu = $getHelper->getMenu('1','0');
+		if (is_array($getLeftMenu)){
+			foreach ($getLeftMenu as $getLeftMenuSub) {
+				$getLeftMenuSub['child'] = '';
+				$getSub = $getHelper->getMenu('1','1');
+				if (is_array($getSub)){
+					foreach ($getSub as $sub) {
+						if($getLeftMenuSub['id'] == $sub['id_parent']){
+							$getLeftMenuSub['child'][] = $sub;
+						}
+					}
+				}
+				$leftMenu[]=$getLeftMenuSub;
+			}
+		}
+		if($leftMenu)return $leftMenu;
+		return false;
+	}
+
+	function topicalIssues(){
+		//GET TOPICAL ISSUES
+		$getHelper = new helper_model;
+		$getTopicalIssues = $getHelper->getTopicalIssues();
+		if($getTopicalIssues)return $getTopicalIssues;
+		return false;
+	}
+
+	function bottomMenu(){
+		//GET BOTTOM MENU
+		$getHelper = new helper_model;
+		$getBottomMenu = $getHelper->getBottomMenu();
+		if($getBottomMenu)return $getBottomMenu;
 		return false;
 	}
 	

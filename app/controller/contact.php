@@ -20,61 +20,17 @@ class contact extends Controller {
 	}
 	
 	function index(){
-		//GET TOP MENU
-		$getTopMenu = $this->contentHelper->getMenu('0','0');
-		if (is_array($getTopMenu)){
-			foreach ($getTopMenu as $getTopMenuSub) {
-				$getTopMenuSub['child'] = '';
-				$getSub = $this->contentHelper->getMenu('0','1');
-				if (is_array($getSub)){
-					foreach ($getSub as $sub) {
-						if($getTopMenuSub['id'] == $sub['id_parent']){
-							$getTopMenuSub['child'][] = $sub;
-						}
-					}
-				}
-				$topMenu[]=$getTopMenuSub;
-			}
-		}
-		$this->view->assign('topMenu',$topMenu);
-		
-		//GET LEFT MENU
-		$getLeftMenu = $this->contentHelper->getMenu('1','0');
-		if (is_array($getLeftMenu)){
-			foreach ($getLeftMenu as $getLeftMenuSub) {
-				$getLeftMenuSub['child'] = '';
-				$getSub = $this->contentHelper->getMenu('1','1');
-				if (is_array($getSub)){
-					foreach ($getSub as $sub) {
-						if($getLeftMenuSub['id'] == $sub['id_parent']){
-							$getLeftMenuSub['child'][] = $sub;
-						}
-					}
-				}
-				$leftMenu[]=$getLeftMenuSub;
-			}
-		}
-		//pr($leftMenu);
-		$this->view->assign('leftMenu',$leftMenu);
-
-		//GET BOTTOM MENU
-		$getBottomMenu = $this->contentHelper->getBottomMenu();
-		$this->view->assign('bottomMenu',$getBottomMenu);
-
-		//GET TOPICAL ISSUES
-		$getTopicalIssues = $this->contentHelper->getTopicalIssues();
-		$this->view->assign('topicalIssues',$getTopicalIssues);
-
 		//SET LANGUAGE
 		$lang = $_GET['lang'];
-		if ($lang == 'id'){require_once('lang/id.php');}
-		elseif ($lang == 'en'){require_once('lang/eng.php');}
-		elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
-		else{require_once('lang/id.php');}
+		if ($lang == 'id'){require('lang/id.php');}
+		elseif ($lang == 'en'){require('lang/eng.php');}
+		elseif ($lang == 'uz'){require('lang/uzbek.php');}
+		else{require('lang/id.php');}
 
 		session_start();
     	$_SESSION['lang'] = $lang;
     	$this->view->assign('language',$LANG);
+    	
     	
 		return $this->loadView('contact');
     }
