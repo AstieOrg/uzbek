@@ -212,6 +212,11 @@ ul.nav.navbar-nav li.active a:hover{
     border-bottom: 1px solid #4bd0ed;
 }
 
+.uzbek-video iframe{
+    height: 130px;
+    width: 225px;
+}
+
 
 footer{
     text-align: center;
