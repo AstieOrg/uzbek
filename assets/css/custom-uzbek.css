@@ -157,6 +157,10 @@ ul.nav.navbar-nav li.active a:hover{
         background-color: #CCC;
         font-size: 20px;
     }
+    .uzbek-indexMedia .video iframe{
+        height: 130px;
+        width: 225px;
+    }
     .uzbek-indexMedia .image a.title, .uzbek-indexMedia .video a.title{
         font-variant: small-caps;
         color: #FFF;

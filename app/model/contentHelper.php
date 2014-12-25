@@ -94,7 +94,7 @@ class contentHelper extends Database {
 	** Get newest video content
 	**/
 	function getNewestVideo(){
-		$sql = "SELECT * FROM {$this->prefix}_video WHERE video_type = 'file' ORDER BY id DESC LIMIT 2;";
+		$sql = "SELECT * FROM {$this->prefix}_video ORDER BY id DESC LIMIT 2;";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

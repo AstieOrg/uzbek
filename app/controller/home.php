@@ -59,6 +59,9 @@ class home extends Controller {
 
 		//GET NEWEST VIDEO
 		$getNewestVideo = $this->contentHelper->getNewestVideo();
+		foreach ($getNewestVideo as $key => $value) {
+			$getNewestVideo[$key]['content_en'] = html_entity_decode($value['content_en'],ENT_QUOTES, 'UTF-8');
+		}
 		$this->view->assign('newestVideo',$getNewestVideo);
 
 		return $this->loadView('home');
