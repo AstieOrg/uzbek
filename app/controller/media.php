@@ -19,6 +19,11 @@ class media extends Controller {
         $this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
+	/**
+	** To show album's view
+	** @param $lang = type of language
+	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	**/
 	function album(){
 		//SET LANGUAGE
 		$lang = $_GET['lang'];
@@ -38,6 +43,12 @@ class media extends Controller {
 		return $this->loadView('album');
     }
 
+    /**
+	** To show view album's view
+	** @param $lang = type of language
+	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	** @param $id = id of detail album to be shown
+	**/
     function viewAlbum(){
     	//SET LANGUAGE
 		$lang = $_GET['lang'];
@@ -61,6 +72,11 @@ class media extends Controller {
 		return $this->loadView('viewAlbum');
     }
 
+    /**
+	** To show video's view
+	** @param $lang = type of language
+	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	**/
     function video(){
     	//SET LANGUAGE
 		$lang = $_GET['lang'];
@@ -83,6 +99,12 @@ class media extends Controller {
 		return $this->loadView('video');
     }
 
+    /**
+	** To show view video's view
+	** @param $lang = type of language
+	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	** @param $id = id of detail video to be shown
+	**/
     function viewVideo(){
     	//SET LANGUAGE
 		$lang = $_GET['lang'];

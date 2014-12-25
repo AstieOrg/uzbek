@@ -1,5 +1,4 @@
 <?php
-/* contoh models */
 
 class helper_model extends Database {
 	
@@ -13,6 +12,13 @@ class helper_model extends Database {
 
 	}
 
+    /**
+    ** Get menu content
+    ** @param $position = id of position to be shown
+    ** @return 0 = top menu, 1 = left menu
+    ** @param $is_child = child validation id
+    ** @return 0 = parent, 1 = child
+    **/
     function getMenu($position, $is_child){
         $sql = "SELECT * FROM {$this->prefix}_menu_list WHERE pos = $position AND is_child = $is_child AND n_stats=1;";
         $res = $this->fetch($sql,1);
@@ -21,6 +27,9 @@ class helper_model extends Database {
         return false;
     }
 
+    /**
+    ** Get topical menu content
+    **/
     function getTopicalIssues(){
         $sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = 1 ORDER BY id DESC LIMIT 5;";
         //pr($sql);exit;
@@ -29,6 +38,9 @@ class helper_model extends Database {
         return false;
     }
 
+    /**
+    ** Get bottom menu content
+    **/
     function getBottomMenu(){
         $sql = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats = 1;";
         //pr($sql);exit;

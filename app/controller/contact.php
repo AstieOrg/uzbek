@@ -19,6 +19,11 @@ class contact extends Controller {
         $this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
+	/**
+	** To show contact's view
+	** @param $lang = type of language
+	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	**/
 	function index(){
 		//SET LANGUAGE
 		$lang = $_GET['lang'];
@@ -35,6 +40,11 @@ class contact extends Controller {
 		return $this->loadView('contact');
     }
 
+    /**
+	** The process of sending message
+	** @param $data = Post from contact's from
+	** @param $lang = Taken from language session
+	**/
     function send_message(){
     	global $basedomain;
     	$data = $_POST;

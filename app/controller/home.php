@@ -19,6 +19,11 @@ class home extends Controller {
         $this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
+	/**
+	** To show home's view
+	** @param $lang = type of language
+	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	**/
 	function index(){
 		//SET LANGUAGE
 		$lang = $_GET['lang'];
@@ -55,11 +60,18 @@ class home extends Controller {
 		//GET NEWEST VIDEO
 		$getNewestVideo = $this->contentHelper->getNewestVideo();
 		$this->view->assign('newestVideo',$getNewestVideo);
-		
 
 		return $this->loadView('home');
     }
 
+    /**
+	** To show every content's view
+	** @param $lang = type of language
+	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	** @param $id = id of content to be shown
+	** @param $type = type of content to be shown
+	** @return 0 = list, 1 = detail, 2 = detail for topical issues, 3 = detail for bottom menu
+	**/
     function content(){
     	//SET LANGUAGE
 		$lang = $_GET['lang'];
@@ -109,20 +121,22 @@ class home extends Controller {
 		}
 	}
 
+	/**
+	** Language changing process
+	** @param $data = Post of language form
+	**/
     function lang(){
     	global $basedomain;
-    	$lang = $_POST['lang'];
-    	$oldLang = $_POST['oldLang'];
-    	$url_uzbk = str_replace("uzbk/","",$_POST['url']);
+    	$data = $_POST;
+    	$url_uzbk = str_replace("uzbk/","",$data['url']);
 
     	if('http://'.$url_uzbk == $basedomain){
-    		header('location:http://'.$url_uzbk.'home/index/?lang='.$lang);
+    		header('location:http://'.$url_uzbk.'home/index/?lang='.$data['lang']);
     		die();
     	}
     	else{
 
-	    	$url = str_replace("lang=".$oldLang,"lang=".$lang,$url_uzbk);
-	    	
+	    	$url = str_replace("lang=".$data['oldLang'],"lang=".$data['lang'],$url_uzbk);
 	    	header('location:http://'.$url);
 	    	die();
     	}
