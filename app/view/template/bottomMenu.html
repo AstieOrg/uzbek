@@ -18,7 +18,7 @@
         
         {foreach $bottomMenu as $getBottom}
         <div class="menu col-md-4">
-          <a href="{$basedomain}home/content/?id={$getBottom.id}&&type=3" class="row">
+          <a href="{$basedomain}home/content/?id={$getBottom.id}&&type=3&&lang={$smarty.session.lang}" class="row">
             <div class="col-md-3" style="padding:0;">
               <img src="{$basedomain}public_assets/news/icon/{$getBottom.icon_image}" width="50px" height="50px">
             </div>
