@@ -104,13 +104,20 @@ class bmenu extends Controller {
                                 $path = 'news';
                                 
 								if($x['action'] == 'update') deleteFile($x['image'],$path.'/image');
-                                if($x['action'] == 'update') deleteFile($x['icon'],$path.'/icon');
                                 
 								$image = uploadFile('file_image',$path.'/image','image');
-								$icon = uploadFile('file_icon',$path.'/icon','image');
                                 
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
+							}
+                            
+                            if($_FILES['file_icon']['name'] != ''){
+                                
+                                $path = 'news';
+
+                                if($x['action'] == 'update') deleteFile($x['icon'],$path.'/icon');
+                                
+								$icon = uploadFile('file_icon',$path.'/icon','image');
                                 
 								$x['icon_url'] = $CONFIG['admin']['app_url'].$icon['folder_name'].$icon['full_name'];
 								$x['icon'] = $icon['full_name'];
