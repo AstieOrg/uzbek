@@ -30,7 +30,7 @@ class media extends Controller {
 		if ($lang == 'id'){require('lang/id.php');}
 		elseif ($lang == 'en'){require('lang/eng.php');}
 		elseif ($lang == 'uz'){require('lang/uzbek.php');}
-		else{require('lang/id.php');}
+		else{require('lang/eng.php');}
 
 		session_start();
     	$_SESSION['lang'] = $lang;
@@ -55,7 +55,7 @@ class media extends Controller {
 		if ($lang == 'id'){require('lang/id.php');}
 		elseif ($lang == 'en'){require('lang/eng.php');}
 		elseif ($lang == 'uz'){require('lang/uzbek.php');}
-		else{require('lang/id.php');}
+		else{require('lang/eng.php');}
 
 		session_start();
     	$_SESSION['lang'] = $lang;
@@ -83,7 +83,7 @@ class media extends Controller {
 		if ($lang == 'id'){require('lang/id.php');}
 		elseif ($lang == 'en'){require('lang/eng.php');}
 		elseif ($lang == 'uz'){require('lang/uzbek.php');}
-		else{require('lang/id.php');}
+		else{require('lang/eng.php');}
 
 		session_start();
     	$_SESSION['lang'] = $lang;
@@ -111,7 +111,7 @@ class media extends Controller {
 		if ($lang == 'id'){require('lang/id.php');}
 		elseif ($lang == 'en'){require('lang/eng.php');}
 		elseif ($lang == 'uz'){require('lang/uzbek.php');}
-		else{require('lang/id.php');}
+		else{require('lang/eng.php');}
 
 		session_start();
     	$_SESSION['lang'] = $lang;

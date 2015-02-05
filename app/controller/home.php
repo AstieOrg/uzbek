@@ -30,7 +30,7 @@ class home extends Controller {
 		if ($lang == 'id'){require('lang/id.php');}
 		elseif ($lang == 'en'){require('lang/eng.php');}
 		elseif ($lang == 'uz'){require('lang/uzbek.php');}
-		else{require('lang/id.php');}
+		else{require('lang/eng.php');}
 
 		session_start();
     	$_SESSION['lang'] = $lang;
@@ -49,7 +49,7 @@ class home extends Controller {
 		if($lang == 'id'){$langID = '0';}
 		elseif($lang == 'en'){$langID = '1';}
 		elseif($lang == 'uz'){$langID = '2';}
-		else{$langID = '0';}
+		else{$langID = '1';}
 		$getNews = $this->contentHelper->getNews($langID,'26','0','6');
 		$this->view->assign('news',$getNews);
 
@@ -81,7 +81,7 @@ class home extends Controller {
 		if ($lang == 'id'){require('lang/id.php');}
 		elseif ($lang == 'en'){require('lang/eng.php');}
 		elseif ($lang == 'uz'){require('lang/uzbek.php');}
-		else{require('lang/id.php');}
+		else{require('lang/eng.php');}
 
 		session_start();
     	$_SESSION['lang'] = $lang;
@@ -99,7 +99,7 @@ class home extends Controller {
 		if($lang == 'id'){$langID = '0';}
 		elseif($lang == 'en'){$langID = '1';}
 		elseif($lang == 'uz'){$langID = '2';}
-		else{$langID = '0';}
+		else{$langID = '1';}
 
 		if($type == '0'){
 			$getContent = $this->contentHelper->getNews($langID,$id,'0','10');
