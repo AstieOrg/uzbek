@@ -35,32 +35,37 @@ class mheadlines extends Database {
 
 		} else {
             if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
+            
+            $content_bhs = htmlentities($data['content_bhs'], ENT_QUOTES, 'UTF-8');
+            $content_en = htmlentities($data['content_en'], ENT_QUOTES, 'UTF-8');
+            $content_uzbk = htmlspecialchars($data['content_uzbek'], ENT_QUOTES, 'UTF-8');
+            
 			$query = "UPDATE {$this->prefix}_headlines
 						SET 
 							title_bhs = '{$data['title_bhs']}',
 							brief_bhs = '{$data['brief_bhs']}',
-							content_bhs = '{$data['content_bhs']}',
+							content_bhs = '".$content_bhs."',
                             
                             title_en = '{$data['title_en']}',
 							brief_en = '{$data['brief_en']}',
-							content_en = '{$data['content_en']}',
+							content_en = '".$content_en."',
                             
                             title_uzbek = '{$data['title_uzbek']}',
 							brief_uzbek = '{$data['brief_uzbek']}',
-							content_uzbek = '{$data['content_uzbek']}',
+							content_uzbek = '".$content_uzbk."',
                             
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
 							icon_image = '{$data['icon']}',
 							file_icon = '{$data['icon_url']}',
 							posted_date = '".$date."',
-                            expired_date = '{$data['expired_date']}',
 							author_id = '{$data['authorid']}',
 							n_stats = {$data['n_stats']}
 						WHERE
 							id = '{$data['id']}'";
 		}
-// pr($query);
+        //var_dump($query);
+        //exit;        
 		$result = $this->query($query);
 		
 		return $result;

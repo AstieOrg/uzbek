@@ -36,15 +36,12 @@ class login extends Controller {
 			// echo $this->loadView('login-loader');
 			
 			
-			$getUser = $this->loginHelper->goLogin();
-			// pr($getUser);
-			// pr($CONFIG);
-			// pr($basedomain);
-			// exit;
+			$getUser = $this->loginHelper->goLogin();          
 			if ($getUser){
 				redirect($basedomain.$CONFIG['admin']['default_view']);
 			}else{
-				redirect($basedomain.$CONFIG['admin']['login']);
+                echo "<script>alert('Wrong username or password');window.location.href='".$basedomain.$CONFIG['admin']['login']."'</script>";
+				//redirect($basedomain.$CONFIG['admin']['login']);
 			}
 			
 			exit;

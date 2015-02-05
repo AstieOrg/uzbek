@@ -82,7 +82,8 @@
 									<td><a href="{$basedomain}video/videoadd/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title_en}">{$var.title_en}</a></td>
                                     <td>
                                         {if $var.video_type=='file'}
-                                        <iframe src="{$basedomain}flvplayer/flashvideoplayer.html?video={$var.file}" width="320" height="276" frameborder="0" scrolling="no"></iframe>
+                                        <!-- <iframe src="{$basedomain}flvplayer/flashvideoplayer.html?video={$var.file}" width="320" height="276" frameborder="0" scrolling="no"></iframe> -->
+                                        <video src="{$var.file}" width="320"></video>
                                         {elseif $var.video_type=='embed'}
                                         {$var.content_en}
                                         {/if}

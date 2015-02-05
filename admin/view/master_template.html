@@ -26,7 +26,7 @@
 
 </body> 
 </html>
-
+{if ($admin)}
 <script type="text/javascript">
     /*$(document).ready(function() {
         $('.table').dataTable( {
@@ -41,3 +41,4 @@
         $('select#artikel').change( function() { $('.table').dataTable().fnFilter( $(this).val() ); } );
     } );
 </script>
+{/if}

@@ -124,6 +124,16 @@ class addcontent extends Controller {
 		echo "<script>alert('Data dipindahkan ke trash');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
 		
 	}
+    
+    public function del_one(){
+        global $CONFIG;        
+        $id = $_GET['id'];
+        $menuId = $_GET['menuid'];        
+        $get['ids'][1] = $id;
+        $data = $this->models->content_del($get['ids'], 'delete');
+    
+        echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."addcontent/contentadd/?id=&menuid=".$menuId."'</script>";        
+    }        
 	
 	public function trash(){
        

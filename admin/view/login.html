@@ -40,7 +40,7 @@
 </div> <!-- /#login-container -->
 
 <script>
-function checkuser(id){
+/*function checkuser(id){
 		var new_user = $('#'+id+'').val();
 
 		$.post(basedomain+"login/checkuser", { new_user: new_user},  
@@ -60,7 +60,7 @@ function checkuser(id){
 					
 				}  
 		}, "JSON");
-}
+}*/
 </script>
 
 <div id="styledModal" class="modal modal-styled fade">
@@ -78,7 +78,8 @@ function checkuser(id){
 		</div>
 		<div class="form-group">
 		<label for="text-input">Email</label>
-			<input type="text" name="email" id="email" class="form-control" data-required="true" onchange="return checkuser('email')"/>
+			<!--<input type="text" name="email" id="email" class="form-control" data-required="true" onchange="return checkuser('email')"/>-->
+            <input type="text" name="email" id="email" class="form-control" data-required="true"/>
 			<div id="help-email"></div>
 		</div>
 		

@@ -18,7 +18,7 @@ $(function () {
 </div> <!-- #content-header -->
 
 <div id="content-container">
-
+    <a class="btn btn-primary btn-sm" href="{$basedomain}addcontent/del_one/?id={$data.id}&menuid={$menuid}"><i class="fa fa-trash-o"></i> Delete Content</a>
 	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}addcontent/contentinp" enctype="multipart/form-data">
 
 		<div class="row">
@@ -78,6 +78,11 @@ $(function () {
 									<input type="hidden" name="image" value="{$data.image}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />
 									<input type="hidden" name="menuId" value="{$menuid}" />
+                                    
+                                    <!-- not used -->
+                                    <input type="hidden" name="parentMenu" value="0" />
+                                    <input type="hidden" name="articletype" value="0" />
+                                    <!-- not used -->
 									<!-- hidden -->
 							
 						</div>

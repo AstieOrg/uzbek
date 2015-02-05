@@ -22,9 +22,11 @@ class headlines extends Controller {
 	public function index(){
         global $CONFIG;
         $check = $this->models->getheadline();
+        //pr($check);exit;
         
         if($check){
             redirect($CONFIG['admin']['base_url']."headlines/content/?id=".$check['id']);
+            exit;
         }
         return $this->loadView('headlines/headlineinp');
 	}
@@ -44,6 +46,10 @@ class headlines extends Controller {
                 //$data['dateCreate'] = dateFormat($data['dateCreate'],'dd-mm-yyyy');
                 $data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
                 //$data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
+                
+                $data['content_bhs'] = htmlspecialchars_decode($data['content_bhs']);
+                $data['content_en'] = htmlspecialchars_decode($data['content_en']);
+                $data['content_uzbek'] = htmlspecialchars_decode($data['content_uzbek']);
             }
             
 			$this->view->assign('data',$data);

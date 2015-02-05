@@ -51,7 +51,7 @@ class mtopical extends Database {
                             
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
-							icon_image = '{$data['icon']}',
+							icon_image = '{$data['icon_image']}',
 							file_icon = '{$data['icon_url']}',
 							posted_date = '".$date."',
                             expired_date = '{$data['expired_date']}',
