@@ -11,9 +11,22 @@ class mheadlines extends Database {
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
+        $data['title_bhs'] = mysql_escape_string($data['title_bhs']);
+        $data['title_en'] = mysql_escape_string($data['title_en']);
+        $data['title_uzbek'] = mysql_escape_string($data['title_uzbek']);
+        
+        $data['brief_bhs'] = mysql_escape_string($data['brief_bhs']);
+        $data['brief_en'] = mysql_escape_string($data['brief_en']);
+        $data['brief_uzbek'] = mysql_escape_string($data['brief_uzbek']);
+        
 		if($data['action'] == 'insert'){
 			//pr($data);exit;
 			//yang atas nama variabel @ db.
+            
+            $data['content_bhs'] = htmlspecialchars($data['content_bhs'], ENT_QUOTES, 'UTF-8');
+            $data['content_en'] = htmlspecialchars($data['content_en'], ENT_QUOTES, 'UTF-8');
+            $data['content_uzbek'] = htmlspecialchars($data['content_uzbek'], ENT_QUOTES, 'UTF-8');
+            
 			$query = "INSERT INTO  
 			  
 						{$this->prefix}_headlines (
@@ -36,22 +49,22 @@ class mheadlines extends Database {
 		} else {
             if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
             
-            $content_bhs = htmlentities($data['content_bhs'], ENT_QUOTES, 'UTF-8');
-            $content_en = htmlentities($data['content_en'], ENT_QUOTES, 'UTF-8');
+            $content_bhs = htmlspecialchars($data['content_bhs'], ENT_QUOTES, 'UTF-8');
+            $content_en = htmlspecialchars($data['content_en'], ENT_QUOTES, 'UTF-8');
             $content_uzbk = htmlspecialchars($data['content_uzbek'], ENT_QUOTES, 'UTF-8');
             
 			$query = "UPDATE {$this->prefix}_headlines
 						SET 
-							title_bhs = '{$data['title_bhs']}',
-							brief_bhs = '{$data['brief_bhs']}',
+							title_bhs = '".$data['title_bhs']."',
+							brief_bhs = '".$data['brief_bhs']."',
 							content_bhs = '".$content_bhs."',
                             
-                            title_en = '{$data['title_en']}',
-							brief_en = '{$data['brief_en']}',
+                            title_en = '".$data['title_en']."',
+							brief_en = '".$data['brief_en']."',
 							content_en = '".$content_en."',
                             
-                            title_uzbek = '{$data['title_uzbek']}',
-							brief_uzbek = '{$data['brief_uzbek']}',
+                            title_uzbek = '".$data['title_uzbek']."',
+							brief_uzbek = '".$data['brief_uzbek']."',
 							content_uzbek = '".$content_uzbk."',
                             
 							image = '{$data['image']}',

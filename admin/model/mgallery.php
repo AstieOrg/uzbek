@@ -11,6 +11,8 @@ class mgallery extends Database {
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
+        $data['brief'] = mysql_escape_string($data['brief']);
+        
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
@@ -31,7 +33,7 @@ class mgallery extends Database {
 			$query = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '{$data['title']}',
-							brief = '{$data['brief']}',
+							brief = '".$data['brief']."',
 							content = '{$data['content']}',
 							typealbum = '{$data['image']}',
 							gallerytype = '{$data['gallerytypes']}',

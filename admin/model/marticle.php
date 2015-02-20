@@ -11,6 +11,10 @@ class marticle extends Database {
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
+        $data['title'] = mysql_escape_string($data['title']);
+        $data['brief'] = mysql_escape_string($data['brief']);
+        $data['content'] = mysql_escape_string($data['content']);
+        
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
@@ -26,9 +30,9 @@ class marticle extends Database {
             if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
-							title = '{$data['title']}',
-							brief = '{$data['brief']}',
-							content = '{$data['content']}',
+							title = '".$data['title']."',
+							brief = '".$data['brief']."',
+							content = '".$data['content']."',
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
                             articletype = '{$data['articletype']}',

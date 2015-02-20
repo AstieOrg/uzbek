@@ -15,6 +15,18 @@ class mvideo extends Database {
 		}
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
+        $data['title_bhs'] = mysql_escape_string($data['title_bhs']);
+        $data['title_en'] = mysql_escape_string($data['title_en']);
+        $data['title_uzbek'] = mysql_escape_string($data['title_uzbek']);
+        
+        $data['brief_bhs'] = mysql_escape_string($data['brief_bhs']);
+        $data['brief_en'] = mysql_escape_string($data['brief_en']);
+        $data['brief_uzbek'] = mysql_escape_string($data['brief_uzbek']);
+        
+        $data['content_bhs'] = mysql_escape_string($data['content_bhs']);
+        $data['content_en'] = mysql_escape_string($data['content_en']);
+        $data['content_uzbek'] = mysql_escape_string($data['content_uzbek']);
+        
 		if($data['action'] == 'insert'){
 			//pr($data);exit;
 			//yang atas nama variabel @ db.
@@ -42,17 +54,18 @@ class mvideo extends Database {
 			$query = "UPDATE {$this->prefix}_video
 						SET 
                             video_type = '{$data['video_type']}',
-							title_bhs = '{$data['title_bhs']}',
-							brief_bhs = '{$data['brief_bhs']}',
-							content_bhs = '{$data['content_bhs']}',
                             
-                            title_en = '{$data['title_en']}',
-							brief_en = '{$data['brief_en']}',
-							content_en = '{$data['content_en']}',
+							title_bhs = '".$data['title_bhs']."',
+							brief_bhs = '".$data['brief_bhs']."',
+							content_bhs = '".$data['content_bhs']."',
                             
-                            title_uzbek = '{$data['title_uzbek']}',
-							brief_uzbek = '{$data['brief_uzbek']}',
-							content_uzbek = '{$data['content_uzbek']}',
+                            title_en = '".$data['title_en']."',
+							brief_en = '".$data['brief_en']."',
+							content_en = '".$data['content_en']."',
+                            
+                            title_uzbek = '".$data['title_uzbek']."',
+							brief_uzbek = '".$data['brief_uzbek']."',
+							content_uzbek = '".$data['content_uzbek']."',
                             
 							video = '{$data['video_name']}',
 							file = '{$data['video_url']}',

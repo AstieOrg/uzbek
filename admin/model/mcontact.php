@@ -16,6 +16,10 @@ class mcontact extends Database {
         // 	MENU_STAT : PARENT, CHILD
         // 	ID_PARENT : ID MENU PARENT
     	
+        $data['title'] = mysql_escape_string($data['title']);
+        $data['brief'] = mysql_escape_string($data['brief']);
+        $data['content'] = mysql_escape_string($data['content']);
+        
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
@@ -30,9 +34,9 @@ class mcontact extends Database {
 		if($data['menuType']=='1' && $data['menuType']=='2') $date = $data['dateCreate'];
 			$query = "UPDATE {$this->prefix}_menu_list
 						SET 
-							title = '{$data['title']}',
-							brief = '{$data['brief']}',
-							content = '{$data['content']}',
+							title = '".$data['title']."',
+							brief = '".$data['brief']."',
+							content = '".$data['content']."',
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
                             articletype = '{$data['articletype']}',

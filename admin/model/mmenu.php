@@ -16,7 +16,11 @@ class mmenu extends Database {
 // 	menu_type : ARTICLE, GALLERY
 // 	MENU_STAT : PARENT, CHILD
 // 	ID_PARENT : ID MENU PARENT
-	
+        
+        $data['mnameBahasa'] = mysql_escape_string($data['mnameBahasa']);
+        $data['mnameEng'] = mysql_escape_string($data['mnameEng']);
+        $data['nm_uzbek'] = mysql_escape_string($data['nm_uzbek']);
+        
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
@@ -31,9 +35,9 @@ class mmenu extends Database {
 
 			$query = "UPDATE {$this->prefix}_menu_list
 						SET 
-							nm_bhs = '{$data['mnameBahasa']}',
-							nm_eng = '{$data['mnameEng']}',
-							nm_uzbek = '{$data['nm_uzbek']}',
+							nm_bhs = '".$data['mnameBahasa']."',
+							nm_eng = '".$data['mnameEng']."',
+							nm_uzbek = '".$data['nm_uzbek']."',
 							menu_type = '{$data['menuType']}',
 							pos = '{$data['pos']}',
                             is_child = '{$data['menuStat']}',

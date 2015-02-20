@@ -13,6 +13,10 @@ class mcontent extends Database {
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         //if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
+        $data['contentTitle'] = mysql_escape_string($data['contentTitle']);
+        $data['brief'] = mysql_escape_string($data['brief']);
+        $data['content'] = mysql_escape_string($data['content']);
+        
 		if($data['action'] == 'insert'){
 			
 			//yang atas nama variabel @ db.
@@ -30,12 +34,12 @@ class mcontent extends Database {
 		} else {
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
-							title        = '{$data['contentTitle']}',
+							title        = '".$data['contentTitle']."',
 							lang_id      = '{$data['langID']}',
 							menuId       = '{$data['menuId']}',
 							parentid     = '{$data['parentMenu']}',
-							brief        = '{$data['brief']}',
-                            content      = '{$data['content']}',
+							brief        = '".$data['brief']."',
+                            content      = '".$data['content']."',
 							image        = '{$data['image']}',
                             file         = '{$data['image_url']}',
 							categoryid   = '{$data['categoryid']}',
