@@ -38,7 +38,7 @@
                 <div class="item">
                 {/if}
                 
-                  <img src="{$basedomain}public_assets/gallery/images/{$getNewestPhoto.content}" class="img-responsive" style="height: 155px;">
+                  <a href="{$basedomain}media/viewAlbum/?id={$getNewestPhoto.id}"><img src="{$getNewestPhoto.file}" class="img-responsive" style="height: 155px;"></a>
                 </div>
                 {/foreach}
                 </div>

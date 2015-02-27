@@ -306,4 +306,11 @@ footer{
     background-color: #EEE;
 }
 
+.carousel-inner .item{
+    background-color: #FFF;
+}
+.carousel-inner .item img{
+    margin: 0 auto;
+}
+
 /* 24a5cfvideo 4bd0edborderh3 056285readmore 0450a6title b47702date */
