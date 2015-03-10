@@ -42,6 +42,11 @@ class home extends Controller {
 
 		//GET HEADLINES
 		$getHeadlines = $this->contentHelper->getHeadlines();
+		foreach ($getHeadlines as $key => $value) {
+			$getHeadlines[$key]['content_bhs'] = html_entity_decode($value['content_bhs'],ENT_QUOTES, 'UTF-8');
+			$getHeadlines[$key]['content_en'] = html_entity_decode($value['content_en'],ENT_QUOTES, 'UTF-8');
+			$getHeadlines[$key]['content_uzbek'] = html_entity_decode($value['content_uzbek'],ENT_QUOTES, 'UTF-8');
+		}
 		$this->view->assign('headlines',$getHeadlines);
 
 		//GET NEWS
@@ -50,7 +55,11 @@ class home extends Controller {
 		elseif($lang == 'en'){$langID = '1';}
 		elseif($lang == 'uz'){$langID = '2';}
 		else{$langID = '1';}
-		$getNews = $this->contentHelper->getNews($langID,'26','0','6');
+
+		global $newstitle;
+		$getNewsID = $this->contentHelper->getNewsID($newstitle);
+
+		$getNews = $this->contentHelper->getNews($langID,$getNewsID['0']['id'],'0','6');
 		$this->view->assign('news',$getNews);
 
 		//GET NEWEST PHOTO
@@ -121,6 +130,11 @@ class home extends Controller {
 			$getContent = $this->contentHelper->getTopical('_menu_bottom', $id);
 			$this->view->assign('content',$getContent);
 			return $this->loadView('detail_topical');
+		}
+		else if($type == '4'){
+			$getContent = $this->contentHelper->getNewsList($langID,$id,'0','1');
+			$this->view->assign('content',$getContent);
+			return $this->loadView('detail');
 		}
 	}
 
