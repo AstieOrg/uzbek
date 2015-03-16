@@ -1,0 +1,15 @@
+ALTER TABLE `uzbemb_news_content`  ADD `title_bhs` VARCHAR(200) NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `brief_bhs` TEXT NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `content_bhs` TEXT NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `title_en` VARCHAR(200) NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `brief_en` TEXT NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `content_en` TEXT NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `title_uzbek` VARCHAR(200) NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `brief_uzbek` TEXT NOT NULL ;
+ALTER TABLE `uzbemb_news_content`  ADD `content_uzbek` TEXT NOT NULL ;
+
+ALTER TABLE `uzbemb_news_content`  DROP `title` ;
+ALTER TABLE `uzbemb_news_content`  DROP `brief` ;
+ALTER TABLE `uzbemb_news_content`  DROP `content` ;
+ALTER TABLE `uzbemb_news_content`  DROP `content` ;
+ALTER TABLE `uzbemb_news_content`  DROP langID;
