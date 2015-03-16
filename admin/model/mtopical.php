@@ -11,7 +11,7 @@ class mtopical extends Database {
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
-        $data['title_bhs'] = mysql_escape_string($data['title_bhs']);
+        /*$data['title_bhs'] = mysql_escape_string($data['title_bhs']);
         $data['title_en'] = mysql_escape_string($data['title_en']);
         $data['title_uzbek'] = mysql_escape_string($data['title_uzbek']);
         
@@ -21,7 +21,19 @@ class mtopical extends Database {
         
         $data['content_bhs'] = mysql_escape_string($data['content_bhs']);
         $data['content_en'] = mysql_escape_string($data['content_en']);
-        $data['content_uzbek'] = mysql_escape_string($data['content_uzbek']);
+        $data['content_uzbek'] = mysql_escape_string($data['content_uzbek']);*/
+        
+        $data['title_bhs'] = addslashes($data['title_bhs']);
+        $data['title_en'] = addslashes($data['title_en']);
+        $data['title_uzbek'] = addslashes($data['title_uzbek']);
+        
+        $data['brief_bhs'] = addslashes($data['brief_bhs']);
+        $data['brief_en'] = addslashes($data['brief_en']);
+        $data['brief_uzbek'] = addslashes($data['brief_uzbek']);
+        
+        $data['content_bhs'] = addslashes($data['content_bhs']);
+        $data['content_en'] = addslashes($data['content_en']);
+        $data['content_uzbek'] = addslashes($data['content_uzbek']);
         
 		if($data['action'] == 'insert'){
 			//pr($data);exit;

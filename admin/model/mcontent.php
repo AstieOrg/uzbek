@@ -13,19 +13,34 @@ class mcontent extends Database {
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         //if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
-        $data['contentTitle'] = mysql_escape_string($data['contentTitle']);
-        $data['brief'] = mysql_escape_string($data['brief']);
-        $data['content'] = mysql_escape_string($data['content']);
+        $data['title_bhs'] = addslashes($data['title_bhs']);
+        $data['title_en'] = addslashes($data['title_en']);
+        $data['title_uzbek'] = addslashes($data['title_uzbek']);
+        
+        $data['brief_bhs'] = addslashes($data['brief_bhs']);
+        $data['brief_en'] = addslashes($data['brief_en']);
+        $data['brief_uzbek'] = addslashes($data['brief_uzbek']);
+        
+        $data['content_bhs'] = addslashes($data['content_bhs']);
+        $data['content_en'] = addslashes($data['content_en']);
+        $data['content_uzbek'] = addslashes($data['content_uzbek']);
         
 		if($data['action'] == 'insert'){
 			
 			//yang atas nama variabel @ db.
 			$query = "INSERT INTO  
 			  
-						{$this->prefix}_news_content (title,lang_id,menuId,parentid,brief,content,image,file,categoryid,articletype,
-												created_date,posted_date,expired_date,authorid,n_status)
+						{$this->prefix}_news_content (
+                                title_bhs,brief_bhs,content_bhs,
+                                title_en,brief_en,content_en,
+                                title_uzbek,brief_uzbek,content_uzbek,
+                                menuId,parentid,image,file,categoryid,articletype,
+                                created_date,posted_date,expired_date,authorid,n_status)
 					VALUES
-						('".$data['contentTitle']."','".$data['langID']."','".$data['menuId']."','".$data['parentMenu']."','".$data['brief']."','".$data['content']."','".$data['image']."'
+						('".$data['title_bhs']."','".$data['brief_bhs']."','".$data['content_bhs']."'
+                        ,'".$data['title_en']."','".$data['brief_en']."','".$data['content_en']."'
+                        ,'".$data['title_uzbek']."','".$data['brief_uzbek']."','".$data['content_uzbek']."'
+                        ,'".$data['menuId']."','".$data['parentMenu']."','".$data['image']."'
                         ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
                         ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."')";
                         //yang bawah itu nama db @ website
@@ -34,12 +49,20 @@ class mcontent extends Database {
 		} else {
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
-							title        = '".$data['contentTitle']."',
-							lang_id      = '{$data['langID']}',
+							title_bhs = '".$data['title_bhs']."',
+							brief_bhs = '".$data['brief_bhs']."',
+							content_bhs = '".$data['content_bhs']."',
+                            
+                            title_en = '".$data['title_en']."',
+							brief_en = '".$data['brief_en']."',
+							content_en = '".$data['content_en']."',
+                            
+                            title_uzbek = '".$data['title_uzbek']."',
+							brief_uzbek = '".$data['brief_uzbek']."',
+							content_uzbek = '".$data['content_uzbek']."',
+							
 							menuId       = '{$data['menuId']}',
 							parentid     = '{$data['parentMenu']}',
-							brief        = '".$data['brief']."',
-                            content      = '".$data['content']."',
 							image        = '{$data['image']}',
                             file         = '{$data['image_url']}',
 							categoryid   = '{$data['categoryid']}',
