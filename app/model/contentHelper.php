@@ -45,6 +45,41 @@ class contentHelper extends Database {
 	}
 
 	/**
+	** Get content with news menu
+	** @param $title = news title from Config
+	**/
+	function getNewsID($title)
+	{
+		
+		$sql = "SELECT `id` FROM {$this->prefix}_menu_list WHERE nm_eng = '".$title."'";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	/**
+	** Get content of list menu content to be shown
+	** @param $lang = language id
+	** @param 0 = indonesia, 1 = english, 2 = uzbekistan
+	** @param $menu = id of content to be shown
+	** @param $start = query limit start number
+	** @param $limit = query limit end number
+	**/
+	function getNewsList($lang=0, $id=1, $start=0, $limit=5)
+	{
+		
+		$langID = "0";
+		if ($lang) $langID = "{$lang} ";
+
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE lang_id = {$langID} AND id = {$id} $filter LIMIT {$start},{$limit}";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	/**
 	** Get headlines content
 	**/
 	function getHeadlines(){
