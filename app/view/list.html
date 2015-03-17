@@ -2,6 +2,8 @@
     <div class="uzbek-indexNews">
         
         {$menu = $language.menu_field}
+        {$title_field = $language.title_field}
+        {$brief_field = $language.brief_field}
 
         {foreach $title as $getTitle}
         <h3>{$getTitle.$menu}</h3>
@@ -12,8 +14,8 @@
             {foreach $content as $getContent}
             <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
                 <p class="date">{$getContent.posted_date|date_format}</p>
-                <a href="{$basedomain}home/content/?id={$getContent.id}&&type=4&&lang={$smarty.session.lang}" class="title">{$getContent.title}</a>
-                <p class="content text-justify">{$getContent.brief}</p>
+                <a href="{$basedomain}home/content/?id={$getContent.id}&&type=4&&lang={$smarty.session.lang}" class="title">{$getContent.$title_field}</a>
+                <p class="content text-justify">{$getContent.$brief_field}</p>
                 <!--<a href="#" class="more pull-right">Read more..</a>
                 <div class="clearfix"></div>-->
             </div>

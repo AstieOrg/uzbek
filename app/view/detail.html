@@ -2,16 +2,19 @@
     <div class="uzbek-indexNews">
         
         {$menu = $language.menu_field}
+        {$title_field = $language.title_field}
+        {$content_field = $language.content_field}
+
         <!-- START NEWS -->
         
         <div class="row">
             {foreach $content as $getContent}
             <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
-                <h3>{$getContent.title}</h3>
+                <h3>{$getContent.$title_field}</h3>
                 {if $getContent.image}
                   <img src="{$basedomain}public_assets/news/{$getContent.image}" class="img-responsive">
                 {/if}
-                <p class="content text-justify">{$getContent.content|html_entity_decode}</p>
+                <p class="content text-justify">{$getContent.$content_field|html_entity_decode}</p>
                 <!--<a href="#" class="more pull-right">Read more..</a>
                 <div class="clearfix"></div>-->
             </div>
