@@ -87,6 +87,14 @@
          			</li> 
     			</ul>
 			</li>
+            
+            <li class="button {if $page.page=='book'}active{/if}">
+				<a href="{$basedomain}book/booklist">
+					<i class="fa fa-file-text"></i>
+					Book
+					<!--span class="caret"></span-->
+				</a>				
+			</li>
 			
 			<li class="button {if $page.page=='topical' || $page.page=='addtopical'}active{/if}">
 				<a href="{$basedomain}topical">
@@ -103,11 +111,18 @@
 					<!--span class="caret"></span-->
 				</a>				
 			</li>
+            
+            <!--<li class="button {if $page.page=='contactinfo'}active{/if}">
+				<a href="{$basedomain}contactinfo">
+					<i class="fa fa-file-text"></i>
+					Contact Information
+				</a>				
+			</li>-->
 			
 			<li class="button {if $page.page=='contact' }active{/if}">
 				<a href="{$basedomain}contact">
 					<i class="fa fa-file-text"></i>
-					Contact Us
+					Messages
 					<!--span class="caret"></span-->
 				</a>				
 			</li>

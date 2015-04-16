@@ -150,7 +150,7 @@ function imageFrame($filename=false, $framefile=false)
  * @return String full_name = full name of uploaded file, include extension
  * @return String raw_name = raw name of uploaded file
  * */
-function uploadFile($data,$path=null,$ext){
+function uploadFile($data,$path=null,$ext=''){
 	global $CONFIG;
 	
 	if (array_key_exists('admin',$CONFIG)) $key = 'admin';
@@ -166,19 +166,19 @@ function uploadFile($data,$path=null,$ext){
         'real_name' => ''
     );
     */
-    
-    if (!in_array($_FILES[$data]['type'], $CONFIG[$key][$ext])){
-        $result = array(
-            'status' => '0',
-            'message' => 'File type is not allowed.',
-            'full_path' => '',
-            'full_name' => '',
-            'raw_name' => '',
-            'real_name' => ''
-        );
-        return $result;
-    }
-	
+    if($ext){
+        if (!in_array($_FILES[$data]['type'], $CONFIG[$key][$ext])){
+            $result = array(
+                'status' => '0',
+                'message' => 'File type is not allowed.',
+                'full_path' => '',
+                'full_name' => '',
+                'raw_name' => '',
+                'real_name' => ''
+            );
+            return $result;
+        }
+	}
 	logFile(serialize($_FILES[$data]));
 
 	if ($path!='') $path = $path.'/';
