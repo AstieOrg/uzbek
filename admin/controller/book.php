@@ -95,7 +95,7 @@ class book extends Controller {
 						
 						$path_upload = 'book';
 						
-                        if($x['action'] == 'update') deleteFile($x['image'],$path_upload);
+                        if($x['action'] == 'update') deleteFile($x['filename'],$path_upload);
 						$image = uploadFile('file_image',$path_upload);
                         
 						$x['files'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
@@ -120,6 +120,26 @@ class book extends Controller {
         echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
         }
 	}
+    
+    function deleteFile(){
+        global $CONFIG;
+        $path = 'book';
+        
+        foreach($_POST['ids'] as $id){
+            $getfile = $this->mbook->get_book_id($id);
+            $delImage[] = $getfile['filename'];
+        }
+        
+        foreach ($delImage as $image){
+            $delete = deleteFile($image,$path);
+        }
+        
+		$data = $this->mbook->file_del($_POST['ids']);
+		
+        $redirect = $CONFIG['admin']['base_url'].'book/booklist';
+        
+		echo "<script>alert('Data berhasil dihapus');window.location.href='".$redirect."'</script>";
+    }
     
 }
 

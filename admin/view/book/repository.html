@@ -35,18 +35,11 @@
 
 					<div class="table-responsive">
 
-					<form action="{$basedomain}book/imagedel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete this file(s)?');">
+					<form action="{$basedomain}book/deleteFile" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete this file(s)?');">
                     
 					<a href="{$basedomain}book/addfiles"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add File</button></a>
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
-					
-					<select id="artikel" class="btn btn-default btn-sm">
-                        <option value="">All</option>
-                        {foreach $listactivity as $activity}
-                        <option value="{$activity.title}">{$activity.title}</option>
-                        {/foreach}
-                    </select>
                     
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 

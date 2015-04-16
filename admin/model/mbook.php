@@ -136,5 +136,20 @@ class mbook extends Database {
 
 		return $result;
 	}
+    
+    function file_del($id)
+	{
+		//pr($id);
+		foreach ($id as $key => $value) {
+			
+			$query = "DELETE FROM {$this->prefix}_repo WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
 }
 ?>
