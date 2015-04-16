@@ -111,7 +111,7 @@ class home extends Controller {
 		else{$langID = '1';}
 
 		if($type == '0'){
-			$getContent = $this->contentHelper->getNews($langID,$id,'0','10');
+			$getContent = $this->contentHelper->getNews($langID,$id,'0','100');
 			$this->view->assign('content',$getContent);
 			return $this->loadView('list');
 		}
