@@ -76,7 +76,7 @@ class Controller extends Application{
 			if ($lang == 'id'){require_once('lang/id.php');}
 			elseif ($lang == 'en'){require_once('lang/eng.php');}
 			elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
-			else{require_once('lang/eng.php');}
+			else{require_once('lang/id.php');}
 
 			session_start();
 	    	$_SESSION['lang'] = $lang;
@@ -86,6 +86,7 @@ class Controller extends Application{
 			$this->view->assign('leftMenu',$this->leftMenu());
 			$this->view->assign('topicalIssues',$this->topicalIssues());
 			$this->view->assign('bottomMenu',$this->bottomMenu());
+            $this->view->assign('newestBook', $this->book());
 		}
 		
 		
@@ -447,6 +448,14 @@ class Controller extends Application{
 		$getHelper = new helper_model;
 		$getBottomMenu = $getHelper->getBottomMenu();
 		if($getBottomMenu)return $getBottomMenu;
+		return false;
+	}
+    
+    function book(){
+		//GET TOPICAL ISSUES
+		$getHelper = new helper_model;
+		$getNewestBook = $getHelper->getNewestBook();
+		if($getNewestBook)return $getNewestBook;
 		return false;
 	}
 	

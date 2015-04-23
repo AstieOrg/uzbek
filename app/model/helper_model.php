@@ -49,6 +49,17 @@ class helper_model extends Database {
         return false;
     }
     
+    /**
+	** Get newest book
+	**/
+	function getNewestBook(){
+		$sql = "SELECT * FROM {$this->prefix}_repo WHERE gallerytype=0 AND status=1 ORDER BY created_date DESC LIMIT 2;";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+    
     function getNews($id=false, $categoryid=1, $type=1, $start=0, $limit=5)
     {
         
