@@ -76,7 +76,7 @@ class gallery extends Controller {
 								}
 							
                                 $delete = deleteFile($x['image'],$path_upload);
-								//if($x['action'] == 'update') deleteFile($x['image']);
+								//if($x['action'] == 'update') deleteFile($x['image'],$path_upload);
 								$image = uploadFile('file_image',$path_upload,'image');
 								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
@@ -116,6 +116,9 @@ class gallery extends Controller {
 	}
     
 	public function add(){
+        $albumId = $_GET['album'];
+        $data = $this->gallery->get_album($albumId);
+        $this->view->assign('data',$data);
 		return $this->loadView('gallery/inputAlbum');
 	}
 	
