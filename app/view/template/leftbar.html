@@ -32,13 +32,15 @@
 							<div class="clearfix"></div>
 						</div>
 					</div>
+                        {if $newestBook}
                         {foreach $newestBook as $book}
 						<a href="#" class="book" style="font-family:sans-serif;">
 							<h3>{$book.title}</h3>
 							<img class="img-responsive" style="width: 100px;height:138px;" src="{$book.files}">
 							<br>by President of Uzbekistan Islam Karimov
 						</a>
-                        {/foreach}                        
+                        {/foreach}
+                        {/if}                   
 
 						<div class="topicalIssues">
 							<h3>TOPICAL ISSUES</h3>
