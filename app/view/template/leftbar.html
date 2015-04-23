@@ -34,9 +34,9 @@
 					</div>
                         {if $newestBook}
                         {foreach $newestBook as $book}
-						<a href="#" class="book" style="font-family:sans-serif;">
+						<a target="_blank" href="https://docs.google.com/viewer?url={$book.files}" class="book" style="font-family:sans-serif;">
 							<h3>{$book.title}</h3>
-							<img class="img-responsive" style="width: 100px;height:138px;" src="{$book.files}">
+							<img class="img-responsive" style="width: 100px;height:138px;" src="{$book.file_icon}">
 							<br>by President of Uzbekistan Islam Karimov
 						</a>
                         {/foreach}

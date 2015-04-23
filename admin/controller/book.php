@@ -129,7 +129,7 @@ class book extends Controller {
 			}
         }
         
-        echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
+        echo "<script>alert('Data saved');window.location.href='".$redirect."'</script>";
         }
 	}
     
