@@ -73,13 +73,15 @@ class mbook extends Database {
                             title, category, brief,
                             authorid, gallerytype, realname,
                             created_date, status, files,
-                            filename, content
+                            filename, content, icon,
+                            file_icon
                         )
 					VALUES
 						('".$data['title']."','".$data['category']."','".$data['brief']."'
                         ,'".$data['authorid']."','".$data['gallerytype']."','".$data['realname']."'
                         ,'".$data['created_date']."','".$data['status']."','".$data['files']."'
-                        ,'".$data['filename']."','".$data['content']."')";
+                        ,'".$data['filename']."','".$data['content']."','".$data['icon']."'
+                        ,'".$data['file_icon']."')";
                         //pr($query);exit;
 
 		} else {
@@ -94,6 +96,9 @@ class mbook extends Database {
 							files = '{$data['files']}',
                             filename = '{$data['filename']}',
                             realname = '{$data['realname']}',
+                            
+                            icon = '{$data['icon']}',
+                            file_icon = '{$data['file_icon']}',
                             
                             gallerytype = '{$data['gallerytype']}',
                             created_date = '{$data['created_date']}',

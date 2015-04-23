@@ -54,7 +54,7 @@
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
 									</th>
                                     <th data-filterable="true" data-sortable="true">Title</th>
-									<th data-filterable="true" data-sortable="true">Filename</th>
+									<th data-filterable="true" data-sortable="true">Filename & Icon</th>
 									<th data-filterable="true" data-sortable="true">Category</th>
                                     <th data-filterable="true" data-sortable="true">Author</th>
                                     <th data-filterable="true" data-sortable="true">Status</th>
@@ -68,7 +68,10 @@
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
 									</td>
                                     <td><a href="{$basedomain}book/addfiles/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td>{$var.realname}</td>
+									<td>
+                                    <img src="{$var.files}" style="width: 100px;height: 120px;" /><br />
+                                    {$var.realname}
+                                    </td>
 									<td>{$var.category}</td>
 									<td>{$var.username}</td>
                                     <td style="color:{$var.status_color}">{$var.status}</td>

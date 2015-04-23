@@ -61,6 +61,8 @@ $(function () {
                             <input type="hidden" name="files" value="{$data.files}" />
                             <input type="hidden" name="filename" value="{$data.filename}" />
                             <input type="hidden" name="realname" value="{$data.realname}" />
+                            <input type="hidden" name="icon_image" value="{$data.icon}" />
+                            <input type="hidden" name="icon_url" value="{$data.file_icon}" />
                             <input type="hidden" name="gallerytype" value="0" />
 							<!-- hidden -->
 						</div>
@@ -111,6 +113,41 @@ padding: 13px 12px;"></div>
 				</div>
                                 
 			</div>
+            
+            <div class="col-md-3">
+                
+                <div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Icon
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+                        <div class="form-group">                        
+                            <label for="file_icon">Icon Image</label>                        
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+    						  <div class="fileupload-new thumbnail" style="width: 208px; min-height: 120px;">
+                                <img src="{$data.file_icon}" alt="{$data.icon}" /></div>
+    						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
+    						  <div>
+    							<span class="btn btn-default btn-file">
+                                    <span class="fileupload-new">Select image</span>
+                                    <span class="fileupload-exists">Change</span>
+                                    <input type="file" name="file_icon"/>
+                                </span>
+    							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+    						  </div>
+    						</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
 		</div>
 	
 	</form>
