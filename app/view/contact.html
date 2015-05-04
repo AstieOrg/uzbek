@@ -40,17 +40,17 @@
                 
                 <br>
                 <h4>{$send_message}</h4><br>
-                <form class="form-horizontal" role="form" method="POST" action="contact/send_message">
+                <form class="form-horizontal" role="form" method="POST" action="{$basedomain}contact/send_message">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-3 control-label">{$fullname}</label>
                     <div class="col-sm-8">
-                      <input type="text" name="name" class="form-control" id="inputName" placeholder="{$fullname}">
+                      <input type="text" name="name" class="form-control" id="inputName" placeholder="{$fullname}" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-3 control-label">{$email}</label>
                     <div class="col-sm-8">
-                      <input type="email" name="mail" class="form-control" id="inputEmail" placeholder="{$email}">
+                      <input type="email" name="mail" class="form-control" id="inputEmail" placeholder="{$email}" required>
                     </div>
                   </div>
                   <div class="form-group">
@@ -62,13 +62,13 @@
                   <div class="form-group">
                     <label for="inputSubject" class="col-sm-3 control-label">{$subject}</label>
                     <div class="col-sm-8">
-                      <input type="text" name="subject" class="form-control" id="inputSubject" placeholder="{$subject}">
+                      <input type="text" name="subject" class="form-control" id="inputSubject" placeholder="{$subject}" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputMsg" class="col-sm-3 control-label">{$msg}</label>
                     <div class="col-sm-8">
-                      <textarea name="message" class="form-control" id="inputMsg" placeholder="{$msg}"></textarea>
+                      <textarea name="message" class="form-control" id="inputMsg" placeholder="{$msg}" required></textarea>
                     </div>
                   </div>
                   <div class="form-group">

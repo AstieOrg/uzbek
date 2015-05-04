@@ -11,6 +11,7 @@ $LANG['contact'] = 'Kontak';
 $LANG['contact_us'] = 'Kontak Kami';
 $LANG['our_office'] = 'Kantor Kami';
 $LANG['address'] = 'Alamat';
+$LANG['message'] = 'Message';
 $LANG['phone'] = 'No.Telepon';
 $LANG['email_address'] = 'Alamat Email';
 $LANG['fullname'] = 'Nama Lengkap';
