@@ -79,7 +79,7 @@ class home extends Controller {
     /**
 	** To show every content's view
 	** @param $lang = type of language
-	** @return default empty is for Indonesia, id = Indonesia, en = English, uz = Uzbekistan
+	** @return default empty is for English, id = Indonesia, en = English, uz = Uzbekistan
 	** @param $id = id of content to be shown
 	** @param $type = type of content to be shown
 	** @return 0 = list, 1 = detail, 2 = detail for topical issues, 3 = detail for bottom menu

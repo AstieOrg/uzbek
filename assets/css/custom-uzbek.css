@@ -46,6 +46,12 @@ body{
     padding-bottom: 15px;
 }
 
+.nomargin{
+    margin: 0;
+}
+.nomargin-t{
+    margin-top: 0;
+}
 .margin-b{
     margin-bottom: 15px;
 }

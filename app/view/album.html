@@ -3,6 +3,7 @@
     <div class="row" style="margin: 0;">
         
         {foreach $album as $getAlbum}
+        {if $getAlbum}
         <div class="col-xs-4" style="margin-bottom: 10px;">
             <div class="uzbek-album">
             <a href="{$basedomain}media/viewAlbum/?id={$getAlbum.id}">
@@ -14,6 +15,7 @@
             </div>
             </div>
         </div>
+        {/if}
         {/foreach}
     </div>
 
