@@ -1,6 +1,6 @@
 <?php
 /*Query Database*/
-class mcontact extends Database {
+class mmessage extends Database {
 	
 	var $prefix = "uzbemb";
 	function contact_inp($data)
@@ -23,7 +23,7 @@ class mcontact extends Database {
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
-						{$this->prefix}_contact_list (name, mail, tel, subject, message)
+						{$this->prefix}_message (name, mail, tel, subject, message)
 					VALUES
 						('".$data['mnameBahasa']."','".$data['mnameEng']."','".$data['mnameRus']."','".$data['menuType']."'
                         ,'".$data['menuPos']."','".$data['menuStat']."','".$data['menuParent']."','".$data['dateCreate']."','".$data['stats']."')";
@@ -56,10 +56,10 @@ class mcontact extends Database {
 	function get_contact($condition,$n_stats)
 	{
 		if($condition){
- 			$query = "SELECT * FROM {$this->prefix}_contact_list WHERE n_stats = '{$n_stats}' ORDER BY date_received DESC";
+ 			$query = "SELECT * FROM {$this->prefix}_message WHERE n_stats = '{$n_stats}' ORDER BY date_received DESC";
  		}
  		else{
- 			$query = "SELECT * FROM {$this->prefix}_contact_list ORDER BY date_received DESC";
+ 			$query = "SELECT * FROM {$this->prefix}_message ORDER BY date_received DESC";
  		}
  		$result = $this->fetch($query,1);
  		
@@ -67,13 +67,13 @@ class mcontact extends Database {
 	}
     
     function read_msg($id){
-    	$query = "UPDATE {$this->prefix}_contact_list SET n_stats = '1' WHERE id = $id;";
+    	$query = "UPDATE {$this->prefix}_message SET n_stats = '1' WHERE id = $id;";
     	$result = $this->query($query);
     	return true;
     }
 
     function get_single_msg($id){
-    	$query = "SELECT * FROM {$this->prefix}_contact_list WHERE id = $id";
+    	$query = "SELECT * FROM {$this->prefix}_message WHERE id = $id";
     	$result = $this->fetch($query,1);
     	return $result;
     }
@@ -84,9 +84,9 @@ class mcontact extends Database {
 			
 			
             if($action == 'delete'){
-                $query = "DELETE FROM {$this->prefix}_contact_list WHERE id = '{$value}'";
+                $query = "DELETE FROM {$this->prefix}_message WHERE id = '{$value}'";
             }else{
-                $query = "UPDATE {$this->prefix}_contact_list SET n_status = '2' WHERE id = '{$value}'";
+                $query = "UPDATE {$this->prefix}_message SET n_status = '2' WHERE id = '{$value}'";
             }
 		
 			$result = $this->query($query);

@@ -16,27 +16,11 @@
         
         <div class="row">
             <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
-                <h4>{$office}</h4>
+                {foreach $contactContent as $getContactContent}
+                  {$content = $language.content_field}
 
-                <table width="100%" border="0" cellspacing="0" cellpadding="4" class="home_content">
-                    <tbody>
-                        <tr valign="top">
-                            <td align="left">{$address}</td>
-                            <td align="center">:</td>
-                            <td align="left">Jl. Daksa III. 14, Kebayoran Baru, Jakarta Selatan</td>
-                        </tr>
-                        <tr valign="top">
-                            <td align="left">{$phone}</td>
-                            <td align="center">:</td>
-                            <td align="left">(62-21) 7200950/7200972</td>
-                        </tr>
-                        <tr valign="top">
-                            <td align="left">{$email}</td>
-                            <td align="center">:</td>
-                            <td align="left">inbox@uzbemb.or.id</td>
-                        </tr>
-                    </tbody>
-                </table>
+                  {$getContactContent.$content|html_entity_decode}
+                {/foreach}
                 
                 <br>
                 <h4>{$send_message}</h4><br>

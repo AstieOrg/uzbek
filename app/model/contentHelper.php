@@ -195,6 +195,17 @@ class contentHelper extends Database {
 	}
 
 	/**
+	** Get contact content
+	**/
+	function getContactContent(){
+		$sql = "SELECT * FROM {$this->prefix}_contactus;";
+		//pr($sql);exit;
+		$res = $this->fetch($sql,1);
+		if ($res) return $res;
+		return false;
+	}
+
+	/**
 	** Send message query
 	** @todo Insert posted data into database
 	** @param $table = name of table to be processed

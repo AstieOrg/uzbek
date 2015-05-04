@@ -16,7 +16,7 @@ class Controller extends Application{
 				$GLOBALS['CODEKIR']['LOGS'] = new helper_model;	
 			}elseif($this->configkey=='admin'){
 				$this->loadModel('getMenuHelper');
-				$this->loadModel('mcontact');
+				$this->loadModel('mmessage');
 			}
 		}
 	}
@@ -385,7 +385,7 @@ class Controller extends Application{
 	}
 
 	function inbox_notif(){
-		$notification = new mcontact;
+		$notification = new mmessage;
 		$data = $notification->get_contact(true,'0');
 		if($data) return $data;
 		return false;

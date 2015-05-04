@@ -35,6 +35,15 @@ class contact extends Controller {
 		session_start();
     	$_SESSION['lang'] = $lang;
     	$this->view->assign('language',$LANG);
+
+    	//GET Contact Content
+		$getContactContent = $this->contentHelper->getContactContent();
+		foreach ($getContactContent as $key => $value) {
+			$getContactContent[$key]['content_bhs'] = html_entity_decode($value['content_bhs'],ENT_QUOTES, 'UTF-8');
+			$getContactContent[$key]['content_en'] = html_entity_decode($value['content_en'],ENT_QUOTES, 'UTF-8');
+			$getContactContent[$key]['content_uzbek'] = html_entity_decode($value['content_uzbek'],ENT_QUOTES, 'UTF-8');
+		}
+		$this->view->assign('contactContent',$getContactContent);
     	
     	
 		return $this->loadView('contact');
@@ -67,7 +76,7 @@ class contact extends Controller {
 	    	}
 
     	if(!empty($data)){
-    		$insertMail = $this->contentHelper->sendMsg('uzbemb_contact_list',$data);
+    		$insertMail = $this->contentHelper->sendMsg('uzbemb_message',$data);
 	    	echo "<script>alert('".$message."');window.location.href='".$basedomain."contact/index/?lang='".$langURL."</script>";
     	}
     }
