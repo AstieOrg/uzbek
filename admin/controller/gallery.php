@@ -111,7 +111,7 @@ class gallery extends Controller {
 				}
             }
             
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
+            echo "<script>alert('Data has been saved');window.location.href='".$redirect."'</script>";
             }
 	}
     
@@ -137,7 +137,7 @@ class gallery extends Controller {
 
 		$data = $this->gallery->gallery_del($_POST['ids']);
 		
-		echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."gallery'</script>";
+		echo "<script>alert('Data has been deleted');window.location.href='".$CONFIG['admin']['base_url']."gallery'</script>";
 		
 	}
 	public function imagedel(){
@@ -147,7 +147,7 @@ class gallery extends Controller {
         
 		$data = $this->gallery->image_del($_POST['ids']);
 		
-		echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."gallery/album/?album=".$albumid."'</script>";
+		echo "<script>alert('Data has been deleted');window.location.href='".$CONFIG['admin']['base_url']."gallery/album/?album=".$albumid."'</script>";
 		
 	}
 	public function addImages(){
@@ -199,7 +199,7 @@ class gallery extends Controller {
 			}
         }
         
-        echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
+        echo "<script>alert('Data has been saved');window.location.href='".$redirect."'</script>";
         }
 	}
 }

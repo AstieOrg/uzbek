@@ -140,7 +140,7 @@ class contentHelper extends Database {
 	** Get album content
 	**/
 	function getAlbum(){
-		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid = 9 AND n_status=0";
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid = 9 AND n_status=1";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

@@ -76,7 +76,7 @@ class Controller extends Application{
 			if ($lang == 'id'){require_once('lang/id.php');}
 			elseif ($lang == 'en'){require_once('lang/eng.php');}
 			elseif ($lang == 'uz'){require_once('lang/uzbek.php');}
-			else{require_once('lang/id.php');}
+			else{require_once('lang/eng.php');}
 
 			session_start();
 	    	$_SESSION['lang'] = $lang;
