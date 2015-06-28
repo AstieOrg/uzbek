@@ -103,10 +103,18 @@ class content extends Controller {
             foreach($_POST['ids'] as $id){
                 $getfile = $this->models->get_content_id($id);
                 $delImage[] = $getfile['image'];
+                $del_doc[] = $getfile['document_filename'];
+                $del_cover[] = $getfile['document_covername'];
             }
             
             foreach ($delImage as $image){
                 deleteFile($image,'news');
+            }
+            foreach ($del_doc as $doc){
+                deleteFile($doc,'news/docs');
+            }
+            foreach ($del_cover as $cover){
+                deleteFile($cover,'news/docs/cover');
             }
             
             $data = $this->models->content_del($ids, $action);
