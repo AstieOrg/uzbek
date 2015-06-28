@@ -66,6 +66,11 @@ $(function () {
 									<input type="hidden" name="image_url" value="{$data.file}" />
 									<input type="hidden" name="menuId" value="{$menuid}" />
                                     
+                                    <input type="hidden" name="document_file" value="{$data.document_file}" />
+									<input type="hidden" name="document_filename" value="{$data.document_filename}" />
+                                    <input type="hidden" name="document_cover" value="{$data.document_cover}" />
+									<input type="hidden" name="document_covername" value="{$data.document_covername}" />
+                                    
                                     <!-- not used -->
                                     <input type="hidden" name="parentMenu" value="0" />
                                     <input type="hidden" name="articletype" value="0" />
@@ -222,6 +227,50 @@ $(function () {
                                     <span class="fileupload-new">Select image</span>
                                     <span class="fileupload-exists">Change</span>
                                     <input type="file" name="file_image"/>
+                                </span>
+    							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+    						  </div>
+    						</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Document
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+                        {if $data.document_cover != ''}
+                        <div class="form-group">
+                            <a target="_blank" href="https://docs.google.com/viewer?url={$data.document_file}">
+                                <button type="button" class="btn btn-default" >View File</button>
+                            </a>
+                        </div>
+                        {/if}
+                        <div class="form-group">
+                            <label for="doc_file">Choose Document</label>
+                            <input type="file" name="doc_file" class="form-control" value="{$data.title_uzbek}"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="doc_cover">Document Cover</label>
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+    						  <div class="fileupload-new thumbnail" style="width: 200px; height: 180px;">
+                                <img src="{$data.document_cover}" alt="{$data.document_covername}" /></div>
+    						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
+    						  <div>
+    							<span class="btn btn-default btn-file">
+                                    <span class="fileupload-new">Select image</span>
+                                    <span class="fileupload-exists">Change</span>
+                                    <input type="file" name="doc_cover"/>
                                 </span>
     							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
     						  </div>

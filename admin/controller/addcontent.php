@@ -82,6 +82,7 @@ class addcontent extends Controller {
 		if(isset($_POST)){
                 // validasi value yang masuk
                $x = form_validation($_POST);
+               
 			   try
 			   {
 			   		if(isset($x) && count($x) != 0)
@@ -102,7 +103,22 @@ class addcontent extends Controller {
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
+                            if($_FILES['doc_file']['name'] != ''){
+								if($x['action'] == 'update') deleteFile($x['document_filename'],'news/docs');
+								$document = uploadFile('doc_file','news/docs','document_ext');
+								
+								$x['document_file'] = $CONFIG['admin']['app_url'].$document['folder_name'].$document['full_name'];
+								$x['document_filename'] = $document['full_name'];
+							}
+                            if($_FILES['doc_cover']['name'] != ''){
+								if($x['action'] == 'update') deleteFile($x['document_covername'],'news/docs/cover');
+								$cover = uploadFile('doc_cover','news/docs/cover','image');
+								
+								$x['document_cover'] = $CONFIG['admin']['app_url'].$cover['folder_name'].$cover['full_name'];
+								$x['document_covername'] = $cover['full_name'];
+							}
 						}
+                        
 						$data = $this->models->content_inp($x);
 			   		}
 				   	

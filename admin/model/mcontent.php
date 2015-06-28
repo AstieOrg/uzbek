@@ -35,14 +35,18 @@ class mcontent extends Database {
                                 title_en,brief_en,content_en,
                                 title_uzbek,brief_uzbek,content_uzbek,
                                 menuId,parentid,image,file,categoryid,articletype,
-                                created_date,posted_date,expired_date,authorid,n_status)
+                                created_date,posted_date,expired_date,authorid,n_status,
+                                document_file,document_filename,
+                                document_cover,document_covername)
 					VALUES
 						('".$data['title_bhs']."','".$data['brief_bhs']."','".$data['content_bhs']."'
                         ,'".$data['title_en']."','".$data['brief_en']."','".$data['content_en']."'
                         ,'".$data['title_uzbek']."','".$data['brief_uzbek']."','".$data['content_uzbek']."'
                         ,'".$data['menuId']."','".$data['parentMenu']."','".$data['image']."'
                         ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
-                        ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."')";
+                        ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."'
+                        ,'".$data['document_file']."','".$data['document_filename']."'
+                        ,'".$data['document_cover']."','".$data['document_covername']."')";
                         //yang bawah itu nama db @ website
                         //pr($query);exit;
 
@@ -69,7 +73,12 @@ class mcontent extends Database {
 							articletype  = '{$data['articletype']}',
                             posted_date  = '{$data['postdate']}',
                             expired_date = '{$data['expired_date']}',
-                            authorid     = '{$data['authorid']}'
+                            authorid     = '{$data['authorid']}',
+                            
+                            document_file = '{$data['document_file']}',
+                            document_filename = '{$data['document_filename']}',
+                            document_cover = '{$data['document_cover']}',
+                            document_covername = '{$data['document_covername']}'
                             
 						WHERE
 							id = '{$data['id']}'";
