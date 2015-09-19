@@ -118,7 +118,7 @@ class contentHelper extends Database {
 	** Get newest photo content
 	**/
 	function getNewestPhoto(){
-		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid=9 AND n_status=0 ORDER BY id DESC LIMIT 5;";
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid=9 AND n_status=1 ORDER BY id DESC LIMIT 5;";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;

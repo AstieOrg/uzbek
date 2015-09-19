@@ -59,7 +59,7 @@ class home extends Controller {
 		global $newstitle;
 		$getNewsID = $this->contentHelper->getNewsID($newstitle);
 
-		$getNews = $this->contentHelper->getNews($langID,$getNewsID['0']['id'],'0','6');
+		$getNews = $this->contentHelper->getNews($langID,$getNewsID['0']['id'],'0','9');
 		$this->view->assign('news',$getNews);
 
 		//GET NEWEST PHOTO
