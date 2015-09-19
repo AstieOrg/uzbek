@@ -72,8 +72,6 @@ body{
 /** Navbar CSS **/
 .uzbek-navbar{
     margin-top: -50px;
-    width: 70%;
-    margin-left: 15%;
     border-radius: 5px 5px 0 0;
     background: #35a9ec; /* Old browsers */
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
