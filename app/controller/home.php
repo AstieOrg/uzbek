@@ -117,7 +117,14 @@ class home extends Controller {
 		}
 		else if($type == '1' || $type ==''){
 			$getContent = $this->contentHelper->getNews($langID,$id,'0','1');
-			$this->view->assign('content',$getContent);
+			if($getContent){
+				foreach ($getContent as $key => $value) {
+					$getContent[$key]['document_filesize'] = formatSizeUnits($value['document_filesize']);
+				}
+				
+				$this->view->assign('content',$getContent);
+			}
+			
 			return $this->loadView('detail');
 		}
 		else if($type == '2'){

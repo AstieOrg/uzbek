@@ -102,6 +102,7 @@ class addcontent extends Controller {
 								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
+								$x['document_filesize'] = $_FILES['file_image']['size'];
 							}
                             if($_FILES['doc_file']['name'] != ''){
 								if($x['action'] == 'update') deleteFile($x['document_filename'],'news/docs');
@@ -109,6 +110,7 @@ class addcontent extends Controller {
 								
 								$x['document_file'] = $CONFIG['admin']['app_url'].$document['folder_name'].$document['full_name'];
 								$x['document_filename'] = $document['full_name'];
+								$x['document_filesize'] = $_FILES['doc_file']['size'];
 							}
                             if($_FILES['doc_cover']['name'] != ''){
 								if($x['action'] == 'update') deleteFile($x['document_covername'],'news/docs/cover');
@@ -117,9 +119,11 @@ class addcontent extends Controller {
 								$x['document_cover'] = $CONFIG['admin']['app_url'].$cover['folder_name'].$cover['full_name'];
 								$x['document_covername'] = $cover['full_name'];
 							}
+							
 						}
-                        
+                        //pr($_FILES);exit;
 						$data = $this->models->content_inp($x);
+
 			   		}
 				   	
 			   }catch (Exception $e){}

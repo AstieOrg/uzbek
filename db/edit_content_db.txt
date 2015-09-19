@@ -8,10 +8,21 @@ ALTER TABLE `uzbemb_news_content`  ADD `title_uzbek` VARCHAR(200) NOT NULL ;
 ALTER TABLE `uzbemb_news_content`  ADD `brief_uzbek` TEXT NOT NULL ;
 ALTER TABLE `uzbemb_news_content`  ADD `content_uzbek` TEXT NOT NULL ;
 
+ALTER TABLE `uzbemb_news_content`  DROP `title` ;
+ALTER TABLE `uzbemb_news_content`  DROP `brief` ;
+ALTER TABLE `uzbemb_news_content`  DROP `content` ;
+ALTER TABLE `uzbemb_news_content`  DROP `content` ;
 ALTER TABLE `uzbemb_news_content`  DROP langID;
 
+
+//28-06-2015
 ALTER TABLE `uzbemb_news_content`
 ADD `document_file` VARCHAR(200) NOT NULL ,
 ADD `document_filename` VARCHAR(200) NOT NULL ,
 ADD `document_cover` VARCHAR(200) NOT NULL ,
 ADD `document_covername` VARCHAR(200) NOT NULL ;
+ADD `document_covername` VARCHAR(200) NOT NULL ;
+
+
+//19-09-2015
+ALTER TABLE `uzbemb_news_content` ADD `document_filesize` VARCHAR(200) NOT NULL ;

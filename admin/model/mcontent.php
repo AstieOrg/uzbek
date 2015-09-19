@@ -37,7 +37,7 @@ class mcontent extends Database {
                                 menuId,parentid,image,file,categoryid,articletype,
                                 created_date,posted_date,expired_date,authorid,n_status,
                                 document_file,document_filename,
-                                document_cover,document_covername)
+                                document_cover,document_covername,document_filesize)
 					VALUES
 						('".$data['title_bhs']."','".$data['brief_bhs']."','".$data['content_bhs']."'
                         ,'".$data['title_en']."','".$data['brief_en']."','".$data['content_en']."'
@@ -46,11 +46,17 @@ class mcontent extends Database {
                         ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
                         ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."'
                         ,'".$data['document_file']."','".$data['document_filename']."'
-                        ,'".$data['document_cover']."','".$data['document_covername']."')";
+                        ,'".$data['document_cover']."','".$data['document_covername']."','".$data['document_filesize']."')";
                         //yang bawah itu nama db @ website
                         //pr($query);exit;
 
 		} else {
+			if($data['document_filesize'] == ''){
+				$document_filesize = "";
+			}
+			else{
+				$document_filesize = ",document_filesize = '".$data['document_filesize']."'";
+			}
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title_bhs = '".$data['title_bhs']."',
@@ -79,11 +85,12 @@ class mcontent extends Database {
                             document_filename = '{$data['document_filename']}',
                             document_cover = '{$data['document_cover']}',
                             document_covername = '{$data['document_covername']}'
+                            {$document_filesize}
                             
 						WHERE
 							id = '{$data['id']}'";
 		}
-// pr($query);
+//pr($query);
 		$result = $this->query($query);
 		
 		return $result;

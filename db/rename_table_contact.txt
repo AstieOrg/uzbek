@@ -1,1 +1,0 @@
-RENAME TABLE `uzbemb_contact_list` TO `uzbemb_message`;

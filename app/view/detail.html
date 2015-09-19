@@ -14,7 +14,13 @@
                 {if $getContent.image}
                   <img src="{$basedomain}public_assets/news/{$getContent.image}" class="img-responsive">
                 {/if}
-                <p class="content text-justify">{$getContent.$content_field|html_entity_decode}</p>
+                {if $getContent.document_cover}
+                <div class="pull-right" style="max-width: 15%; margin-left: 10px;">
+                    <img src="{$basedomain}public_assets/news/docs/cover/{$getContent.document_covername}" class="img-responsive"><br>
+                    <a href="{$basedomain}public_assets/news/docs/{$getContent.document_filename}">Download ({$getContent.document_filesize})</a>
+                </div>
+                {/if}
+                {$getContent.$content_field|html_entity_decode}
                 <!--<a href="#" class="more pull-right">Read more..</a>
                 <div class="clearfix"></div>-->
             </div>

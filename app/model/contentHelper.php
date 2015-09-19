@@ -37,7 +37,7 @@ class contentHelper extends Database {
 		$langID = "0";
 		if ($lang) $langID = "{$lang} ";
 
-		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE menuId = {$menu} $filter ORDER BY id DESC LIMIT {$start},{$limit}";
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE menuId = {$menu} AND n_status = '1' $filter ORDER BY id DESC LIMIT {$start},{$limit}";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;
