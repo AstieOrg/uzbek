@@ -15,7 +15,7 @@ class getMenuHelper extends Database {
 
 	function getMenuData()
 	{
-		$sql = "SELECT * FROM {$this->prefix}_menu_list WHERE pos=0 OR pos=1";
+		$sql = "SELECT * FROM {$this->prefix}_menu_list";
 		$res = $this->fetch($sql, 1);
 		if ($res) return $res;
 		return false;

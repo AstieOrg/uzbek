@@ -42,6 +42,9 @@ class home extends Controller {
                 if($val['pos'] == '2'){
 					$data[$key]['pos'] = 'Topical';
 				}
+                if($val['pos'] == '3'){
+					$data[$key]['pos'] = 'Bottom';
+				}
                 
                 $data[$key]['id_parent'] = '-';
                 if($val['id_parent'] != 0) {

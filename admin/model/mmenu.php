@@ -21,14 +21,19 @@ class mmenu extends Database {
         $data['mnameEng'] = mysql_escape_string($data['mnameEng']);
         $data['nm_uzbek'] = mysql_escape_string($data['nm_uzbek']);
         
+        if($data['pos'] == 2 OR $data['pos'] == 3){
+            $data['menuStat'] = 0;
+            $data['menuParent'] = 0;
+        }
+        
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
-						{$this->prefix}_menu_list (nm_bhs, nm_eng, nm_uzbek, menu_type, pos, is_child, id_parent, date_created, n_stats)
+						{$this->prefix}_menu_list (nm_bhs, nm_eng, nm_uzbek, menu_type, pos, is_child, id_parent, date_created, n_stats, icon_image, file_icon)
 					VALUES
 						('".$data['mnameBahasa']."','".$data['mnameEng']."','".$data['nm_uzbek']."','".$data['menuType']."'
                         ,'".$data['pos']."','".$data['menuStat']."','".$data['menuParent']."','".$data['dateCreate']."'
-                        ,'".$data['n_stats']."')";
+                        ,'".$data['n_stats']."','".$data['icon_image']."','".$data['file_icon']."')";
 
 		} // kondisi untuk update.
 		else {
@@ -43,11 +48,13 @@ class mmenu extends Database {
                             is_child = '{$data['menuStat']}',
 							id_parent = '{$data['menuParent']}',
                             date_created = '{$data['dateCreate']}',
-                            n_stats = '{$data['n_stats']}'
+                            n_stats = '{$data['n_stats']}',
+                            icon_image = '{$data['icon_image']}',
+                            file_icon = '{$data['file_icon']}'
 						WHERE
 							id = '{$data['id']}'";
 		}
-        
+        //print_r($query);exit;
 		$result = $this->query($query);
 		
 		return $result;
@@ -55,7 +62,7 @@ class mmenu extends Database {
 	//n_stat : status menu itu udah di delete atau belum, klo 1 udah di delete -> masuk ke trash
 	function get_menu()
 	{
- 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE n_stats != 2 AND pos=0 OR n_stats != 2 AND pos=1 ORDER BY date_created DESC";
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE n_stats != 2 ORDER BY date_created DESC";
  		
  		$result = $this->fetch($query,1);
  

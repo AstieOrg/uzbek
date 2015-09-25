@@ -94,7 +94,20 @@ class menu extends Controller {
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
+                            
+                            if($_FILES['file_icon']['name'] != ''){
+                                
+                                $path = 'news';
+
+                                if($x['action'] == 'update') deleteFile($x['icon_url'],$path.'/icon');
+                                
+								$icon = uploadFile('file_icon',$path.'/icon','image');
+                                
+								$x['file_icon'] = $CONFIG['admin']['app_url'].$icon['folder_name'].$icon['full_name'];
+								$x['icon_image'] = $icon['full_name'];
+							}
 						}
+                        //print_r($x);exit;
 						$data = $this->models->menu_inp($x);
 						//$menuList = $this->getmenuModels->menu_inp($x);
 			   		}

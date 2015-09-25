@@ -19,7 +19,13 @@ $(function () {
 
 <div id="content-container">
 	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}menu/menuinp" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="{$data.id}" />
+        
+        <!-- hidden -->
+		<input type="hidden" name="id" value="{$data.id}" />
+		<input type="hidden" name="icon_url" value="{$data.icon_image}" />
+		
+		<!-- hidden -->
+        
 		<div class="row">
 			<div class="col-md-9">
 				<div class="portlet">
@@ -65,7 +71,7 @@ $(function () {
                             <input type="hidden" name="menuStat" value="0" />
 						</div>	
 						
-                <div class="col-sm-7">			
+                <div class="col-sm-7 parentoption">			
     			    <div class="form-group">
     				    <label type="text">Menu Status </label>
                         <!-- {if $data.menu_type==1}disabled{/if} -->
@@ -80,9 +86,11 @@ $(function () {
     				<div class="form-group">
                         <label for="text-input">Menu Position</label>
                         
-                        <select name="pos" class="form-control" >
+                        <select name="pos" id="pos" class="form-control" >
                             <option value="0" {if $data.pos==0}selected{/if} >Top menu</option>
                             <option value="1" {if $data.pos==1}selected{/if} >Side menu</option>
+                            <option value="2" {if $data.pos==2}selected{/if} >Topical menu</option>
+                            <option value="3" {if $data.pos==3}selected{/if} >Bottom menu</option>
                         </select>
                     </div>
     			</div>	
@@ -93,9 +101,9 @@ $(function () {
                         <select name="menuParent" class="form-control" >
                         <option value="0" selected >Select Parent Menu</option>
                         {foreach $menu as $eachMenu}
-                        
+                        {if $eachMenu.menu_type==0}
                         <option value="{$eachMenu.id}" {if $data.id_parent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>
-                        
+                        {/if}
                         {/foreach}
 				      
 				      
@@ -109,6 +117,15 @@ $(function () {
                 <script>
                 $(document).ready(function() {
                     $('.parentMenu').show();
+                } );
+                </script>
+                {/if}
+                
+                {if $data.pos==2 || $data.pos==3}
+                <script>
+                $(document).ready(function() {
+                    $('#form-icon').show();
+                    $('.parentMenu').hide();
                 } );
                 </script>
                 {/if}
@@ -145,6 +162,40 @@ $(function () {
 				</div>
                                 
 			</div>
+            
+            <div class="col-md-3">
+                <div class="portlet"  id="form-icon" style="display: none;">
+
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Icon
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+                        <div class="form-group">                        
+                            <label for="file_icon">Icon Image</label>                        
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+    						  <div class="fileupload-new thumbnail" style="width: 208px; min-height: 120px;">
+                                <img src="{$data.file_icon}" alt="{$data.icon}" /></div>
+    						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
+    						  <div>
+    							<span class="btn btn-default btn-file">
+                                    <span class="fileupload-new">Select image</span>
+                                    <span class="fileupload-exists">Change</span>
+                                    <input type="file" name="file_icon"/>
+                                </span>
+    							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+    						  </div>
+    						</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
 		</div>
 	
 	</form>
@@ -158,6 +209,19 @@ $(document).ready(function() {
             $('.parentMenu').show();
         }else{
             $('.parentMenu').hide();
+        }
+    });
+    
+    /* Add event listener to the dropdown input */
+    $('#pos').change( function() {
+        var menu_type = $( this ).val();
+        if(menu_type == 2 || menu_type == 3){
+            $('#form-icon').show();
+            $('.parentMenu').hide();
+            $('.parentoption').hide();
+        }else{
+            $('#form-icon').hide();
+            $('.parentoption').show();
         }
     });
     
