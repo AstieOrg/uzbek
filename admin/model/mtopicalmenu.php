@@ -1,6 +1,6 @@
 <?php
 /*Query Database*/
-class mmenu extends Database {
+class mtopicalmenu extends Database {
 	
 	var $prefix = "uzbemb";
 	function menu_inp($data)
@@ -55,7 +55,7 @@ class mmenu extends Database {
 	//n_stat : status menu itu udah di delete atau belum, klo 1 udah di delete -> masuk ke trash
 	function get_menu()
 	{
- 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE n_stats != 2 AND pos=0 OR n_stats != 2 AND pos=1 ORDER BY date_created DESC";
+ 		$query = "SELECT * FROM {$this->prefix}_menu_list WHERE n_stats != 2 AND pos=2 ORDER BY date_created DESC";
  		
  		$result = $this->fetch($query,1);
  

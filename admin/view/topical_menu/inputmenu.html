@@ -1,0 +1,178 @@
+<script>
+$(function () {
+	$('#postdate').datepicker ();
+	$('#expiredate').datepicker ();
+	
+	$("#isi").jqte();
+	
+	$('input:checkbox, input:radio').iCheck({
+		checkboxClass: 'icheckbox_minimal-blue',
+		radioClass: 'iradio_minimal-blue',
+		inheritClass: true
+	})
+})
+</script>
+
+<div id="content-header">
+	<h1>Add New Menu</h1>
+</div> <!-- #content-header -->	
+
+<div id="content-container">
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}topical_menu/menuinp" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{$data.id}" />
+		<div class="row">
+			<div class="col-md-9">
+				<div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							New Menu Form
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+				
+						<div class="col-sm-12">
+							<div class="form-group">
+                                <label for="text-input">Menu Name in Bahasa</label>
+                                <input type="text" name="mnameBahasa" class="form-control" value="{$data.nm_bhs}" data-required="true"/>
+							</div>
+						</div>
+        			<div class="col-sm-12">
+        				<div class="form-group">
+        					<label for="text-input">Menu Name in English</label>
+        					<input type="text" name="mnameEng" class="form-control" value="{$data.nm_eng}" data-required="true"/>
+        				</div>
+        			</div>
+        			<div class="col-sm-12">
+							<div class="form-group">
+                                <label for="text-input">Menu Name in Uzbekistan</label>
+                                <input type="text" name="nm_uzbek" class="form-control" value="{$data.nm_uzbek}" data-required="true"/>
+							</div>
+						</div>
+                        <div class="col-sm-7">
+				            <div class="form-group">
+                                <label for="text-input">Category</label>                                
+                                <select id="menuType" name="menuType" class="form-control"  >
+                                    <option value="0" {if $data.menu_type==0}selected{/if} >List</option>
+                                    <option value="1" {if $data.menu_type==1}selected{/if} >Article</option>
+                                    <!--<option value="2" {if $data.menu_type==2}selected{/if} >Gallery</option>-->
+                                </select>
+                            </div>
+                            <input type="hidden" name="menuStat" value="0" />
+						</div>	
+						
+                <div class="col-sm-7">			
+    			    <div class="form-group">
+    				    <label type="text">Menu Status </label>
+                        <!-- {if $data.menu_type==1}disabled{/if} -->
+    				    <select id="is_child" name="menuStat" class="form-control" {$parentOption}>
+    					<option value="0" {if $data.is_child==0}selected{/if} {$parentselected}>Parent</option>
+    					<option value="1" {if $data.is_child==1}selected{/if} >Child</option>
+    				    </select>
+    			    </div>
+    			</div>	
+                
+                <div class="col-sm-5">
+    				<div class="form-group">
+                        <label for="text-input">Menu Position</label>
+                        
+                        <select name="pos" class="form-control">
+                            <option value="2" {if $data.pos==2}selected{/if} >Topical menu</option>
+                        </select>
+                    </div>
+    			</div>	
+                
+    			<div class="col-sm-6 parentMenu" style="display: none;">			
+				    <div class="form-group">
+                        <label for="text-input">Menu Parent</label>
+                        <select name="menuParent" class="form-control" >
+                        <option value="0" selected >Select Parent Menu</option>
+                        {foreach $menu as $eachMenu}
+                        
+                        <option value="{$eachMenu.id}" {if $data.id_parent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>
+                        
+                        {/foreach}
+				      
+				      
+				      </select>
+    				</div>
+    			</div>
+                
+                	
+    			
+                {if $data.is_child==1}
+                <script>
+                $(document).ready(function() {
+                    $('.parentMenu').show();
+                } );
+                </script>
+                {/if}
+                
+                
+								                                                
+                        <div class="col-sm-12">
+                        <div class="row">               
+                            <div class="col-sm-6">
+                                <div class="form-group">
+            						<label for="select-input">Date created</label>
+            						<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+            							<input class="form-control" type="text" name="dateCreate" value="{$data.date_created}" data-required="true">
+            							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            						</div>
+            						
+            					</div>
+            					
+            					<div class="form-group">
+            							<div class="checkbox">
+            								<label>
+            									<input type="checkbox" name="n_stats" class="" {$data.n_stats} >
+            									Publish Menu
+            								</label>
+            							</div>
+            					</div>
+            					
+            					<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+                            </div>
+                        </div>
+                        </div>                     
+                                                                                                                        
+					</div>
+				</div>
+                                
+			</div>
+		</div>
+	
+	</form>
+</div>
+<script>
+$(document).ready(function() {
+    /* Add event listener to the dropdown input */
+    $('#is_child').change( function() {
+        var is_child = $( this ).val();
+        if(is_child == 1){
+            $('.parentMenu').show();
+        }else{
+            $('.parentMenu').hide();
+        }
+    });
+    
+    $('#validate-enhanced').bind('submit', function() {
+        $(this).find('#is_child').removeAttr('disabled');
+    });
+    
+//    $('#menuType').change( function(){
+//        var is_article = $( this ).val();
+//        if(is_article == 1){
+//            $('#is_child').prop('selected', false);
+//            $('#is_child').prop('disabled', true);
+//        }else{
+//            $('#is_child').prop('disabled', false);
+//        }
+//        
+//    });
+} );
+</script>
