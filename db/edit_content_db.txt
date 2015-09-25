@@ -8,21 +8,16 @@ ALTER TABLE `uzbemb_news_content`  ADD `title_uzbek` VARCHAR(200) NOT NULL ;
 ALTER TABLE `uzbemb_news_content`  ADD `brief_uzbek` TEXT NOT NULL ;
 ALTER TABLE `uzbemb_news_content`  ADD `content_uzbek` TEXT NOT NULL ;
 
-ALTER TABLE `uzbemb_news_content`  DROP `title` ;
-ALTER TABLE `uzbemb_news_content`  DROP `brief` ;
-ALTER TABLE `uzbemb_news_content`  DROP `content` ;
-ALTER TABLE `uzbemb_news_content`  DROP `content` ;
 ALTER TABLE `uzbemb_news_content`  DROP langID;
 
-
-//28-06-2015
 ALTER TABLE `uzbemb_news_content`
 ADD `document_file` VARCHAR(200) NOT NULL ,
 ADD `document_filename` VARCHAR(200) NOT NULL ,
 ADD `document_cover` VARCHAR(200) NOT NULL ,
 ADD `document_covername` VARCHAR(200) NOT NULL ;
-ADD `document_covername` VARCHAR(200) NOT NULL ;
 
-
-//19-09-2015
-ALTER TABLE `uzbemb_news_content` ADD `document_filesize` VARCHAR(200) NOT NULL ;
+// moved topical & bottom menu to menu_list - 25 September 2015
+DROP TABLE uzbemb_menu_bottom;
+DROP TABLE uzbemb_topical_issues;
+ALTER TABLE `uzbemb_menu_list` ADD `icon_image` VARCHAR(200) NULL ;
+ALTER TABLE `uzbemb_menu_list` ADD `file_icon` VARCHAR(200) NULL ;
