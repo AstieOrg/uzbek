@@ -5,7 +5,7 @@
         <h3>{$title.title}</h3>
         {/foreach}
         
-        
+    {if $viewAlbum}
     <div id="links">
         {foreach $viewAlbum as $album}
         <a href="{$basedomain}public_assets/gallery/images/{$album.content}" title="" data-gallery>
@@ -13,7 +13,7 @@
         </a>
         {/foreach}
     </div>
-
+    {/if}
 </div>
 
 
