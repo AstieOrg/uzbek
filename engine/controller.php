@@ -438,7 +438,7 @@ class Controller extends Application{
 	function topicalIssues(){
 		//GET TOPICAL ISSUES
 		$getHelper = new helper_model;
-		$getTopicalIssues = $getHelper->getTopicalIssues();
+		$getTopicalIssues = $getHelper->getMenu('2','0');
 		if($getTopicalIssues)return $getTopicalIssues;
 		return false;
 	}
@@ -446,7 +446,7 @@ class Controller extends Application{
 	function bottomMenu(){
 		//GET BOTTOM MENU
 		$getHelper = new helper_model;
-		$getBottomMenu = $getHelper->getBottomMenu();
+		$getBottomMenu = $getHelper->getMenu('3','0');;
 		if($getBottomMenu)return $getBottomMenu;
 		return false;
 	}

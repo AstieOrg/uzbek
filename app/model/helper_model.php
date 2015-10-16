@@ -26,28 +26,6 @@ class helper_model extends Database {
         if ($res) return $res;
         return false;
     }
-
-    /**
-    ** Get topical menu content
-    **/
-    function getTopicalIssues(){
-        $sql = "SELECT * FROM {$this->prefix}_topical_issues WHERE n_stats = 1 ORDER BY id DESC LIMIT 5;";
-        //pr($sql);exit;
-        $res = $this->fetch($sql,1);
-        if ($res) return $res;
-        return false;
-    }
-
-    /**
-    ** Get bottom menu content
-    **/
-    function getBottomMenu(){
-        $sql = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats = 1;";
-        //pr($sql);exit;
-        $res = $this->fetch($sql,1);
-        if ($res) return $res;
-        return false;
-    }
     
     /**
 	** Get newest book
