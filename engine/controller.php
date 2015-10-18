@@ -23,7 +23,6 @@ class Controller extends Application{
 	
 	function index()
 	{
-		
 		global $CONFIG, $LOCALE, $basedomain, $app_domain, $title, $DATA, $app_domain, $CODEKIR;
 		$filePath = APP_CONTROLLER.$this->page.$this->php_ext;
 		
@@ -87,6 +86,8 @@ class Controller extends Application{
 			$this->view->assign('topicalIssues',$this->topicalIssues());
 			$this->view->assign('bottomMenu',$this->bottomMenu());
             $this->view->assign('newestBook', $this->book());
+            //set undermaintenance
+			$this->view->assign('status','maintenance');
 		}
 		
 		

@@ -1,3 +1,6 @@
+{if $status == 'maintenance'}
+    {include file="under_maintenance.html"}
+{else}
 {include file="template/meta.html"}
 <body>
 	<!-- RUNNING GLOBAL VAR -->
@@ -35,3 +38,5 @@
     <!-- FILE FOOTER -->
         {include file="template/footer.html"}
     <!-- END FILE FOOTER -->
+
+{/if}
