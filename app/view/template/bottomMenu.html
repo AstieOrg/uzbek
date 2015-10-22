@@ -14,25 +14,37 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="row">
+
           {$menu = $language.menu_field}
+          {$c = 0}
+          <div class="row">
           {foreach $bottomMenu as $getBottom}
-          <div class="col-md-3">
-            <div class="menuBottom margin-b">
-            <a href="{$basedomain}home/content/?id={$getBottom.id}&&type={$getBottom.menu_type}&&lang={$smarty.session.lang}">
-              <div class="row">
-                <div class="col-xs-3">
-                  <img src="{$basedomain}public_assets/news/icon/{$getBottom.icon_image}" width="50px" height="50px">
+            
+            <div class="col-md-3">
+              <div class="menuBottom margin-b">
+              <a href="{$basedomain}home/content/?id={$getBottom.id}&&type={$getBottom.menu_type}&&lang={$smarty.session.lang}">
+                <div class="row">
+                  <div class="col-xs-3">
+                    <img src="{$basedomain}public_assets/news/icon/{$getBottom.icon_image}" width="50px" height="50px">
+                  </div>
+                  <div class="col-xs-9">
+                    {$getBottom.$menu}
+                  </div>
                 </div>
-                <div class="col-xs-9">
-                  {$getBottom.$menu}
-                </div>
+              </a>
               </div>
-            </a>
             </div>
-          </div>
-          {/foreach}
-        </div>
+            {if $getBottom@key <= 3}
+              {if $getBottom@key > 0 && $getBottom@key%3 == 0}
+              </div><div class="row">
+              {/if}
+            {else}
+              {if $getBottom@key%4 == 3}
+              </div><div class="row">
+              {/if}
+            {/if}
+            {/foreach}
+
       </div>
     </div>
   </div>
