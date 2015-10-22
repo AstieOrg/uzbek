@@ -15,17 +15,17 @@
     <div class="row">
       <div class="col-md-12">
         <div class="row">
-          {$title = $language.title_field}
+          {$menu = $language.menu_field}
           {foreach $bottomMenu as $getBottom}
           <div class="col-md-3">
             <div class="menuBottom margin-b">
-            <a href="{$basedomain}home/content/?id={$getBottom.id}&&type=3&&lang={$smarty.session.lang}">
+            <a href="{$basedomain}home/content/?id={$getBottom.id}&&type={$getBottom.menu_type}&&lang={$smarty.session.lang}">
               <div class="row">
                 <div class="col-xs-3">
-                  <img src="{$getBottom.file_icon}" width="50px" height="50px">
+                  <img src="{$basedomain}public_assets/news/icon/{$getBottom.icon_image}" width="50px" height="50px">
                 </div>
                 <div class="col-xs-9">
-                  {$getBottom.$title}
+                  {$getBottom.$menu}
                 </div>
               </div>
             </a>

@@ -87,7 +87,7 @@ class Controller extends Application{
 			$this->view->assign('bottomMenu',$this->bottomMenu());
             $this->view->assign('newestBook', $this->book());
             //set undermaintenance
-			$this->view->assign('status','maintenance');
+			//$this->view->assign('status','maintenance');
 		}
 		
 		

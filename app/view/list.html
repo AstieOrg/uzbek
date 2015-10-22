@@ -14,7 +14,7 @@
             {foreach $content as $getContent}
             <div class="col-md-12">
                 <p class="date">{$getContent.posted_date|date_format}</p>
-                <a href="{$basedomain}home/content/?id={$getContent.id}&&type=4&&lang={$smarty.session.lang}" class="title">{$getContent.$title_field}</a>
+                <a href="{$basedomain}home/content/?id={$getContent.id}&&type=2&&lang={$smarty.session.lang}" class="title">{$getContent.$title_field}</a>
                 <p class="content text-justify">{$getContent.$brief_field}</p>
                 <hr class="nomargin-t margin-b">
                 <!--<a href="#" class="more pull-right">Read more..</a>

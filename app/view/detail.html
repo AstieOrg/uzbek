@@ -11,16 +11,23 @@
             {foreach $content as $getContent}
             <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
                 <h3>{$getContent.$title_field}</h3>
-                {if $getContent.image}
-                  <img src="{$basedomain}public_assets/news/{$getContent.image}" class="img-responsive">
-                {/if}
-                {if $getContent.document_cover}
-                <div class="pull-right" style="max-width: 15%; margin-left: 10px;">
-                    <img src="{$basedomain}public_assets/news/docs/cover/{$getContent.document_covername}" class="img-responsive"><br>
-                    <a href="{$basedomain}public_assets/news/docs/{$getContent.document_filename}">Download ({$getContent.document_filesize})</a>
+                <div class="row">
+                    <div class="col-sm-10">
+                        {if $getContent.image}
+                          <img src="{$basedomain}public_assets/news/{$getContent.image}" class="img-responsive">
+                        {/if}
+                        {$getContent.$content_field|html_entity_decode}
+                    </div>
+                    {if $getContent.document_filename}
+                    <div class="col-sm-2">
+                        {if $getContent.document_cover}
+                            <img src="{$basedomain}public_assets/news/docs/cover/{$getContent.document_covername}" class="img-responsive"><br>
+                        {/if}
+                        <a href="https://docs.google.com/viewer?url={$basedomain}public_assets/news/docs/{$getContent.document_filename}">Download ({$getContent.document_filesize})</a>
+                    </div>
+                    {/if}
                 </div>
-                {/if}
-                {$getContent.$content_field|html_entity_decode}
+
                 <!--<a href="#" class="more pull-right">Read more..</a>
                 <div class="clearfix"></div>-->
             </div>

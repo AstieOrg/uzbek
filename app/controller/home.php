@@ -128,18 +128,7 @@ class home extends Controller {
 			return $this->loadView('detail');
 		}
 		else if($type == '2'){
-			$getContent = $this->contentHelper->getTopical('_topical_issues', $id);
-			$this->view->assign('content',$getContent);
-			//pr($getContent);
-			return $this->loadView('detail_topical');
-		}
-		else if($type == '3'){
-			$getContent = $this->contentHelper->getTopical('_menu_bottom', $id);
-			$this->view->assign('content',$getContent);
-			return $this->loadView('detail_topical');
-		}
-		else if($type == '4'){
-			$getContent = $this->contentHelper->getNewsList($langID,$id,'0','1');
+			$getContent = $this->contentHelper->getNewsListDetail($langID,$id,'0','1');
 			if($getContent){
 				foreach ($getContent as $key => $value) {
 					$getContent[$key]['document_filesize'] = formatSizeUnits($value['document_filesize']);

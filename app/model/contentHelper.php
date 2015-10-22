@@ -66,7 +66,7 @@ class contentHelper extends Database {
 	** @param $start = query limit start number
 	** @param $limit = query limit end number
 	**/
-	function getNewsList($lang=0, $id=1, $start=0, $limit=5)
+	function getNewsListDetail($lang=0, $id=1, $start=0, $limit=5)
 	{
 		
 		$langID = "0";
@@ -95,19 +95,6 @@ class contentHelper extends Database {
 	**/
 	function getBanner(){
 		$sql = "SELECT * FROM {$this->prefix}_banner;";
-		//pr($sql);exit;
-		$res = $this->fetch($sql,1);
-		if ($res) return $res;
-		return false;
-	}
-
-	/**
-	** Get topical issues or bottom menu content
-	** @param $table = name of table to be shown
-	** @param $id = id of content to be shown
-	**/
-	function getTopical($table,$id){
-		$sql = "SELECT * FROM {$this->prefix}$table WHERE id = {$id} AND n_stats = 1;";
 		//pr($sql);exit;
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;
