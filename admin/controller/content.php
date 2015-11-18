@@ -58,6 +58,19 @@ class content extends Controller {
 		$this->view->assign('active','active');
         $menuData = $this->models->get_menu($id);
         
+        if($menuData['pos']==0){
+            $position = 'Top Menu Content / '.$menuData['nm_eng'];
+        }
+        elseif($menuData['pos']==1){
+            $position = 'Side Menu Content / '.$menuData['nm_eng'];
+        }
+        elseif($menuData['pos']==2){
+            $position = 'Topical Menu Content / '.$menuData['nm_eng'];
+        }
+        elseif($menuData['pos']==3){
+            $position = 'Bottom Menu Content / '.$menuData['nm_eng'];
+        }
+        
         if($menuData['menu_type']==1){
             $data = $this->models->get_content($id,0);
             redirect($CONFIG['admin']['base_url']."addcontent/contentadd/?id=".$data['id']."&menuid=".$id);
@@ -86,6 +99,7 @@ class content extends Controller {
     // 		$this->view->assign('menu',$menuList);
     		$this->view->assign('data',$data);
     		$this->view->assign('menuid',$id);
+            $this->view->assign('menuPosition',$position);
     
     		return $this->loadView('content/content');
         }

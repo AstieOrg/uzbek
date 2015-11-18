@@ -30,22 +30,59 @@ class Controller extends Application{
 		if($this->configkey=='admin'){
 			$menuData = $this->getMenu();
             if($menuData){
-	            $count = 0;
 	            foreach($menuData as $key => $menu){
-	                if($menu['is_child']){
-	                    $parentData = $this->getMenu($menu['id_parent']);
-	                    $menuList[$count] = $menuData[$key];
-	                    $menuList[$count]['parent'] = $parentData;
-	                    $count = $count + 1;
-	                }else{
-	                    $getChild = $this->getMenu($menu['id'],true);
-	                    if(!$getChild){
-	                        $menuList[$count] = $menuData[$key];
-	                        $count = $count + 1;
-	                    }
-	                }
+                    if($menu['pos'] == '0'){
+                        if($menu['is_child']){
+                            $parentData = $this->getMenu($menu['id_parent']);
+                            $menuData[$key]['parent'] = $parentData;
+                            $menuList['Top'][] = $menuData[$key];
+                        }else{
+                            $getChild = $this->getMenu($menu['id'],true);
+                            if(!$getChild){
+                                $menuList['Top'][] = $menuData[$key];
+                            }
+                        }
+                    }
+                    elseif($menu['pos'] == '1'){
+                        if($menu['is_child']){
+                            $parentData = $this->getMenu($menu['id_parent']);
+                            $menuData[$key]['parent'] = $parentData;
+                            $menuList['Side'][] = $menuData[$key];
+                        }else{
+                            $getChild = $this->getMenu($menu['id'],true);
+                            if(!$getChild){
+                                $menuList['Side'][] = $menuData[$key];
+                            }
+                        }
+                    }
+                    elseif($menu['pos'] == '2'){
+                        if($menu['is_child']){
+                            $parentData = $this->getMenu($menu['id_parent']);
+                            $menuData[$key]['parent'] = $parentData;
+                            $menuList['Topical'][] = $menuData[$key];
+                        }else{
+                            $getChild = $this->getMenu($menu['id'],true);
+                            if(!$getChild){
+                                $menuList['Topical'][] = $menuData[$key];
+                            }
+                        }
+                    }
+                    elseif($menu['pos'] == '3'){
+                        if($menu['is_child']){
+                            $parentData = $this->getMenu($menu['id_parent']);
+                            $menuData[$key]['parent'] = $parentData;
+                            $menuList['Bottom'][] = $menuData[$key];
+                        }else{
+                            $getChild = $this->getMenu($menu['id'],true);
+                            if(!$getChild){
+                                $menuList['Bottom'][] = $menuData[$key];
+                            }
+                        }
+                    }
 	                
 	            }
+                //echo '<pre>';
+                //print_r($menuList);exit;
 	            $this->view->assign('menu', $menuList);
 	        }
             $notif = $this->inbox_notif();

@@ -18,6 +18,8 @@ $(function () {
 </div> <!-- #content-header -->
 
 <div id="content-container">
+    
+    <h3>{$menuPosition}</h3>
     <a class="btn btn-primary btn-sm" href="{$basedomain}addcontent/del_one/?id={$data.id}&menuid={$menuid}"><i class="fa fa-trash-o"></i> Delete Content</a>
 	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}addcontent/contentinp" enctype="multipart/form-data">
 

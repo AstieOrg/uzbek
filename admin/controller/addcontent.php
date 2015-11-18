@@ -28,30 +28,45 @@ class addcontent extends Controller {
 	}
 	
 	public function contentadd(){
-	$menuId = $_GET['menuid'];
-    $id = $_GET['id'];
-	//pr($menuId); exit;		
-		$this->view->assign('active','active');
-        
-        
+        $menuId = $_GET['menuid'];
+        $id = $_GET['id'];
 
-		if($id)
-		{
-		//ini utk edit
-			$data = $this->models->get_content_id($id);
-            
+        $this->view->assign('active','active');
+        
+        $menuData = $this->models->get_menu($menuId);
+        
+        if($menuData['pos']==0){
+            $position = 'Top Menu Content / '.$menuData['nm_eng'];
+        }
+        elseif($menuData['pos']==1){
+            $position = 'Side Menu Content / '.$menuData['nm_eng'];
+        }
+        elseif($menuData['pos']==2){
+            $position = 'Topical Menu Content / '.$menuData['nm_eng'];
+        }
+        elseif($menuData['pos']==3){
+            $position = 'Bottom Menu Content / '.$menuData['nm_eng'];
+        }
+
+        if($id)
+        {
+        //ini utk edit
+            $data = $this->models->get_content_id($id);
+
             if($data){
                 //$data['dateCreate'] = dateFormat($data['dateCreate'],'dd-mm-yyyy');
                 $data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
                 //$data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
             }
-            
-			$this->view->assign('data',$data);
-		} 
-		
-	
-	      	$this->view->assign('admin',$this->admin['admin']);
-	      	$this->view->assign('menuid',$menuId);
+
+            $this->view->assign('data',$data);
+        } 
+
+
+        $this->view->assign('admin',$this->admin['admin']);
+        $this->view->assign('menuid',$menuId);
+        $this->view->assign('menuPosition',$position);
+        
 		/* folder: content file:addcontent.html */
 		return $this->loadView('content/addcontent');
 	}

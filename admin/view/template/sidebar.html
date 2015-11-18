@@ -27,14 +27,15 @@
 					Banner
 				</a>				
 			</li>
-			
-			<li class="dropdown {if $page.page=='content' || $page.page=='addcontent'}active{/if}">
+            
+			{foreach $menu as $key => $pos}
+			<li class="dropdown">
 				<a href="{$basedomain}content">
 					<i class="fa fa-file-text"></i>
-					Content Management
+					{$key} Content
 					<span class="caret"></span>
 				</a>
-    			{foreach $menu as $eachMenu}
+    			{foreach $pos as $eachMenu}
     			<ul class="sub-nav">
      			<li class="button {if $page.page=='{$eachMenu.nm_eng}'}active{/if}"> 
     			
@@ -50,6 +51,7 @@
     			</ul>
     			{/foreach}
 			</li>
+            {/foreach}
             
             <li class="dropdown {if $page.page=='video' || $page.page=='gallery' }active{/if}">
 				<a href="">
