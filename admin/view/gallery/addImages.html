@@ -117,5 +117,18 @@ $( document ).ready(function() {
 	    $('.preview-area').children().remove();
 	});
 });
+    
+$(document).ready(function() {
+    $('#submit').bind("click",function() 
+    { 
+        var imgVal = $('#file_image').val(); 
+        if(imgVal=='') 
+        { 
+            alert("No file to upload!");
+            return false;
+        } 
+
+    }); 
+});
 
 </script>
