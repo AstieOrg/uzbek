@@ -21,7 +21,7 @@
                 {foreach $news as $briefNews}
                 <div class="col-md-4 news_content">
                     <p class="date">{$briefNews.posted_date|date_format}</p>
-                    <a href="{$basedomain}home/content/?id={$briefNews.id}&&type=4&&lang={$smarty.session.lang}" class="title">{$briefNews.$title_field|truncate:75}</a>
+                    <a href="{$basedomain}home/content/?id={$briefNews.id}&&type=2&&lang={$smarty.session.lang}" class="title">{$briefNews.$title_field|truncate:75}</a>
                     <!--<a href="#" class="more pull-right">Read more..</a>
                     <div class="clearfix"></div>-->
                 </div>
