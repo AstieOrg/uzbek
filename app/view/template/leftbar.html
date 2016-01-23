@@ -6,30 +6,30 @@
 					<!-- LEFTBAR -->
 					<div class="row">
 						<div class="col-md-12">
-							<ul class="dropdown-menu" style="display: block; position: static;"> 
-								
-								{$menu = $language.menu_field}
-								{$title = $language.title_field}
-								{$photo_galerry = $language.photo_gallery}
-								{$video = $language.video}
-						            
-								{foreach $leftMenu as $getLeftMenu} 
-								{if $getLeftMenu.child == ''}
-									<li><a href="{$basedomain}home/content/?id={$getLeftMenu.id}&&type={$getLeftMenu.menu_type}&&lang={$smarty.session.lang}" class=" ">{$getLeftMenu.$menu} </a></li>
-								{else}
-									<li class="dropdown-submenu"><a href="#">{$getLeftMenu.$menu}</a>
-										<ul class="dropdown-menu">
-											{foreach $getLeftMenu.child as $getSubMenu}
-										        <li><a href="{$basedomain}home/content/?id={$getSubMenu.id}&&type={$getSubMenu.menu_type}&&lang={$smarty.session.lang}">{$getSubMenu.$menu}</a></li>
-										    {/foreach}
-										</ul>
-									</li>
-								{/if}
-								{/foreach}
-								<li><a href="{$basedomain}media/album">{$photo_galerry}</a></li>
-								<li><a href="{$basedomain}media/video">{$video}</a></li>
-							</ul>
-							<div class="clearfix"></div>
+						<!-- menu -->
+					      <div id="MainMenu">
+					        <div class="list-group panel sidemenu">
+					        {$menu = $language.menu_field}
+							{$title = $language.title_field}
+							{$photo_galerry = $language.photo_gallery}
+							{$video = $language.video}
+					            
+							{foreach from=$leftMenu key=k item=getLeftMenu} 
+							{if $getLeftMenu.child == ''}
+					          <a href="{$basedomain}home/content/?id={$getLeftMenu.id}&&type={$getLeftMenu.menu_type}&&lang={$smarty.session.lang}" class="list-group-item list-group-item">{$getLeftMenu.$menu}</a>
+					        {else}
+					          <a href="#{$k}" class="list-group-item list-group-item" data-toggle="collapse" data-parent="#MainMenu">{$getLeftMenu.$menu}  <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
+						          <div class="collapse" id="{$k}">
+						          	{foreach $getLeftMenu.child as $getSubMenu}
+						            <a href="{$basedomain}home/content/?id={$getSubMenu.id}&&type={$getSubMenu.menu_type}&&lang={$smarty.session.lang}" class="list-group-item submenu">{$getSubMenu.$menu}</a>
+						            {/foreach}
+						          </div>
+						    {/if}
+						    {/foreach}
+						      <a href="{$basedomain}media/album" class="list-group-item list-group-item">{$photo_galerry}</a>
+						      <a href="{$basedomain}media/video" class="list-group-item list-group-item">{$video}</a>
+					        </div>
+					      </div>
 						</div>
 					</div>
                         {if $newestBook}

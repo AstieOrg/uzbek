@@ -146,9 +146,6 @@ body{
     .uzbek-sidebar{
         left: 0;
     }
-    .uzbek-sidebar ul.dropdown-menu{
-        width: auto !important;
-    }
 }
 
     .uzbek-sidebar ul.dropdown-menu{
@@ -337,6 +334,28 @@ footer{
     margin: 0 auto;
 }
 
+/** NEW SIDE MENU CSS **/
+.sidemenu{
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    font-family: 'PTSerifBold', serif;
+    text-transform: uppercase;
+}
+
+.submenu{
+    padding-left: 30px;
+    border-bottom: 1px dotted #CCC !important;
+    border-top: 1px dotted #CCC !important;
+}
+
+.list-group.panel a{
+    border: none;
+}
+.list-group-item:first-child, .list-group-item:last-child, .list-group-item {
+    border-radius: 0px;
+}
 
 
 /* 24a5cfvideo 4bd0edborderh3 056285readmore 0450a6title b47702date */
