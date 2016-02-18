@@ -95,19 +95,21 @@ $(function () {
                     </div>
     			</div>	
                 
+                <input type="hidden" name="edit_menuParent" value="{$data.id_parent}" >
+                
     			<div class="col-sm-6 parentMenu" style="display: none;">			
 				    <div class="form-group">
                         <label for="text-input">Menu Parent</label>
-                        <select name="menuParent" class="form-control" >
-                        <option value="0" selected >Select Parent Menu</option>
-                        {foreach $menu as $eachMenu}
-                        {if $eachMenu.menu_type==0}
-                        <option value="{$eachMenu.id}" {if $data.id_parent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>
-                        {/if}
+                        {foreach $menu as $key => $val}
+                        <select id="posmenu{$key}" name="menuParent" class="form-control posmenu" disabled >
+                            <option value="0" selected >Select Parent Menu</option>
+                            {foreach $val as $eachMenu}
+                            {if $eachMenu.menu_type==0}
+                            <option value="{$eachMenu.id}" {if $data.id_parent=={$eachMenu.id}}selected{/if}>{$eachMenu.nm_eng}</option>
+                            {/if}
+                            {/foreach}
+    				    </select>
                         {/foreach}
-				      
-				      
-				      </select>
     				</div>
     			</div>
                 
@@ -116,21 +118,14 @@ $(function () {
                 {if $data.is_child==1}
                 <script>
                 $(document).ready(function() {
+                    var pos = $('#pos').val();
                     $('.parentMenu').show();
+                    $('.posmenu').hide();
+                    $('#posmenu'+pos).show();
+                    $('#posmenu'+pos).prop('disabled', false);
                 } );
                 </script>
                 {/if}
-                
-                {if $data.pos==2 || $data.pos==3}
-                <script>
-                $(document).ready(function() {
-                    $('#form-icon').show();
-                    $('.parentMenu').hide();
-                } );
-                </script>
-                {/if}
-                
-                
 								                                                
                         <div class="col-sm-12">
                         <div class="row">               
@@ -205,19 +200,42 @@ $(document).ready(function() {
     /* Add event listener to the dropdown input */
     $('#is_child').change( function() {
         var is_child = $( this ).val();
+        var pos = $('#pos').val();
         if(is_child == 1){
             $('.parentMenu').show();
+            $('.posmenu').prop('disabled', true);
+
+            $('.posmenu').hide();
+            $('#posmenu'+pos).show();
+            $('#posmenu'+pos).prop('disabled', false);
         }else{
             $('.parentMenu').hide();
+            $('.posmenu').prop('disabled', true);
         }
     });
     
     /* Add event listener to the dropdown input */
     $('#pos').change( function() {
         var menu_type = $( this ).val();
+        var is_child = $('#is_child').val();
+
+        if(menu_type == 0 || menu_type == 1){
+            $('.parentMenu').hide();
+            $('.posmenu').prop('disabled', true);
+            $('.posmenu').hide();
+
+            if(is_child == 1){
+                $('.parentMenu').show();
+                $('#posmenu'+menu_type).show();
+                $('#posmenu'+menu_type).prop('disabled', false);
+            }
+        }
+
         if(menu_type == 2 || menu_type == 3){
             $('#form-icon').show();
             $('.parentMenu').hide();
+            $('.posmenu').prop('disabled', true);
+
             $('.parentoption').hide();
         }else{
             $('#form-icon').hide();
@@ -228,6 +246,8 @@ $(document).ready(function() {
     $('#validate-enhanced').bind('submit', function() {
         $(this).find('#is_child').removeAttr('disabled');
     });
+
+
     
 //    $('#menuType').change( function(){
 //        var is_article = $( this ).val();
@@ -241,3 +261,12 @@ $(document).ready(function() {
 //    });
 } );
 </script>
+{if $data.pos==2 || $data.pos==3}
+<script>
+$(document).ready(function() {
+    $('#form-icon').show();
+    $('.parentMenu').hide();
+    $('.parentoption').hide();
+} );
+</script>
+{/if}

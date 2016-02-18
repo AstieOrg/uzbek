@@ -30,7 +30,30 @@ class menu extends Controller {
 	public function addmenu(){
 		
 		$this->view->assign('active','active');
-		$menuList = $this->getmenuModels->getMenuParent();
+		$getmenuList = $this->getmenuModels->getMenuParent();
+		
+		$menuList = array();
+		if ($getmenuList){
+			foreach ($getmenuList as $val){
+                
+                if($val['pos'] == '0') {
+                	$val['position'] = 'top';
+					$menuList['0'][] = $val;
+				}
+                if($val['pos'] == '1'){
+                	$val['position'] = 'side';
+					$menuList['1'][] = $val;
+				}
+                if($val['pos'] == '2'){
+                	$val['position'] = 'topical';
+					$menuList['2'][] = $val;
+				}
+                if($val['pos'] == '3'){
+                	$val['position'] = 'bottom';
+					$menuList['3'][] = $val;
+				}
+			}
+		}
         
 		if(isset($_GET['id']))
 		{
@@ -69,7 +92,12 @@ class menu extends Controller {
 		} else {
 			$_POST['n_stats']=0;
 		}
- 		//print_r($_POST);exit;
+
+		if(!isset($_POST['menuParent'])){
+			$_POST['menuParent'] = $_POST['edit_menuParent'];
+		}
+		unset($_POST['edit_menuParent']);
+
 		if(isset($_POST)){
                 // validasi value yang masuk
                $x = form_validation($_POST);
