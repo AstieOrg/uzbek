@@ -35,22 +35,24 @@ class menu extends Controller {
 		$menuList = array();
 		if ($getmenuList){
 			foreach ($getmenuList as $val){
-                
-                if($val['pos'] == '0') {
-                	$val['position'] = 'top';
-					$menuList['0'][] = $val;
-				}
-                if($val['pos'] == '1'){
-                	$val['position'] = 'side';
-					$menuList['1'][] = $val;
-				}
-                if($val['pos'] == '2'){
-                	$val['position'] = 'topical';
-					$menuList['2'][] = $val;
-				}
-                if($val['pos'] == '3'){
-                	$val['position'] = 'bottom';
-					$menuList['3'][] = $val;
+                $get_content = $this->models->get_content($val['id']);
+                if(!$get_content){
+	                if($val['pos'] == '0') {
+	                	$val['position'] = 'top';
+						$menuList['0'][] = $val;
+					}
+	                if($val['pos'] == '1'){
+	                	$val['position'] = 'side';
+						$menuList['1'][] = $val;
+					}
+	                if($val['pos'] == '2'){
+	                	$val['position'] = 'topical';
+						$menuList['2'][] = $val;
+					}
+	                if($val['pos'] == '3'){
+	                	$val['position'] = 'bottom';
+						$menuList['3'][] = $val;
+					}
 				}
 			}
 		}
