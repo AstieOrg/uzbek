@@ -1,18 +1,14 @@
 <?php
-class mvideo extends Database {
+class mbmenu extends Database {
 	
 	var $prefix = "uzbemb";
-	function video_inp($data)
+	function menu_inp($data)
 	{
 		
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
         
-		if(!empty($data['postdate'])){
-            $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate'])); 
-		}else{
-		  $data['postdate'] = $date;
-		}
+		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
         $data['title_bhs'] = mysql_escape_string($data['title_bhs']);
@@ -32,29 +28,27 @@ class mvideo extends Database {
 			//yang atas nama variabel @ db.
 			$query = "INSERT INTO  
 			  
-						{$this->prefix}_video (
-                            video_type,langid,
+						{$this->prefix}_menu_bottom (
+                            icon_image,file_icon,langid,
                             title_bhs,brief_bhs,content_bhs,
                             title_en,brief_en,content_en,
                             title_uzbek,brief_uzbek,content_uzbek,
-                            video,file,created_date,
+                            image,file,created_date,
                             posted_date,author_id,n_stats)
 					VALUES
-						('".$data['video_type']."','".$data['langID']."'
+						('".$data['icon']."','".$data['icon_url']."','".$data['langID']."'
                         ,'".$data['title_bhs']."','".$data['brief_bhs']."','".$data['content_bhs']."'
                         ,'".$data['title_en']."','".$data['brief_en']."','".$data['content_en']."'
                         ,'".$data['title_uzbek']."','".$data['brief_uzbek']."','".$data['content_uzbek']."'
-                        ,'".$data['video_name']."','".$data['video_url']."','".$date."'
+                        ,'".$data['image']."','".$data['image_url']."','".$date."'
                         ,'".$data['postdate']."','".$data['authorid']."','".$data['n_stats']."')";
                         
                         //pr($query);exit;
 
 		} else {
             if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
-			$query = "UPDATE {$this->prefix}_video
+			$query = "UPDATE {$this->prefix}_menu_bottom
 						SET 
-                            video_type = '{$data['video_type']}',
-                            
 							title_bhs = '".$data['title_bhs']."',
 							brief_bhs = '".$data['brief_bhs']."',
 							content_bhs = '".$data['content_bhs']."',
@@ -67,8 +61,10 @@ class mvideo extends Database {
 							brief_uzbek = '".$data['brief_uzbek']."',
 							content_uzbek = '".$data['content_uzbek']."',
                             
-							video = '{$data['video_name']}',
-							file = '{$data['video_url']}',
+							image = '{$data['image']}',
+							file = '{$data['image_url']}',
+							icon_image = '{$data['icon']}',
+							file_icon = '{$data['icon_url']}',
 							posted_date = '".$date."',
                             expired_date = '{$data['expired_date']}',
 							author_id = '{$data['authorid']}',
@@ -82,9 +78,9 @@ class mvideo extends Database {
 		return $result;
 	}
 	
-	function get_video($n_stats=null)
+	function get_menu($n_stats=null)
 	{
-		$query = "SELECT * FROM {$this->prefix}_video WHERE n_stats != '2' ORDER BY posted_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats != '2' ORDER BY posted_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -99,9 +95,9 @@ class mvideo extends Database {
 		return $result;
 	}
     
-    function get_video_filter($categoryid=null,$articletype=null,$type=1)
+    function get_menu_filter($categoryid=null,$articletype=null,$type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_video WHERE n_stats = '1' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' OR n_status = '0' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_stats = '1' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' OR n_status = '0' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,0);
         
@@ -115,9 +111,9 @@ class mvideo extends Database {
 		return $result;
 	}
 	
-	function get_video_trash($categoryid=null)
+	function get_menu_trash($categoryid=null)
 	{
-		$query = "SELECT * FROM {$this->prefix}_video WHERE n_status = '2' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_menu_bottom WHERE n_status = '2' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -132,9 +128,9 @@ class mvideo extends Database {
 		return $result;
 	}
 	
-	function get_video_id($id)
+	function get_menu_id($id)
 	{
-		$query = "SELECT * FROM {$this->prefix}_video WHERE id= {$id}";
+		$query = "SELECT * FROM {$this->prefix}_menu_bottom WHERE id= {$id}";
 		
 		$result = $this->fetch($query,0);
 
@@ -144,12 +140,12 @@ class mvideo extends Database {
 		return $result;
 	}
     
-    function video_del($id)
+    function menu_del($id)
 	{
 		//pr($id);
 		foreach ($id as $key => $value) {
 			
-			$query = "DELETE FROM {$this->prefix}_video WHERE id = '{$value}'";
+			$query = "DELETE FROM {$this->prefix}_menu_bottom WHERE id = '{$value}'";
 		
 			$result = $this->query($query);
 		

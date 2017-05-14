@@ -235,6 +235,18 @@ class menu extends Controller {
 		
 	}
 
+	public function del_icon(){
+        global $CONFIG;        
+        $id = $_GET['id'];   
+        $get['ids'][1] = $id;
+        $getfile = $this->models->get_menu_id($id);
+        //pr($getfile);
+        $delete = deleteFile($getfile['icon_image'],'news/icon');
+       	$data = $this->models->menu_del_icon($get['ids'], 'update');
+
+        echo "<script>alert('Icon has been deleted.');window.location.href='".$CONFIG['admin']['base_url']."menu/addmenu/?id=".$id."'</script>";       
+    } 
+
 }
 
 ?>

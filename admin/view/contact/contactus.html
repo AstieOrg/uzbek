@@ -36,7 +36,7 @@
 					<div class="table-responsive">
 					
 					<!--"{$basedomain}menuconf/delmenu"--> 
-					<form action="{$basedomain}message/messagedel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure to delete this menu?');">
+					<form action="{$basedomain}contact/contactdel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure to delete this menu?');">
 					
 					
 					<!--<p class="pull-left" style="margin-right: 14px;line-height: 27px;">Sort data in : </p>
@@ -78,12 +78,12 @@
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" {$var.disabled} />
 									</td>
 <!-- 									<td><a href="{$basedomain}contact/contactus" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.id}</a></td> -->
-									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}message/view/?id={$var.id}" style="color: #282828;">{$var.name}</a></td>
-									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}message/view/?id={$var.id}" style="color: #282828;">{$var.date_received}</a></td>
-									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}message/view/?id={$var.id}" style="color: #282828;">{$var.mail}</a></td>
-									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}message/view/?id={$var.id}" style="color: #282828;">{$var.address}</a></td>
-									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}message/view/?id={$var.id}" style="color: #282828;">{$var.subject}</a></td>
-									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}message/view/?id={$var.id}" style="color: #282828;">{$var.message|truncate:25:"...":true}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.name}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.date_received}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.mail}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.address}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.subject}</a></td>
+									<td {if $var.n_stats == 0}style="font-weight:bold;"{/if}><a href="{$basedomain}contact/view/?id={$var.id}" style="color: #282828;">{$var.message|truncate:25:"...":true}</a></td>
 									
 								
 								</tr>

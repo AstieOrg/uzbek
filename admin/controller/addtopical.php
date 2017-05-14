@@ -1,10 +1,10 @@
 <?php
 // defined ('MICRODATA') or exit ( 'Forbidden Access' );
 
-class contactus extends Controller {
+class addtopical extends Controller {
 	
 	var $models = FALSE;
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -16,55 +16,39 @@ class contactus extends Controller {
 	public function loadmodule()
 	{
 		
-		$this->models = $this->loadModel('mcontactus');
+		$this->models = $this->loadModel('mtopical');
 	
 	}
 	public function index(){
-        global $CONFIG;
-        $check = $this->models->getcontactus();
-        //pr($check);exit;
-        
-        if($check){
-            redirect($CONFIG['admin']['base_url']."contactus/content/?id=".$check['id']);
-            exit;
-        }
-        return $this->loadView('contactus/contactusinp');
+	
+
 	}
 	
-	public function content(){
-	$menuId = $_GET['menuid'];
-    $id = $_GET['id'];
-    		
+	public function topicaladd(){		
 		$this->view->assign('active','active');
+	
 
-		if($id)
+		if(isset($_GET['id']))
 		{
-		//ini utk edit
-			$data = $this->models->get_contactus_id($id);
+
+			$data = $this->models->get_topical_id($_GET['id']);
             
             if($data){
-                //$data['dateCreate'] = dateFormat($data['dateCreate'],'dd-mm-yyyy');
+                $data['created_date'] = dateFormat($data['created_date'],'dd-mm-yyyy');
                 $data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
-                //$data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
-                
-                $data['content_bhs'] = htmlspecialchars_decode($data['content_bhs']);
-                $data['content_en'] = htmlspecialchars_decode($data['content_en']);
-                $data['content_uzbek'] = htmlspecialchars_decode($data['content_uzbek']);
             }
             
 			$this->view->assign('data',$data);
 		} 
 		
 	
-      	$this->view->assign('admin',$this->admin['admin']);
-      	$this->view->assign('menuid',$menuId);
-		return $this->loadView('contactus/contactusinp');
+        $this->view->assign('admin',$this->admin['admin']);
+		return $this->loadView('topical/addtopical');
 	}
 	
 	
-	public function contactusinp(){
+	public function topicalinp(){
 		global $CONFIG;
-        $menuId = $_POST['menuId'];
 		
 		if(isset($_POST['n_stats'])){
 			if($_POST['n_stats']=='on') $_POST['n_stats']=1;
@@ -88,20 +72,35 @@ class contactus extends Controller {
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
-                                $delete = deleteFile($x['image'],'news');
-								if($x['action'] == 'update') deleteFile($x['image']);
-								$image = uploadFile('file_image','news','image');
-								
+                                
+                                $path = 'news';
+                                
+								if($x['action'] == 'update') deleteFile($x['image'],$path.'/image');
+                                
+								$image = uploadFile('file_image',$path.'/image','image');
+                                
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
+                            
+                            if($_FILES['file_icon']['name'] != ''){
+                                
+                                $path = 'news';
+
+                                if($x['action'] == 'update') deleteFile($x['icon'],$path.'/icon');
+                                
+								$icon = uploadFile('file_icon',$path.'/icon','image');
+                                
+								$x['icon_url'] = $CONFIG['admin']['app_url'].$icon['folder_name'].$icon['full_name'];
+								$x['icon'] = $icon['full_name'];
+							}
 						}
-						$data = $this->models->contactus_inp($x);
+						$data = $this->models->topical_inp($x);
 			   		}
 				   	
 			   }catch (Exception $e){}
             
-            $redirect = $CONFIG['admin']['base_url'].'contactus';
+            $redirect = $CONFIG['admin']['base_url'].'topical';
             $message = 'Save data succeed';
             
             echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";

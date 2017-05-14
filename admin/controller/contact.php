@@ -1,7 +1,7 @@
 <?php
 // defined ('TATARUANG') or exit ( 'Forbidden Access' );
 
-class message extends Controller {
+class contact extends Controller {
 	
 	var $models = FALSE;
 	
@@ -20,7 +20,7 @@ class message extends Controller {
 	public function loadmodule()
 	{
 		
-		$this->models = $this->loadModel('mmessage');
+		$this->models = $this->loadModel('mcontact');
 	}
 	
 	public function index(){
@@ -41,7 +41,7 @@ class message extends Controller {
 		// pr($data);exit;
 		$this->view->assign('data',$data);
 
-		return $this->loadView('message/index');
+		return $this->loadView('contact/contactus');
 	}
 
 	public function view(){
@@ -55,10 +55,10 @@ class message extends Controller {
 			}
 		}
 		$this->view->assign('msg',$getMsg);
-		return $this->loadView('message/viewMessage');
+		return $this->loadView('contact/viewMessage');
 	}
     
-    public function messagedel($action='delete'){
+    public function contactdel($action='delete'){
 
 		global $CONFIG;
         //pr($_POST);exit;
@@ -71,7 +71,7 @@ class message extends Controller {
             $message = 'Data has been deleted';
         }
 		
-		echo "<script>alert('".$message."');window.location.href='".$CONFIG['admin']['base_url']."message'</script>";
+		echo "<script>alert('".$message."');window.location.href='".$CONFIG['admin']['base_url']."contact'</script>";
 		
 	}
 }

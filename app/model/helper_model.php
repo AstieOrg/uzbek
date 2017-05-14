@@ -48,6 +48,7 @@ class helper_model extends Database {
                 AND articleType = {$type} {$filter} LIMIT {$start},{$limit}";
         // pr($sql);
         $res = $this->fetch($sql,1);
+        
         if ($res){
 
             foreach ($res as $key => $value) {
@@ -57,7 +58,32 @@ class helper_model extends Database {
                 $newData[$key]['end'] = date('Y-m-d', strtotime($value['expired_date']));
             }
 
-            // pr($newData);
+            //print_r($newData);
+            return $newData;  
+        } 
+        return false;
+    }
+    
+    function getBrief($start=0, $limit=10)
+    {
+        
+        $filter = "";
+        if ($id) $filter = " AND id = {$id} ";
+
+        $sql = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 AND ticker_status = 1 ORDER BY created_date DESC LIMIT {$start},{$limit}";
+        //print_r($sql);
+        $res = $this->fetch($sql,1);
+        if ($res){
+
+            foreach ($res as $key => $value) {
+                
+                $newData[$key]['brief_bhs'] = $value['brief_bhs'];
+                $newData[$key]['brief_en'] = $value['brief_en'];
+                $newData[$key]['brief_uzbek'] = $value['brief_uzbek'];
+                
+            }
+
+            //print_r($newData[0]['brief_en']);
             return $newData;  
         } 
         return false;

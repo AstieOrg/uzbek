@@ -187,6 +187,10 @@ $(function () {
     						  </div>
     						</div>
                         </div>
+
+                        {if $data.icon_image || $data.file_icon}
+                        <a href="{$basedomain}menu/del_icon/?id={$data.id}" class="btn btn-danger" data-id="{$data.id}">Delete Icon</a>
+                        {/if}
                     </div>
                     
                 </div>

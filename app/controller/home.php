@@ -17,6 +17,7 @@ class home extends Controller {
 	function loadmodule()
 	{
         $this->contentHelper = $this->loadModel('contentHelper');
+        $this->helper_model = $this->loadModel('helper_model');
 	}
 	
 	/**
@@ -39,6 +40,8 @@ class home extends Controller {
 		//GET BANNER
 		$getBanner = $this->contentHelper->getBanner();
 		$this->view->assign('banner',$getBanner);
+		
+		
 
 		//GET HEADLINES
 		$getHeadlines = $this->contentHelper->getHeadlines();
@@ -49,6 +52,17 @@ class home extends Controller {
 		}
 		$this->view->assign('headlines',$getHeadlines);
 
+		//GET NewsTicker
+		$getNewsTicker = $this->helper_model->getBrief('0','10');
+		//print_r($getNewsTicker);
+		    foreach ($getNewsTicker as $key => $value) {
+			$getNewsTicker[$key]['brief_bhs'] = html_entity_decode($value['brief_bhs'],ENT_QUOTES, 'UTF-8');
+			$getNewsTicker[$key]['brief_en'] = html_entity_decode($value['brief_en'],ENT_QUOTES, 'UTF-8');
+			$getNewsTicker[$key]['brief_uzbek'] = html_entity_decode($value['brief_uzbek'],ENT_QUOTES, 'UTF-8');
+		}
+		//print_r($getNewsTicker);
+		$this->view->assign('newsTicker',$getNewsTicker);
+		
 		//GET NEWS
 		$lang = $_GET['lang'];
 		if($lang == 'id'){$langID = '0';}
@@ -60,7 +74,11 @@ class home extends Controller {
 		$getNewsID = $this->contentHelper->getNewsID($newstitle);
 
 		$getNews = $this->contentHelper->getNews($langID,$getNewsID['0']['id'],'0','9');
+		
 		$this->view->assign('news',$getNews);
+		
+		
+		
 
 		//GET NEWEST PHOTO
 		$getNewestPhoto = $this->contentHelper->getNewestPhoto();

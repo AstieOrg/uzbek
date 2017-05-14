@@ -8,8 +8,14 @@ class mcontent extends Database {
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
         
-        if($data['n_status']=='on') $data['n_status'] = 1;
         
+        if($data['ticker_status']=='on') $data['ticker_status'] = 1;
+        if($data['n_status']=='on') $data['n_status'] = 1;
+        if($data['ticker_status']=='on') $data['ticker_status'] = 1;
+        if($data['n_status']=='off') $data['n_status'] = 0;
+        if($data['ticker_status']=='off') $data['ticker_status'] = 0;
+                
+                
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         //if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         
@@ -35,7 +41,7 @@ class mcontent extends Database {
                                 title_en,brief_en,content_en,
                                 title_uzbek,brief_uzbek,content_uzbek,
                                 menuId,parentid,image,file,categoryid,articletype,
-                                created_date,posted_date,expired_date,authorid,n_status,
+                                created_date,posted_date,expired_date,authorid,n_status,ticker_status,
                                 document_file,document_filename,
                                 document_cover,document_covername,document_filesize)
 					VALUES
@@ -45,10 +51,11 @@ class mcontent extends Database {
                         ,'".$data['menuId']."','".$data['parentMenu']."','".$data['image']."'
                         ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
                         ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."'
-                        ,'".$data['document_file']."','".$data['document_filename']."'
+                        ,'".$data['ticker_status']."','".$data['document_file']."','".$data['document_filename']."'
                         ,'".$data['document_cover']."','".$data['document_covername']."','".$data['document_filesize']."')";
                         //yang bawah itu nama db @ website
-                        //pr($query);exit;
+                        
+                        //print_r($query);exit;
 
 		} else {
 			if($data['document_filesize'] == ''){
@@ -80,7 +87,8 @@ class mcontent extends Database {
                             posted_date  = '{$data['postdate']}',
                             expired_date = '{$data['expired_date']}',
                             authorid     = '{$data['authorid']}',
-                            
+                            n_status = '{$data['n_status']}',
+                            ticker_status = '{$data['ticker_status']}',
                             document_file = '{$data['document_file']}',
                             document_filename = '{$data['document_filename']}',
                             document_cover = '{$data['document_cover']}',
@@ -108,6 +116,27 @@ class mcontent extends Database {
 	function get_content($menuId=null, $loop=1)
 	{
 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND menuId = '{$menuId}' OR n_status = '0' AND menuId = '{$menuId}' ORDER BY created_date DESC";
+		//pr($query);exit;
+		$result = $this->fetch($query,$loop);
+        
+        if($loop){
+     		foreach ($result as $key => $value) {
+                if($value['authorid']){
+         			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+         
+         			$username = $this->fetch($query,0);
+         
+         			$result[$key]['username'] = $username['username'];
+                }
+     		}
+        }
+		
+		return $result;
+	}
+
+	function get_content_article($id=null, $loop=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE id = '{$id}' ORDER BY created_date DESC";
 		//pr($query);exit;
 		$result = $this->fetch($query,$loop);
         
@@ -177,6 +206,49 @@ class mcontent extends Database {
 		return true;
 		
 	}
+
+	function content_del_img($id, $action)
+	{
+		foreach ($id as $key => $value) {
+			
+			
+            $query = "UPDATE {$this->prefix}_news_content SET image = '' , file = '' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
+
+	function content_del_doc($id, $action)
+	{
+		foreach ($id as $key => $value) {
+				
+            $query = "UPDATE {$this->prefix}_news_content SET document_file = '' , document_filename = '' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
+
+	function content_del_doccover($id, $action)
+	{
+		foreach ($id as $key => $value) {
+				
+            $query = "UPDATE {$this->prefix}_news_content SET document_cover = '' , document_covername = '' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
 	
 	function content_restore($id)
 	{
@@ -200,6 +272,7 @@ class mcontent extends Database {
 
 		//if($result['posted_date'] != '') $result['posted_date'] = dateFormat($result['posted_date'],'dd-mm-yyyy');
 		($result['n_status'] == 1) ? $result['n_status'] = 'checked' : $result['n_status'] = '';
+		($result['ticker_status'] == 1) ? $result['ticker_status'] = 'checked' : $result['ticker_status'] = '';
 
 		return $result;
 	}

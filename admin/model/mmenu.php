@@ -182,5 +182,19 @@ class mmenu extends Database {
 		return $result;
 	}
 
+	function menu_del_icon($id, $action)
+	{
+		foreach ($id as $key => $value) {
+				
+            $query = "UPDATE {$this->prefix}_menu_list SET icon_image = '' , file_icon = '' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
+
 }
 ?>

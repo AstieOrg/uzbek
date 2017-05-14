@@ -114,8 +114,10 @@ class addcontent extends Controller {
                                 //$delete = deleteFile($x['image'],'news');
 								if($x['action'] == 'update') deleteFile($x['image'],'news');
 								$image = uploadFile('file_image','news','image');
+								//pr($image);
 								
-								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
+								// $x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
+								$x['image_url'] = 'http://192.168.33.10/'.$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 								$x['document_filesize'] = $_FILES['file_image']['size'];
 							}
@@ -168,6 +170,42 @@ class addcontent extends Controller {
         $data = $this->models->content_del($get['ids'], 'delete');
     
         echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."addcontent/contentadd/?id=&menuid=".$menuId."'</script>";        
+    } 
+
+    public function del_img(){
+        global $CONFIG;        
+        $id = $_GET['id'];  
+        $menuId = $_GET['menuid'];    
+        $get['ids'][1] = $id;
+        $getfile = $this->models->get_content_article($id);
+        $delete = deleteFile($getfile[0]['image'],'news');
+        $data = $this->models->content_del_img($get['ids'], 'update');
+
+        echo "<script>alert('Image has been deleted.');window.location.href='".$CONFIG['admin']['base_url']."addcontent/contentadd/?id=".$id."&menuid=".$menuId."'</script>";       
+    } 
+
+    public function del_doc(){
+        global $CONFIG;        
+        $id = $_GET['id'];  
+        $menuId = $_GET['menuid'];    
+        $get['ids'][1] = $id;
+        $getfile = $this->models->get_content_article($id);
+        $delete = deleteFile($getfile[0]['document_filename'],'news/docs');
+        $data = $this->models->content_del_doc($get['ids'], 'update');
+
+        echo "<script>alert('Documen has been deleted.');window.location.href='".$CONFIG['admin']['base_url']."addcontent/contentadd/?id=".$id."&menuid=".$menuId."'</script>";       
+    } 
+
+    public function del_doc_cover(){
+        global $CONFIG;        
+        $id = $_GET['id'];  
+        $menuId = $_GET['menuid'];    
+        $get['ids'][1] = $id;
+        $getfile = $this->models->get_content_article($id);
+        $delete = deleteFile($getfile[0]['document_covername'],'news/docs/cover');
+        $data = $this->models->content_del_doccover($get['ids'], 'update');
+
+        echo "<script>alert('Documens Cover has been deleted.');window.location.href='".$CONFIG['admin']['base_url']."addcontent/contentadd/?id=".$id."&menuid=".$menuId."'</script>";       
     }        
 	
 	public function trash(){

@@ -1,7 +1,18 @@
 <div class="col-md-9 col-md-height col-top uzbek-content">
     {include file="template/banner.html"}
-
-    {foreach $headlines as $getHeadlines}
+ 
+    <marquee style="background-color:blue;">
+       {foreach $newsTicker as $key => $value}
+			<a style="color:white;"href=""> {$value['brief_en']} | </a>
+			
+			
+	{/foreach} 
+    
+    
+    
+   </marquee>
+    
+   {foreach $headlines as $getHeadlines}
       {$content = $language.content_field}
 
       {$getHeadlines.$content|html_entity_decode}
@@ -61,6 +72,8 @@
             </a>
           </div>
         </div> <!-- END OF COL-MD-3 COL-TOP-->
+        
+        
         <div class="col-md-8 col-md-height col-top uzbek-indexVideo padding-b">
           <a href="{$basedomain}media/video" class="title">Video</a><br>
           <div class="row">
@@ -87,5 +100,7 @@
         </div>
       </div>
     </div>
+      
+    
     </div> 
 </div>

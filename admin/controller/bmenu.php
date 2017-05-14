@@ -1,7 +1,7 @@
 <?php
 // defined ('TATARUANG') or exit ( 'Forbidden Access' );
 
-class video extends Controller {
+class bmenu extends Controller {
 	
 	var $models = FALSE;
 	
@@ -19,13 +19,13 @@ class video extends Controller {
 	public function loadmodule()
 	{
 		
-		$this->models = $this->loadModel('mvideo');
+		$this->models = $this->loadModel('mbmenu');
 	}
 	
 	public function index(){
 		$this->view->assign('active','active');
 
-		$data = $this->models->get_video();
+		$data = $this->models->get_menu();
         //pr($data);exit;
 
 		if ($data){
@@ -34,7 +34,6 @@ class video extends Controller {
 				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
 
 				$data[$key]['posted_date'] = dateFormat($val['posted_date'],'article');
-                $data[$key]['content_en'] = html_entity_decode($val['content_en'], ENT_QUOTES, 'UTF-8');
 
 				if($val['n_stats'] == '1') {
 					$data[$key]['n_stats'] = 'Publish';
@@ -48,18 +47,19 @@ class video extends Controller {
 		
 		// pr($data);exit;
 		$this->view->assign('data',$data);
+		//$this->view->assign('menuId',$menuId);
 
-		return $this->loadView('video/video');
+		return $this->loadView('bmenu/menu');
 	}
     
-    public function videoadd(){		
+    public function menuadd(){		
 		$this->view->assign('active','active');
 	
 
 		if(isset($_GET['id']))
 		{
 
-			$data = $this->models->get_video_id($_GET['id']);
+			$data = $this->models->get_menu_id($_GET['id']);
             
             if($data){
                 $data['created_date'] = dateFormat($data['created_date'],'dd-mm-yyyy');
@@ -71,28 +71,21 @@ class video extends Controller {
 		
 	
         $this->view->assign('admin',$this->admin['admin']);
-		return $this->loadView('video/addvideo');
+		return $this->loadView('bmenu/addmenu');
 	}
 	
 	
-	public function videoinp(){
+	public function menuinp(){
 		global $CONFIG;
-        
-        $redirect = $CONFIG['admin']['base_url'].'video';
-        
-        if(intval($_SERVER['CONTENT_LENGTH'])>0 && count($_POST)===0){
-            $message = 'Upload file failed. Max size is '.ini_get('post_max_size');
-            echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
-        }else{
-        
-    		if(isset($_POST['n_stats'])){
-    			if($_POST['n_stats']=='on') $_POST['n_stats']=1;
-    		} else {
-    			$_POST['n_stats']=0;
-    		}
-            
-    		if(isset($_POST)){
-            // validasi value yang masuk
+		
+		if(isset($_POST['n_stats'])){
+			if($_POST['n_stats']=='on') $_POST['n_stats']=1;
+		} else {
+			$_POST['n_stats']=0;
+		}
+ 		
+		if(isset($_POST)){
+                // validasi value yang masuk
                $x = form_validation($_POST);
 			   try
 			   {
@@ -106,51 +99,64 @@ class video extends Controller {
                         
 						//upload file
 						if(!empty($_FILES)){
-							if($_FILES['file_video']['name'] != ''){
+							if($_FILES['file_image']['name'] != ''){
                                 
-                                $path = 'video';
+                                $path = 'news';
                                 
-								if($x['action'] == 'update') deleteFile($x['video_name'],$path);
+								if($x['action'] == 'update') deleteFile($x['image'],$path.'/image');
                                 
-								$image = uploadFile('file_video',$path, 'video_ext');
+								$image = uploadFile('file_image',$path.'/image','image');
                                 
-								$x['video_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
-								$x['video_name'] = $image['full_name'];
+								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
+								$x['image'] = $image['full_name'];
+							}
+                            
+                            if($_FILES['file_icon']['name'] != ''){
                                 
+                                $path = 'news';
+
+                                if($x['action'] == 'update') deleteFile($x['icon'],$path.'/icon');
+                                
+								$icon = uploadFile('file_icon',$path.'/icon','image');
+                                
+								$x['icon_url'] = $CONFIG['admin']['app_url'].$icon['folder_name'].$icon['full_name'];
+								$x['icon'] = $icon['full_name'];
 							}
 						}
-                        
-                        
-						$data = $this->models->video_inp($x);
-                        
+						$data = $this->models->menu_inp($x);
 			   		}
 				   	
 			   }catch (Exception $e){}
             
-                $message = 'Save data succeed';            
-                
-                echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
+            $redirect = $CONFIG['admin']['base_url'].'bmenu';
+            $message = 'Save data succeed';
+            
+            echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
             }
-        }
 	}
     
-    public function videodel(){
+    public function menudel(){
 
 		global $CONFIG;
-        $path = 'video';
+        $path = 'news';
         
         foreach($_POST['ids'] as $id){
-            $getfile = $this->models->get_video_id($id);
+            $getfile = $this->models->get_menu_id($id);
             $delImage[] = $getfile['image'];
+            $delIcon[] = $getfile['icon_image'];
         }
         
         foreach ($delImage as $image){
-            deleteFile($image,$path);
-        }              
+            deleteFile($image,$path.'/image');
+        }
         
-		$data = $this->models->video_del($_POST['ids']);
+        foreach ($delIcon as $icon){
+            deleteFile($icon,$path.'/icon');
+        }                
+        
+		$data = $this->models->menu_del($_POST['ids']);
 		
-        $redirect = $CONFIG['admin']['base_url'].'video';
+        $redirect = $CONFIG['admin']['base_url'].'bmenu';
         $message = 'Data has been deleted';
         
 		echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
